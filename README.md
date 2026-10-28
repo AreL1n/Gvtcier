@@ -55,3 +55,9 @@ python build.py
 ## 许可
 
 [MIT License](LICENSE)，第三方组件许可见 [Docs/THIRD-PARTY-NOTICES.md](Docs/THIRD-PARTY-NOTICES.md)。
+
+## 赞赏
+
+如果你认同、认可并支持 Gvtcier 引擎，很荣幸地邀请您扫描下方二维码为 AerL1n 打赏一笔人民币，这有助于 Gvtcier 项目的持续性。
+
+![赞赏](README/G0.png)
