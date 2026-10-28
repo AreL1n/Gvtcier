@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gvtcier</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #f7f7f9;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #1e1e2a;
+            line-height: 1.5;
+            transition: padding-left 0.28s ease;
+        }
+
+        body.nav-open {
+            padding-left: 18rem;
+        }
+
+        .wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+            padding: 2rem 1.8rem 2.8rem;
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 2rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.35rem;
+            color: #111;
+            border-left: 6px solid #2d7aff;
+            padding-left: 1rem;
+        }
+
+        .subhead {
+            color: #5b5b6b;
+            font-size: 0.95rem;
+            margin-bottom: 2.2rem;
+            padding-left: 1rem;
+            border-left: 2px solid #cbd5e1;
+            font-style: normal;
+        }
+
+        .tier-guide {
+            background: #f1f5f9;
+            border-left: 4px solid #3b82f6;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 2.2rem 0 0.8rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #e2e8f0;
+            color: #0f172a;            scroll-margin-top: 1rem;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0.5rem;
+        }
+
+        .section-title.sub {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.4rem 0 0.6rem 1.4rem;
+            padding-left: 0.9rem;
+            border-bottom: none;
+            border-left: 4px solid #cbd5e1;
+            color: #334155;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.5rem 0 1.8rem 0;
+            font-size: 0.92rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #d1d9e6;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 0.72rem 1rem;
+            border-bottom: 1px solid #e9edf3;
+            vertical-align: top;
+            background: #ffffff;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:first-child {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-weight: 500;
+            color: #0b3b8c;
+            white-space: nowrap;
+            background: #fafcff;
+        }
+
+        td.t-red    { color: #c0392b; }
+        td.t-orange { color: #c46a10; }
+        td.t-yellow { color: #a58500; }
+        td.t-green  { color: #1f8a4c; }
+        td.t-cyan   { color: #0b7f8c; }
+        td.t-blue   { color: #0b3b8c; }
+        td.t-purple { color: #7b3fa0; }
+
+        table.tbl-lib tbody td:first-child { color: #0b7f8c; }
+
+        table.gmap-demo tbody td:first-child {
+            color: #1f3a5f;
+            white-space: pre-wrap;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.86rem;
+        }
+
+        table.gmap-demo pre {
+            margin: 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: 1.55;
+            white-space: pre-wrap;
+        }
+
+        td:nth-child(2) {
+            color: #1e293b;
+            max-width: 460px;
+        }
+
+        td:nth-child(3) {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.86rem;
+            color: #1f3a5f;
+            background: #fbfdff;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .note {
+            background: #f8fafc;
+            border-left: 4px solid #94a3b8;
+            padding: 0.9rem 1.2rem;
+            border-radius: 10px;
+            margin: 1.2rem 0 0.4rem;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .no-comment {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 2rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #e2e8f0;
+            text-align: right;
+        }
+
+        .chip {
+            display: inline-block;
+            background: #eef2ff;
+            color: #1e40af;
+            border-radius: 20px;
+            padding: 0.15rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            margin-left: 0.6rem;
+            vertical-align: middle;
+        }
+
+        .nav-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 300;
+            width: 2.75rem;
+            height: 2.5rem;
+            border: none;
+            border-radius: 10px;
+            background: #2d7aff;
+            color: #ffffff;
+            font-size: 1.05rem;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(45, 122, 255, 0.32);
+        }
+
+        .nav-toggle:hover {
+            background: #1f66e0;
+        }
+
+        .sidenav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 16.5rem;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+            padding: 4.4rem 0.7rem 1.2rem;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.28s ease;
+            z-index: 250;
+        }
+
+        body.nav-open .sidenav {
+            transform: translateX(0);
+        }
+
+        .nav-group {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: #94a3b8;
+            padding: 0.9rem 0.7rem 0.35rem;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 0.42rem 0.7rem;
+            border-radius: 8px;
+            color: #334155;
+            text-decoration: none;
+            font-size: 0.86rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .nav-item.active {
+            background: #eef2ff;
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        .nav-item.nav-sub {
+            padding-left: 1.7rem;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .nav-item.tier-前置 { color: #64748b; }
+        .nav-item.tier-入门 { color: #16a34a; }
+        .nav-item.tier-进阶 { color: #ca8a04; }
+        .nav-item.tier-精通 { color: #ea580c; }
+        .nav-item.tier-困难 { color: #dc2626; }
+        .nav-item.tier-前置.active { background: #e2e8f0; color: #475569; }
+        .nav-item.tier-入门.active { background: #dcfce7; color: #15803d; }
+        .nav-item.tier-进阶.active { background: #fef9c3; color: #a16207; }
+        .nav-item.tier-精通.active { background: #ffedd5; color: #c2410c; }
+        .nav-item.tier-困难.active { background: #fee2e2; color: #b91c1c; }
+
+        .nav-backdrop {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            body.nav-open {
+                padding-left: 1.5rem;
+            }
+            .sidenav {
+                width: 15rem;
+                box-shadow: 0 20px 48px rgba(15, 23, 42, 0.22);
+            }
+            .nav-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                background: rgba(15, 23, 42, 0.35);
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.28s ease;
+                z-index: 240;
+            }
+            body.nav-open .nav-backdrop {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .wrapper {
+                padding: 1.5rem 0.9rem;
+            }
+            td, th {
+                padding: 0.6rem 0.7rem;
+            }
+            td:first-child {
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="navToggle" class="nav-toggle" type="button" aria-label="目录">☰</button>
+    <nav id="sidenav" class="sidenav"></nav>
+    <div id="navBackdrop" class="nav-backdrop"></div>
+    <div class="wrapper">
+        <h1>Gvtcier</h1>
+        <div class="subhead">v3.3 | 关键字 | 用途和接受的参数 | 演示</div>
+
+        <p class="tier-guide">本手册按 学习路径 分为五层：<b>前置</b> —— 不懂编程先读这里，讲清变量、函数、句柄、表与花括号；<b>入门</b> —— 让东西存在并动起来（实体、属性、层级、输入、玩家、时序、数学）；<b>进阶</b> —— 内容与表现力（模型、动画、特效、相机、射线、绘制、音频、窗口）；<b>精通</b> —— 引擎级能力（渲染管线控制、地图格式、场景校验）；<b>困难</b> —— 引擎内部机制（自省、状态机、裸 OpenGL），没有前面的功底不要从这里开始。侧栏目录已按此分层上色归类。</p>
+
+        <!-- 前置 - 游戏基础 -->
+        <div class="section-title">前置 - 游戏基础</div>
+        <p>在正式开始做游戏前，我们先来了解 Gvtcier 引擎。</p>
+        <p>Gvtcier 是由 Li-HuaL1n 软件开发的一个以中文为主的 3D 引擎，能进行一些有趣的游戏制作。</p>
+        <p>Gvtcier 引擎通常使用 <b>Gvts</b> 格式的文件来执行游戏指令，你可以创建一个这样的文件，在里面写下游戏的逻辑。</p>
+        <p>那么地图呢？有两个方法。一个是麻烦的：你需要在 Gvts 脚本文件内创建这些几何体，对于大型游戏这太痛苦了。所以，你可以试试 <b>Gmap</b> 文件，这是 Gvtcier 引擎的地图文件，详见教程中的 Gmap 章节。</p>
+        <p>同时，我们将游戏包裹为一个 <b>gpk</b> 文件，你可以使用我们提供的工具进行编译。它是跨平台的，你可以在 Windows（窗户）和 Android（安卓）系统中使用它，它只需要一个用于启动它的 exe，这不需要你负责。</p>
+
+        <!-- 前置 - 编程的概念 -->
+        <div class="section-title">前置 - 编程的概念</div>
+        <p>这一章不讲任何引擎功能，只讲「编程」这件事本身。已经写过代码的读者可以跳过；从零开始的读者请先读完这一章，后面所有章节的表格才有意义。</p>
+
+        <h3>程序是什么</h3>
+        <p>程序就是一份<b>按顺序执行的指令清单</b>。引擎从第一行读到最后一行，读到什么做什么：读到求和就算和，读到画图就画图，读到判断就走其中一条路。游戏脚本特殊的地方在于它不是「从头跑到尾就结束」，而是围绕几个固定的入口反复运行——比如 当三维开始时（或二维游戏用的 当二维开始时）里写的代码每帧都会被引擎调用一次，一秒约六十次。你写的不是一份跑完就扔的说明书，而是一套「每次被问到就回应一下」的规则。</p>
+
+        <h3>变量 —— 给值起名字</h3>
+        <p>变量是一个<b>有名字的盒子</b>，用来把一个值存起来，供后面的代码使用。声明就是「造盒子并放入初值」：</p>
+        <pre><code>局部 生命值 = 100;
+全局 分数 = 0;</code></pre>
+        <p><code>局部</code> 的盒子只在当前这块代码里存在，出了这对花括号就消失；<code>全局</code> 的盒子整个脚本都活着，跨帧不丢。往盒子里放新值叫赋值，直接写名字 = 新值即可，不需要再写 局部：</p>
+        <pre><code>生命值 = 生命值 - 10;</code></pre>
+        <p>右边的表达式先算出来，再放进左边的盒子。所以这句话的意思是「取出 生命值 里的数，减 10,放回 生命值」——数学上看不成立，程序里是每秒都在发生的事。</p>
+        <p>值有不同<b>类型</b>:数字(100、0.5)、字符串("敌人")、布尔(真 / 假)、空(空)。类型决定能做什么运算：数字能加减，字符串能拼接，布尔能配 如果。Gvts 是动态类型语言，盒子上不写类型，一个盒子先装数字后装字符串也可以，但请保持每个变量类型稳定，否则读代码的人会迷失。</p>
+
+        <h3>函数 —— 把一段操作打包复用</h3>
+        <p>函数是<b>给一段代码起名字</b>。把常用的操作写进函数，以后每次只喊名字就能执行整段：</p>
+        <pre><code>函数 扣血(数量) {
+    生命值 = 生命值 - 数量;
+    执行_打印(生命值);
+}
+
+扣血(10);
+扣血(30);</code></pre>
+        <p>括号里的 <b>数量</b> 叫参数：调用时传进来的值会在函数内部当作变量用。调用 扣血(10) 时 数量 就是 10,调用 扣血(30) 时就是 30——同一段代码，不同输入，不同结果。<code>返回</code> 负责把函数算出的结果交还给调用处：</p>
+        <pre><code>函数 加(a, b) { 返回 a + b; }
+局部 总分 = 加(2, 3);</code></pre>
+        <p>没有 返回 的函数执行完就结束，交回 空。函数的意义在于<b>消除重复</b>:同一件事写一遍、起名字、到处用；要改逻辑时只改一处。</p>
+
+        <h3>句柄 —— 代表远处对象的凭据</h3>
+        <p>变量通常装「值」(数字、字符串)，但游戏里很多操作的对象不在你的代码里，而在引擎的场景中——某个敌人、某扇门、某盏灯。代码没法把整个 3D 物体塞进一个变量，于是引擎给你一个<b>句柄</b>:一张代表那个对象的凭据。</p>
+        <pre><code>局部 门 = 获取_实体("大门");
+设置_属性(门, "位置Y", 3);</code></pre>
+        <p>变量 门 里存的不是门本身，而是「通往场景里那扇门的凭据」。拿着句柄调用 设置_属性 / 移动_实体 等关键字，引擎就凭据找到真身去执行。句柄的特征：</p>
+        <p>· <b>它可能失效</b>。对象被删除后，手里这张凭据就成了空头支票，再用会得到 空 或报错。所以句柄变量用前要判断是否为 空。</p>
+        <p>· <b>它是引用，不是拷贝</b>。十个变量装同一把句柄，指向的是同一个物体；通过任何一个改动，大家都看得见。</p>
+        <p>· <b>句柄和值的区别</b>，决定了「改变量」和「改对象」是两件事：生命值 = 100 改的是你自己的盒子；设置_属性(门, ...) 改的是场景里的门。</p>
+
+        <h3>花括号 —— 代码的领土边界</h3>
+        <p>花括号 { } 圈出一段代码的<b>从属范围</b>(术语叫作用域或块)。它回答两个问题：这段代码归谁管、里面的名字活多久。</p>
+        <pre><code>如果 得分 &gt; 100 那么 {
+    执行_打印("升级");
+    等级 = 等级 + 1;
+}</code></pre>
+        <p>{ 后面的每一行都听 如果 的：条件成立，块里的代码全部执行；不成立，整块跳过。块可以嵌套——大块里套小块，像地图上的国界套省界：</p>
+        <pre><code>循环 i=1,3 执行 {
+    局部 提示 = "第" + i + "轮";
+    如果 i == 2 那么 {
+        执行_打印(提示);
+    }
+}</code></pre>
+        <p>内层块能用外层块声明的 提示(省界在国界之内，合法)；反过来外层看不到内层的东西。一个 局部 变量从声明它的 { 开始，到配对的 } 结束——这就是它的寿命。</p>
+
+        <h3>为什么习惯写成 换行 + 花括号独占一行</h3>
+        <p>下面的两种写法，引擎看来完全一样：</p>
+        <pre><code>代码 {
+    内容
+}</code></pre>
+        <pre><code>代码 {}</code></pre>
+        <p>但人读起来天差地别，原因有三：</p>
+        <p><b>一、对齐即逻辑。</b>左花括号 { 单独跟在引语后面，右花括号 } 独自回到与引语对齐的位置，一对括号把「归谁管的内容」看得清清楚楚。扫一眼竖着对齐的 } 就能数出层级；全部挤在一行里，嵌套三层后没人能一眼认出哪个 } 配哪个 {。</p>
+        <p><b>二、错误更醒目。</b>少写一个 } 时，独占一行的排版里空白会出卖它——某一块明显没有收尾；挤在一行里，少一个括号混在字符堆里几乎不可能靠肉眼发现。</p>
+        <p><b>三、增删安全。</b>往块里加一行，新行自己占一行，不会动到别的行；挤在一行里每次修改都在动同一条物理行，多打一个分号、少打一个括号都直接破坏整句。</p>
+        <p>所以约定如下：引语(如果 / 循环 / 函数 ……)+ 空格 + { 换行；块内每行缩进一层(四个空格)；} 单独一行，与引语首字对齐；每条语句以分号结尾。这不是语法强制——本引擎零缩进也能跑——而是让代码对「三个月后的你」和「其他读者」可读的纪律。</p>
+
+        <h3>表达式与运算符 —— 任何能算出一个值的写法</h3>
+        <p>前面说「右边的表达式先算出来」。表达式就是任何能算出一个值的写法:<code>1 + 2</code>、<code>生命值 - 10</code>、<code>"第" + i + "轮"</code>、<code>加(2, 3)</code> 都是表达式。运算符按优先级结合：先算 <code>* / %</code>（乘、除、取余），再算 <code>+ -</code>，然后比较 <code>&gt; &lt; &gt;= &lt;= == ~=</code>，再然后 <code>且</code>，最后 <code>或</code>。同级从左到右。<code>==</code> 判断相等，<code>~=</code> 判断不等；<code>//</code> 是整除不是注释，注释只用 <code>--</code>。字符串用 <code>+</code> 拼接，<code>..</code> 在本引擎里不表示拼接。括号 <code>( )</code> 可以强行改变顺序，读不懂优先级时就加括号，不要赌记忆。</p>
+
+        <h3>真值与假值 —— 如果 判断的不只是 真 假</h3>
+        <p>如果 / 当 / 且 / 或 / 非 接受的不只是 真 假：<b>假 和 空 为假，其余一切（包括 0、空字符串、空表）在本引擎里都按真处理</b>。所以判断「变量有没有值」要用 <code>== 空</code> 或 <code>~= 空</code>，不要写 <code>如果 变量 那么</code> 来指望它替你把 0 也当假。条件表达式的结果永远是 真 或 假，可以直接存进变量：</p>
+        <pre><code>局部 可以开门 = 有钥匙 且 有电;</code></pre>
+
+        <h3>表 —— 一个盒子装一组盒子</h3>
+        <p>前面只讲了装单个值的变量。表（table）是能装任意多个值的容器，用 <code>{ }</code> 构造，两种用法：数组用序号 1、2、3… 访问，字典用键访问。</p>
+        <pre><code>局部 背包 = { "钥匙", "地图" };   局部 第一件 = 背包[1];
+局部 属性 = { 速度 = 3, 名称 = "敌人" };   局部 速度值 = 属性.速度;</code></pre>
+        <p>表的序号从 1 起，不是 0。表是<b>引用类型</b>，和句柄一样：<code>局部 甲 = 某表; 局部 乙 = 甲;</code> 改 乙 就是改 甲，要复制得逐项搬。遍历数组用 <code>数组遍历</code>，遍历键值对用 <code>遍历</code>，新增 <code>表.插入</code>，删除 <code>表.移除</code>，长度用 <code>#表</code> 或 <code>原始长度</code>。表和句柄最容易混：表是你自己在脚本里造的盒子，句柄是引擎发给你的凭据，两者都不能用 == 直接比较内容，只能比较是不是同一个。</p>
+
+        <h3>函数进阶 —— 传值、传引用与把函数当值</h3>
+        <p>参数按值传入：数字、字符串、布尔传进去的是<b>副本</b>，函数里改不影响外面；表、句柄传进去的是<b>引用</b>，函数里改内容外面看得见。函数可以没有 返回（交回 空），可以返回多个值（<code>返回 a, b</code>，调用处 <code>局部 甲, 乙 = 函数()</code> 接住），也可以当作值传给别的函数（<code>执行_命令(函数名)</code>、<code>保护调用(函数, ...)</code> 就是这种用法）。定义在 当三维开始时（或 当二维开始时）块里的函数每帧都会被重新定义一次，所以函数体内不要依赖「只执行一次」的初始化；真正的初始化用帧号标志位守住。</p>
+
+        <h3>错误与断言 —— 错了就立刻停下</h3>
+        <p>出错不可怕，可怕的是错了还继续跑。<code>报错("消息")</code> 主动抛出，<code>断言(条件, "消息")</code> 条件不成立就抛，<code>保护调用</code> 把可能出错的调用包起来、成功返 真 加结果、失败返 假 加错误，<code>警告(...)</code> 只提示不中断。凡是「这一步不成立后面全错」的地方，都该断言；凡是「外面给的数据可能不合法」的地方，都该保护调用。</p>
+
+        <h3>执行顺序与分帧 —— 每帧从头重跑</h3>
+        <p>代码是从上往下执行的，但主循环<b>每帧从头重跑</b>。这意味着：本帧写在后面的代码，看到的是本帧前面代码改过的值；下一帧再跑时，局部变量已经没了，只有 全局 还在。所以「只做一次」的事要靠帧号标志位守住，「每帧都做」的事直接写在块里，「过一会儿再做」用 <code>执行_等待</code>（它挂起的是当前函数剩余的代码，不冻结引擎，也不冻结别的函数）。时序上最容易犯的错是把初始化写在了每帧都会跑到的位置，于是物体被反复新建、音效被反复加载——看到「东西越来越多」或「声音叠在一起」，先查这里。</p>
+
+        <h3>命名与读代码 —— 名字是写给人的</h3>
+        <p>变量名写清楚它装什么（<code>剩余血量</code> 比 <code>a</code> 好），函数名写清楚它做什么（<code>扣血</code> 比 <code>处理</code> 好），一个函数只做一件事。句柄用前判 空，表用前判是不是表，数字用前判类型；<code>类型(值)</code> 返回 "number"、"string"、"table" 这类字符串，配合 如果 用。缩进、换行、花括号独占一行，不是为了引擎，是为了三个月后的你——这一章开头讲过，这里再重复一次，因为它是后面三十几章唯一不需要记、却最影响你能不能读懂自己代码的纪律。</p>
+
+        <h3>把这一章收拢成几句话</h3>
+        <p>变量、函数、句柄、表、花括号，加上表达式和真值判断，就是这门语言全部的「零件」。后面每张表里的关键字，拆开看都只是这些零件的组合：参数是值或句柄，返回值是值或句柄，块是花括号，回调是函数。遇到看不懂的写法，回到这一章拆开它——拆不动，说明缺的是上面某一条，而不是引擎太难。</p>
+
+        <!-- 前置 - 语法结构 -->
+        <div class="section-title">前置 - 语法结构</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>关键字</th>
+                    <th>用途和接受的参数</th>
+                    <th>演示</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>注释</td><td>用 -- 注释，不支持 //（// 是整除运算符）</td><td>-- 这是一行注释</td></tr>
+                <tr><td>缩进</td><td>零缩进，块用 { } 包围，不靠缩进定层级</td><td>如果 真 那么 { 执行_打印("ok"); }</td></tr>
+                <tr><td>中文关键字</td><td>关键字与连接词全为中文</td><td>如果 / 那么 / 否则 / 循环 / 执行 / 函数 / 返回 / 局部 / 全局 / 且 / 或 / 非 / 真 / 假 / 空</td></tr>
+                <tr><td>动词_宾语</td><td>引擎能力一律写为「动词_宾语」，下划线连接；宾语是独立功能单元，动词是它的动作面</td><td>新建_实体(...) / 设置_属性(...) / 绘制_文本(...)</td></tr>
+                <tr><td>可用库</td><td>字符串 / 表 / 数学 / MathGv</td><td>数学.圆周率</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 前置 - 动作流 -->
+        <div class="section-title">前置 - 动作流</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>动词</th>
+                    <th>含义</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="t-red">新建</td><td>从 0 凭空生成，不依赖任何已有对象</td></tr>
+                <tr><td class="t-orange">创建</td><td>依赖已有资源或模板生成</td></tr>
+                <tr><td class="t-orange">加载</td><td>从外部路径获取资源</td></tr>
+                <tr><td class="t-red">删除</td><td>销毁实例或资源</td></tr>
+                <tr><td class="t-cyan">获取</td><td>读取字段或状态，返回值</td></tr>
+                <tr><td class="t-yellow">设置</td><td>写入字段或状态，含全部渲染配置</td></tr>
+                <tr><td class="t-cyan">查询</td><td>按条件检索集合</td></tr>
+                <tr><td class="t-green">检测</td><td>布尔判断（存在 / 命中 / 输入 / 状态）</td></tr>
+                <tr><td class="t-blue">移动</td><td>改变位置或朝向</td></tr>
+                <tr><td class="t-blue">播放</td><td>启动时序行为（特效 / 音效 / 动画）</td></tr>
+                <tr><td class="t-blue">停止</td><td>终止时序行为</td></tr>
+                <tr><td class="t-blue">保存</td><td>写出到路径</td></tr>
+                <tr><td class="t-purple">绘制</td><td>立即渲染图元</td></tr>
+                <tr><td class="t-purple">执行</td><td>立即执行一个动作（命令 / 等待 / 渐变 / 打印 / 清屏等）</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 前置 - 基础关键字 -->
+        <div class="section-title">前置 - 基础关键字</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>关键字</th>
+                    <th>用途和接受的参数</th>
+                    <th>演示</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="t-purple">且</td><td>逻辑与；两侧都为真结果才为真</td><td>如果 有钥匙 且 有电 那么 { }</td></tr>
+                <tr><td class="t-purple">跳出</td><td>立即跳出当前循环</td><td>循环 i=1,10 执行 { 如果 i&gt;5 那么 { 跳出 } }</td></tr>
+                <tr><td class="t-purple">执行</td><td>代码块的引导词，跟在 循环 / 当 之后</td><td>循环 i=1,3 执行 { }</td></tr>
+                <tr><td class="t-purple">否则</td><td>如果 条件不成立时的分支</td><td>如果 活着 那么 { } 否则 { }</td></tr>
+                <tr><td class="t-purple">否则如果</td><td>多重条件分支，接在 如果 或另一 否则如果 之后</td><td>如果 a 那么 { } 否则如果 b 那么 { }</td></tr>
+                <tr><td class="t-purple">假</td><td>布尔假</td><td>局部 开关 = 假</td></tr>
+                <tr><td class="t-purple">循环</td><td>数值 for 或泛型 for 循环</td><td>循环 i=1,10 执行 { }</td></tr>
+                <tr><td class="t-purple">函数</td><td>定义函数</td><td>函数 加(a, b) { 返回 a + b }</td></tr>
+                <tr><td class="t-purple">跳转</td><td>跳转到本函数内的标签</td><td>跳转 重试</td></tr>
+                <tr><td class="t-purple">如果</td><td>条件分支</td><td>如果 x &gt; 0 那么 { }</td></tr>
+                <tr><td class="t-purple">在</td><td>泛型 for 的迭代关键字，配 循环 使用</td><td>循环 k, v 在 遍历(表) 执行 { }</td></tr>
+                <tr><td class="t-purple">局部</td><td>声明局部变量</td><td>局部 x = 1</td></tr>
+                <tr><td class="t-purple">全局</td><td>声明跨帧持久化的全局变量，只能写在顶层；函数内读写全局直接写名字，不加前缀</td><td>全局 计数 = 0;</td></tr>
+                <tr><td class="t-purple">空</td><td>空值 nil</td><td>局部 e = 空</td></tr>
+                <tr><td class="t-purple">非</td><td>逻辑非</td><td>如果 非 活着 那么 { }</td></tr>
+                <tr><td class="t-purple">或</td><td>逻辑或；任一侧为真结果即为真</td><td>如果 a 或 b 那么 { }</td></tr>
+                <tr><td class="t-purple">重复</td><td>先执行后判断的循环，配 直到</td><td>重复 { x = x + 1 } 直到 x &gt; 10</td></tr>
+                <tr><td class="t-purple">返回</td><td>从函数返回值</td><td>返回 a + b</td></tr>
+                <tr><td class="t-purple">那么</td><td>如果 / 否则如果 的条件引导词</td><td>如果 真 那么 { }</td></tr>
+                <tr><td class="t-purple">真</td><td>布尔真</td><td>局部 开关 = 真</td></tr>
+                <tr><td class="t-purple">直到</td><td>重复 循环的结束条件</td><td>重复 { } 直到 x &gt; 10</td></tr>
+                <tr><td class="t-purple">当</td><td>while 条件循环</td><td>当 条件 执行 { }</td></tr>
+                <tr><td class="t-purple">继续</td><td>跳过本次迭代，进入下一次循环</td><td>循环 i=1,10 执行 { 如果 i == 3 那么 { 继续 } }</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 前置 - 标准功能库 -->
+        <div class="section-title">前置 - 标准功能库</div>
+        <table class="tbl-lib">
+            <thead>
+                <tr>
+                    <th>关键字</th>
+                    <th>用途和接受的参数</th>
+                    <th>演示</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>断言(条件[, 消息])</td><td>条件为假则报错，可选错误消息</td><td>断言(速度 &gt;= 0, "速度不能为负")</td></tr>
+                <tr><td>报错(消息)</td><td>抛出一个错误</td><td>报错("缺少配置")</td></tr>
+                <tr><td>取元表(对象)</td><td>返回对象的元表，无则返回 空</td><td>局部 元表 = 取元表(对象)</td></tr>
+                <tr><td>设元表(表, 元表)</td><td>设置元表并返回该表</td><td>设元表(表, 元表)</td></tr>
+                <tr><td>数组遍历(表)</td><td>按 1、2、3… 顺序遍历数组，配 循环 使用</td><td>循环 序号, 元素 在 数组遍历(列表) 执行 { }</td></tr>
+                <tr><td>遍历(表)</td><td>遍历全部键值对，顺序不定</td><td>循环 键, 值 在 遍历(表) 执行 { }</td></tr>
+                <tr><td>下一项(表[, 键])</td><td>取下一个键值对</td><td>局部 键, 值 = 下一项(表, 上一个键)</td></tr>
+                <tr><td>保护调用(函数, ...)</td><td>捕获错误；成功返回 真 与结果，失败返回 假 与错误</td><td>局部 成功 = 保护调用(要调用的函数)</td></tr>
+                <tr><td>保护调用带处理(函数, 处理)</td><td>同 保护调用，出错时先调用处理函数</td><td>保护调用带处理(要调用的函数, 错误处理函数)</td></tr>
+                <tr><td>选择(序号, ...)</td><td>取第 n 个可变参数，传 "#" 取参数个数</td><td>局部 第二个 = 选择(2, 第一个值, 第二个值)</td></tr>
+                <tr><td>原始读(表, 键)</td><td>不触发元方法的读取</td><td>局部 值 = 原始读(表, 键)</td></tr>
+                <tr><td>原始写(表, 键, 值)</td><td>不触发元方法的写入</td><td>原始写(表, 键, 新值)</td></tr>
+                <tr><td>原始相等(a, b)</td><td>不触发元方法的相等比较</td><td>如果 原始相等(值甲, 值乙) 那么 { }</td></tr>
+                <tr><td>原始长度(对象)</td><td>不触发 __len 的长度</td><td>局部 长度 = 原始长度(列表)</td></tr>
+                <tr><td>转数字(值)</td><td>字符串或值转数字，失败返回 空</td><td>局部 数字 = 转数字(字符串)</td></tr>
+                <tr><td>转文本(值)</td><td>任意值转字符串</td><td>局部 文本 = 转文本(任意值)</td></tr>
+                <tr><td>类型(值)</td><td>返回类型名，如 "number"、"string"、"table"</td><td>如果 类型(变量) == "number" 那么 { }</td></tr>
+                <tr><td>全局表</td><td>全局环境表</td><td>全局表.新键 = 值</td></tr>
+                <tr><td>版本</td><td>脚本引擎版本字符串，如 "Gvts 5.4"</td><td>执行_打印(版本)</td></tr>
+                <tr><td>警告(...)</td><td>输出警告信息</td><td>警告("资源缺失")</td></tr>
+                <tr><td>字符串.字节(串[, 起[, 止]])</td><td>返回字符的字节值</td><td>局部 字节值 = 字符串.字节(字符串, 起位置, 止位置)</td></tr>
+                <tr><td>字符串.字符(...)</td><td>由字节值构造字符串</td><td>局部 串 = 字符串.字符(字节值, 字节值)</td></tr>
+                <tr><td>字符串.导出(函数)</td><td>把函数导出为二进制串</td><td>局部 二进制 = 字符串.导出(函数)</td></tr>
+                <tr><td>字符串.查找(串, 模式[, 起[, 纯文本]])</td><td>查找子串或模式，返回起止位置</td><td>局部 起, 止 = 字符串.查找(字符串, 模式, 起位置)</td></tr>
+                <tr><td>字符串.格式化(格式, ...)</td><td>按 C 风格格式串生成字符串</td><td>局部 串 = 字符串.格式化(格式串, 值...)</td></tr>
+                <tr><td>字符串.全部匹配(串, 模式)</td><td>返回迭代器，逐个匹配</td><td>循环 匹配 在 字符串.全部匹配(字符串, 模式) 执行 { }</td></tr>
+                <tr><td>字符串.替换(串, 模式, 替换)</td><td>全局替换，返回新串与替换次数</td><td>局部 新串, 次数 = 字符串.替换(字符串, 模式, 替换为)</td></tr>
+                <tr><td>字符串.长度(串)</td><td>返回字符串长度</td><td>局部 长度 = 字符串.长度(字符串)</td></tr>
+                <tr><td>字符串.转小写(串)</td><td>转小写</td><td>局部 串 = 字符串.转小写(字符串)</td></tr>
+                <tr><td>字符串.匹配(串, 模式[, 起])</td><td>返回匹配到的内容</td><td>局部 串 = 字符串.匹配(字符串, 模式)</td></tr>
+                <tr><td>字符串.打包(格式, ...)</td><td>按格式打包为二进制串</td><td>局部 二进制 = 字符串.打包(格式串, 值...)</td></tr>
+                <tr><td>字符串.打包大小(格式)</td><td>给定格式占用的字节数</td><td>局部 字节数 = 字符串.打包大小(格式串)</td></tr>
+                <tr><td>字符串.重复(串, 次数[, 分隔])</td><td>重复拼接字符串</td><td>局部 串 = 字符串.重复(字符串, 次数, 分隔符)</td></tr>
+                <tr><td>字符串.反转(串)</td><td>反转字符串</td><td>局部 串 = 字符串.反转(字符串)</td></tr>
+                <tr><td>字符串.子串(串, 起[, 止])</td><td>取子串，负数从末尾算</td><td>局部 串 = 字符串.子串(字符串, 起位置, 止位置)</td></tr>
+                <tr><td>字符串.解包(串, 格式[, 位置])</td><td>按格式解二进制串</td><td>局部 值 = 字符串.解包(二进制, 格式串, 位置)</td></tr>
+                <tr><td>字符串.转大写(串)</td><td>转大写</td><td>局部 串 = 字符串.转大写(字符串)</td></tr>
+                <tr><td>表.连接(列表[, 分隔[, 起[, 止]]])</td><td>用分隔符拼接数组元素</td><td>局部 串 = 表.连接(列表, 分隔符)</td></tr>
+                <tr><td>表.插入(列表, 值) / 表.插入(列表, 位置, 值)</td><td>向数组插入元素</td><td>表.插入(列表, 要插入的值)</td></tr>
+                <tr><td>表.移除(列表[, 位置])</td><td>移除并返回元素</td><td>局部 值 = 表.移除(列表, 位置)</td></tr>
+                <tr><td>表.排序(列表[, 比较函数])</td><td>原地排序数组</td><td>表.排序(列表, 比较函数)</td></tr>
+                <tr><td>表.移动(源表, 起, 止, 目标位置[, 目标表])</td><td>搬运元素并返回目标表</td><td>表.移动(源表, 起位置, 止位置, 目标位置, 目标表)</td></tr>
+                <tr><td>表.打包(...)</td><td>把参数打包成表，含字段 n</td><td>局部 表 = 表.打包(值, 值)</td></tr>
+                <tr><td>表.解包(列表[, 起[, 止]])</td><td>把表展开为多值</td><td>局部 值甲, 值乙 = 表.解包(列表)</td></tr>
+                <tr><td>数学.绝对值(x)</td><td>绝对值</td><td>局部 值 = 数学.绝对值(数值)</td></tr>
+                <tr><td>数学.向上取整(x)</td><td>向上取整</td><td>局部 值 = 数学.向上取整(数值)</td></tr>
+                <tr><td>数学.向下取整(x)</td><td>向下取整</td><td>局部 值 = 数学.向下取整(数值)</td></tr>
+                <tr><td>数学.开方(x)</td><td>平方根</td><td>局部 值 = 数学.开方(数值)</td></tr>
+                <tr><td>数学.幂(x, y)</td><td>x 的 y 次幂</td><td>局部 值 = 数学.幂(底数, 指数)</td></tr>
+                <tr><td>数学.指数(x)</td><td>e 的 x 次幂</td><td>局部 值 = 数学.指数(数值)</td></tr>
+                <tr><td>数学.对数(x[, 底])</td><td>对数，默认自然对数</td><td>局部 值 = 数学.对数(数值, 底数)</td></tr>
+                <tr><td>数学.正弦(x)</td><td>正弦</td><td>局部 值 = 数学.正弦(弧度)</td></tr>
+                <tr><td>数学.余弦(x)</td><td>余弦</td><td>局部 值 = 数学.余弦(弧度)</td></tr>
+                <tr><td>数学.正切(x)</td><td>正切</td><td>局部 值 = 数学.正切(弧度)</td></tr>
+                <tr><td>数学.反正弦(x)</td><td>反正弦</td><td>局部 值 = 数学.反正弦(数值)</td></tr>
+                <tr><td>数学.反余弦(x)</td><td>反余弦</td><td>局部 值 = 数学.反余弦(数值)</td></tr>
+                <tr><td>数学.反正切(x[, x2])</td><td>反正切，给两参时按 y/x 求角</td><td>局部 值 = 数学.反正切(纵差, 横差)</td></tr>
+                <tr><td>数学.方位角(y, x)</td><td>按 y/x 求方向角</td><td>局部 值 = 数学.方位角(纵差, 横差)</td></tr>
+                <tr><td>数学.转角度(x)</td><td>弧度转角</td><td>局部 角度 = 数学.转角度(弧度)</td></tr>
+                <tr><td>数学.转弧度(x)</td><td>角度转弧度</td><td>局部 弧度 = 数学.转弧度(角度)</td></tr>
+                <tr><td>数学.最小(...)</td><td>取最小值</td><td>局部 值 = 数学.最小(值甲, 值乙, 值丙)</td></tr>
+                <tr><td>数学.最大(...)</td><td>取最大值</td><td>局部 值 = 数学.最大(值甲, 值乙, 值丙)</td></tr>
+                <tr><td>数学.取余(x, y)</td><td>取余</td><td>局部 值 = 数学.取余(被除数, 除数)</td></tr>
+                <tr><td>数学.浮点取余(x, y)</td><td>浮点取余（同 C fmod）</td><td>局部 值 = 数学.浮点取余(被除数, 除数)</td></tr>
+                <tr><td>数学.拆分(x)</td><td>拆出整数与小数部分</td><td>局部 整数, 小数 = 数学.拆分(数值)</td></tr>
+                <tr><td>数学.限制(x, 低, 高)</td><td>把 x 限制在区间内</td><td>局部 值 = 数学.限制(数值, 下限, 上限)</td></tr>
+                <tr><td>数学.插值(a, b, t)</td><td>按比例 t 在 a、b 间插值</td><td>局部 值 = 数学.插值(起点, 终点, 比例)</td></tr>
+                <tr><td>数学.符号(x)</td><td>取正负号，返回 -1、0 或 1</td><td>局部 值 = 数学.符号(数值)</td></tr>
+                <tr><td>数学.随机([m[, n]])</td><td>无参返回 0~1 小数；给参返回区间内整数</td><td>局部 值 = 数学.随机(下限, 上限)</td></tr>
+                <tr><td>数学.设随机种子(整数)</td><td>设置随机种子</td><td>数学.设随机种子(种子整数)</td></tr>
+                <tr><td>数学.圆周率</td><td>圆周率常数</td><td>局部 值 = 数学.圆周率</td></tr>
+                <tr><td>数学.极大值</td><td>浮点正无穷</td><td>局部 值 = 数学.极大值</td></tr>
+                <tr><td>数学.最大整数 / 数学.最小整数</td><td>整数上下限</td><td>局部 值 = 数学.最大整数</td></tr>
+                <tr><td>数学.转整数(x)</td><td>能转则转整数，否则返回 空</td><td>局部 值 = 数学.转整数(数值)</td></tr>
+                <tr><td>数学.数学类型(x)</td><td>返回 "integer"、"float" 或 空</td><td>局部 值 = 数学.数学类型(数值)</td></tr>
+                <tr><td>数学.无符号小于(a, b)</td><td>按无符号整数比较</td><td>如果 数学.无符号小于(值甲, 值乙) 那么 { }</td></tr>
+                <tr><td>字符串 / 表 / 数学 的方法写法</td><td>字符串等方法可直接用冒号调用</td><td>局部 串 = (字符串):子串(起位置)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 一 游戏脚本入口 -->
+        <div class="section-title">入门 - 一 游戏脚本入口</div>
+        <table>
+            <thead><tr><th>关键字</th><th>用途和接受的参数</th><th>演示</th></tr></thead>
+            <tbody>
+                <tr><td class="t-red">包含 &lt;文件名&gt;</td><td>声明依赖：只有包含过的文件才能被引用或使用。写在脚本顶层，文件名写全名含后缀。文件不存在、或重复包含同一文件都会报错中止；已包含但从未 从这里执行 会输出警告</td><td>包含 &lt;状态机.gvts&gt;<br>包含 &lt;测试场景.gmap&gt;</td></tr>
+                <tr><td class="t-red">从这里执行("文件名")</td><td>主语（无动词）。把已 包含 的脚本文件内容在此处展开执行，等价于 C 的 include 插入点。文件名用双引号、写全名含后缀；未包含就使用会报错</td><td>包含 &lt;状态机.gvts&gt;<br>当三维开始时() {<br>&nbsp;&nbsp;从这里执行("状态机.gvts");<br>}</td></tr>
+                <tr><td class="t-purple">当三维开始时</td><td>语法关键字（非宾语）。三维游戏的主循环入口，块内代码每帧自动执行，等价于 C 的 main + 无限循环；引擎据此把运行模式切到三维并经 gvtio 统一广播；函数定义通常写在块内；首帧初始化用标志位守住只跑一次</td><td>当三维开始时() { 如果 获取_帧号() == 1 那么 { 建场景(); } }</td></tr>
+                <tr><td class="t-purple">当二维开始时</td><td>语法关键字（非宾语）。二维游戏的主循环入口，语义与 当三维开始时 一致，只是把模式切到二维：引擎只绘制画布图元与引擎界面图元，不触碰三维状态；与 当三维开始时 合计只能出现一次，同时写会直接报错</td><td>当二维开始时() { 绘制_矩形(0, 0, 100, 50, 1, 1, 1, 1); }</td></tr>
+                <tr><td class="t-purple">顶层规则</td><td>语法规则。顶层（主循环之外、非函数体内）只允许四类东西：包含 &lt;文件&gt;、全局 声明、函数定义（函数 名(...) { ... }）、函数调用；局部变量、裸赋值等其它语句写在顶层会报「未被许可的内容」，必须写进 当三维开始时 或 当二维开始时 内部。注意 函数 定义既可写在顶层，也可写在主循环内，引擎都接受，且函数体的普通语句（局部 声明等）本身不受顶层规则约束</td><td>全局 分数 = 0;<br>函数 生成平台(层号) { 局部 名 = "平台" .. 层号; }<br>当三维开始时() { ... }</td></tr>
+                <tr><td class="t-purple">跨帧状态</td><td>主循环每帧重跑，局部变量不跨帧；需要跨帧保留的用 全局 声明，函数内直接写名字读写</td><td>全局 转盘 = 空;<br>当三维开始时() { 转盘 = 新建_实体("盘","圆柱",0,0.2,5); }</td></tr>
+                <tr><td class="t-purple">初始化 / 刻 / 绘制</td><td>语法关键字（旧式回调）。不写主循环时用于通用脚本；初始化 需脚本末尾手动调用一次</td><td>函数 刻(dt) { 位置 = 位置 + 速度 * dt; }</td></tr>
+                <tr><td class="t-red">相机</td><td>切换渲染相机模式：设置_相机("玩家") 用玩家相机；设置_相机("工程") 切到可自由飞行、穿墙的工程相机，操作是按住右键锁鼠标转视角、WASD 移动、Q/E 升降、Shift 加速、ESC 直接退出程序</td><td>设置_相机("工程")</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二 实体与句柄 -->
+        <div class="section-title">入门 - 二 实体与句柄</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-red">实体</td><td>场景中的一个物体，按名称寻址</td><td>新建 / 获取 / 删除</td><td>局部 句柄 = 新建_实体(实体名, 形状名, X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-red">实体副本</td><td>复制已有实体（含子物体），得到新句柄</td><td>创建</td><td>局部 副本句柄 = 创建_实体副本(源实体名);</td></tr>
+                <tr><td class="t-red">实体列表</td><td>场景内全部实体</td><td>获取</td><td>循环 序号, 实体 在 数组遍历(获取_实体列表()) 执行 {</td></tr>
+                <tr><td class="t-red">实体快照</td><td>一次读取实体全部真实字段，返回字段表；不存在返回 空</td><td>获取</td><td>局部 快照 = 获取_实体快照(实体名)</td></tr>
+                <tr><td class="t-red">实体名称 / 实体类型</td><td>冒号方法，取该实体的名称 / 类型</td><td>—（实体方法）</td><td>实体:取名称()</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 三 实体 · 可用形状 -->
+        <div class="section-title">入门 - 三 实体 · 可用形状</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-orange">"方块"</td><td>单位立方体</td><td>新建</td><td>新建_实体(实体名, "方块", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">"球"</td><td>球体</td><td>新建</td><td>新建_实体(实体名, "球", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">"圆柱"</td><td>圆柱</td><td>新建</td><td>新建_实体(实体名, "圆柱", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">"锥体"</td><td>圆锥</td><td>新建</td><td>新建_实体(实体名, "锥体", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">"圆环"</td><td>圆环</td><td>新建</td><td>新建_实体(实体名, "圆环", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">"圆盘"</td><td>圆盘</td><td>新建</td><td>新建_实体(实体名, "圆盘", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">"地面"</td><td>平面，默认缩放 10×1×10</td><td>新建</td><td>新建_实体(实体名, "地面", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">"三角"</td><td>三角面</td><td>新建</td><td>新建_实体(实体名, "三角", X坐标, Y坐标, Z坐标);</td></tr>
+                <tr><td class="t-orange">坐标含义</td><td>新建实体的 x, y, z 是几何中心的世界坐标，不是底部；高 1 的方块站 y=0 地面时 y 应为 0.5</td><td>—</td><td>新建_实体(实体名, "方块", 0, 0.5, 0);</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 四 属性 -->
+        <div class="section-title">入门 - 四 属性</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-orange">属性</td><td>实体字段的通用入口，按属性名读写，多值属性按顺序传参 / 返回多个值</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "位置", X坐标, Y坐标, Z坐标)</td></tr>
+                <tr><td class="t-orange">位置</td><td>三值，世界坐标 x, y, z</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "位置", X坐标, Y坐标, Z坐标)</td></tr>
+                <tr><td class="t-orange">位置X / 位置Y / 位置Z</td><td>单值，单独读写某一轴</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "位置Y", Y坐标)</td></tr>
+                <tr><td class="t-orange">旋转</td><td>三值，欧拉角，单位为度</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "旋转", 绕X角度, 绕Y角度, 绕Z角度)</td></tr>
+                <tr><td class="t-orange">缩放</td><td>三值，整体缩放，值为全尺寸（米）：缩放 2 = 2 米见方</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "缩放", 宽米数, 高米数, 深米数)</td></tr>
+                <tr><td class="t-orange">缩放X / 缩放Y / 缩放Z</td><td>单值，单独某轴缩放</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "缩放Y", 高米数)</td></tr>
+                <tr><td class="t-orange">局部位置</td><td>三值，相对父物体的位置，有父级时用</td><td>设置 / 获取</td><td>设置_属性(子实体句柄, "局部位置", X偏移, Y偏移, Z偏移)</td></tr>
+                <tr><td class="t-orange">局部旋转</td><td>三值，相对父物体的旋转，单位为度</td><td>设置 / 获取</td><td>设置_属性(子实体句柄, "局部旋转", 绕X角度, 绕Y角度, 绕Z角度)</td></tr>
+                <tr><td class="t-orange">局部缩放</td><td>三值，相对父物体的缩放</td><td>设置 / 获取</td><td>设置_属性(子实体句柄, "局部缩放", 缩放X, 缩放Y, 缩放Z)</td></tr>
+                <tr><td class="t-orange">父物体</td><td>设为另一实体句柄；传 空 解除父子关系</td><td>设置 / 获取</td><td>设置_属性(子实体句柄, "父物体", 父实体句柄)</td></tr>
+                <tr><td class="t-orange">颜色</td><td>三值 R G B，0 到 1</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "颜色", 红分量, 绿分量, 蓝分量)</td></tr>
+                <tr><td class="t-orange">颜色R / 颜色G / 颜色B</td><td>单值，单独读写某一通道</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "颜色R", 红分量)</td></tr>
+                <tr><td class="t-orange">纹理</td><td>内置纹理名称</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "纹理", 纹理名)</td></tr>
+                <tr><td class="t-orange">纹理平铺</td><td>UV 缩放倍数，让纹理在地面重复铺开</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "纹理平铺", 平铺倍数)</td></tr>
+                <tr><td class="t-orange">可见</td><td>布尔，是否渲染</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "可见", 真或假)</td></tr>
+                <tr><td class="t-orange">投影</td><td>布尔，是否投射阴影</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "投影", 真或假)</td></tr>
+                <tr><td class="t-orange">标签</td><td>字符串标签，用于分组查询</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "标签", 标签名)</td></tr>
+                <tr><td class="t-orange">光照颜色</td><td>三值，自发光颜色 R G B，不受场景光照影响</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "光照颜色", 红分量, 绿分量, 蓝分量)</td></tr>
+                <tr><td class="t-orange">高光</td><td>数值，材质高光强度</td><td>设置 / 获取</td><td>设置_属性(实体句柄, "高光", 高光强度)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 五 层级 -->
+        <div class="section-title">入门 - 五 层级</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-orange">父物体</td><td>挂到父物体下，传 空 解除；读取返回父物体句柄，无父返回 空</td><td>设置 / 获取</td><td>设置_属性(子实体句柄, "父物体", 父实体句柄)</td></tr>
+                <tr><td class="t-orange">子物体</td><td>返回全部子物体列表；解除全部子物体并保留世界变换</td><td>获取 / 删除</td><td>循环 序号, 子实体 在 数组遍历(获取_子物体(父实体名)) 执行 {</td></tr>
+                <tr><td class="t-red">实体副本</td><td>复制实体（含子物体），返回新句柄</td><td>创建</td><td>局部 副本句柄 = 创建_实体副本(源实体名)</td></tr>
+                <tr><td class="t-red">实体刷新</td><td>强制立刻重算层级变换</td><td>执行</td><td>执行_刷新实体(实体名)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 六 查询与空间 -->
+        <div class="section-title">入门 - 六 查询与空间</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">实体</td><td>按名称子串模糊匹配，返回列表</td><td>查询</td><td>循环 序号, 实体 在 数组遍历(查询_实体(名称关键字)) 执行 {</td></tr>
+                <tr><td class="t-cyan">标签实体</td><td>按标签取实体列表</td><td>查询</td><td>循环 序号, 实体 在 数组遍历(查询_标签实体(标签名)) 执行 {</td></tr>
+                <tr><td class="t-cyan">最近实体</td><td>取距玩家最近的该标签实体</td><td>查询</td><td>局部 最近实体 = 查询_最近实体(标签名)</td></tr>
+                <tr><td class="t-red">实体列表</td><td>返回场景全部实体的列表</td><td>获取</td><td>局部 全部实体 = 获取_实体列表()</td></tr>
+                <tr><td class="t-cyan">实体距离</td><td>两实体间距离；任一实体不存在返回 空</td><td>获取</td><td>局部 距离 = 获取_实体距离(实体名甲, 实体名乙)</td></tr>
+                <tr><td class="t-red">实体按ID</td><td>按唯一 ID 取实体句柄，不存在返回 空；每个实体在创建时自动获得唯一 ID，快照的 ID 字段可读取</td><td>获取</td><td>局部 句柄 = 获取_实体按ID("OBJ_1234567A")</td></tr>
+                <tr><td class="t-green">在范围内</td><td>实体是否落在以该点为心的球内</td><td>检测</td><td>如果 检测_在范围内(实体名, 球心X, 球心Y, 球心Z, 半径) 那么 {</td></tr>
+                <tr><td class="t-cyan">世界包围盒</td><td>返回世界空间最小角与最大角共 6 个值</td><td>获取</td><td>局部 最小X, 最小Y, 最小Z, 最大X, 最大Y, 最大Z = 获取_世界包围盒(实体名)</td></tr>
+                <tr><td class="t-cyan">网格半长</td><td>返回网格半长 XYZ</td><td>获取</td><td>局部 半长X, 半长Y, 半长Z = 获取_网格半长(实体名)</td></tr>
+                <tr><td class="t-cyan">顶点数量</td><td>网格顶点总数</td><td>获取</td><td>执行_打印(获取_顶点数量(实体名))</td></tr>
+                <tr><td class="t-cyan">顶点世界坐标</td><td>第 N 个顶点的世界坐标（含缩放旋转），N 从 1 起</td><td>获取</td><td>局部 X坐标, Y坐标, Z坐标 = 获取_顶点世界坐标(实体名, 顶点序号)</td></tr>
+                <tr><td class="t-red">实体快照</td><td>一次读取实体全部真实字段，返回字段表；不存在返回 空</td><td>获取</td><td>局部 快照 = 获取_实体快照(实体名)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十一 输入 -->
+        <div class="section-title">入门 - 七 输入</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-green">按键按下</td><td>该虚拟键当前是否按下，按住期间每帧为真</td><td>检测</td><td>如果 检测_按键按下(键码) 那么 {</td></tr>
+                <tr><td class="t-green">按键刚按下</td><td>本帧是否刚按下，自带边沿检测；与 执行_同步按键 不能混用</td><td>检测</td><td>如果 检测_按键刚按下(键码) 那么 {</td></tr>
+                <tr><td class="t-cyan">同步按键</td><td>刷新边沿快照，每帧末尾调一次；与 检测_按键刚按下 二选一</td><td>执行</td><td>执行_同步按键()</td></tr>
+                <tr><td class="t-cyan">鼠标滚轮</td><td>本帧滚轮增量，正上负下，读取后清零</td><td>获取</td><td>局部 滚动量 = 获取_鼠标滚轮()</td></tr>
+                <tr><td class="t-green">按键</td><td>声明一个动作：标识用于查找与存档，显示名即设置页「操控」中的行标题，默认键值在玩家尚未改键时生效</td><td>声明</td><td>声明_按键("左移", "向左移动", 65)</td></tr>
+                <tr><td class="t-green">按键值</td><td>按标识读写动作当前键值，玩家在设置里改过的值优先</td><td>获取 / 设置</td><td>局部 键 = 获取_按键值("左移")</td></tr>
+                <tr><td class="t-green">动作键</td><td>按标识查询动作绑定键的按下与刚到按下，无需自己维护键码</td><td>检测</td><td>如果 检测_动作键按下("左移") 那么 {</td></tr>
+            </tbody>
+        </table>
+
+        <div class="note">二维游戏请在脚本开头声明自己要用的键，引擎固定动作表只服务三维游戏。标识不要含等号，它会被写进设置文件的键名。</div>
+
+        <!-- 输入 - 键码 子章节 -->
+        <div class="section-title sub">输入 - 键码</div>
+        <table>
+            <thead><tr><th>按键</th><th>键码</th><th>按键</th><th>键码</th><th>按键</th><th>键码</th><th>按键</th><th>键码</th></tr></thead>
+            <tbody>
+                <tr><td>鼠标左键</td><td>1</td><td>鼠标右键</td><td>2</td><td>鼠标中键</td><td>4</td><td>鼠标侧键1 / 2</td><td>5 / 6</td></tr>
+                <tr><td>退格</td><td>8</td><td>Tab</td><td>9</td><td>回车</td><td>13</td><td>Shift</td><td>16</td></tr>
+                <tr><td>Ctrl</td><td>17</td><td>Alt</td><td>18</td><td>Pause</td><td>19</td><td>CapsLock</td><td>20</td></tr>
+                <tr><td>Esc</td><td>27</td><td>空格</td><td>32</td><td>PageUp</td><td>33</td><td>PageDown</td><td>34</td></tr>
+                <tr><td>End</td><td>35</td><td>Home</td><td>36</td><td>左方向键</td><td>37</td><td>上方向键</td><td>38</td></tr>
+                <tr><td>右方向键</td><td>39</td><td>下方向键</td><td>40</td><td>PrintScreen</td><td>44</td><td>Insert</td><td>45</td></tr>
+                <tr><td>Delete</td><td>46</td><td>数字 0</td><td>48</td><td>数字 1</td><td>49</td><td>数字 2</td><td>50</td></tr>
+                <tr><td>数字 3</td><td>51</td><td>数字 4</td><td>52</td><td>数字 5</td><td>53</td><td>数字 6</td><td>54</td></tr>
+                <tr><td>数字 7</td><td>55</td><td>数字 8</td><td>56</td><td>数字 9</td><td>57</td><td>A</td><td>65</td></tr>
+                <tr><td>B</td><td>66</td><td>C</td><td>67</td><td>D</td><td>68</td><td>E</td><td>69</td></tr>
+                <tr><td>F</td><td>70</td><td>G</td><td>71</td><td>H</td><td>72</td><td>I</td><td>73</td></tr>
+                <tr><td>J</td><td>74</td><td>K</td><td>75</td><td>L</td><td>76</td><td>M</td><td>77</td></tr>
+                <tr><td>N</td><td>78</td><td>O</td><td>79</td><td>P</td><td>80</td><td>Q</td><td>81</td></tr>
+                <tr><td>R</td><td>82</td><td>S</td><td>83</td><td>T</td><td>84</td><td>U</td><td>85</td></tr>
+                <tr><td>V</td><td>86</td><td>W</td><td>87</td><td>X</td><td>88</td><td>Y</td><td>89</td></tr>
+                <tr><td>Z</td><td>90</td><td>左 Win</td><td>91</td><td>右 Win</td><td>92</td><td>菜单键</td><td>93</td></tr>
+                <tr><td>小键盘 0</td><td>96</td><td>小键盘 1</td><td>97</td><td>小键盘 2</td><td>98</td><td>小键盘 3</td><td>99</td></tr>
+                <tr><td>小键盘 4</td><td>100</td><td>小键盘 5</td><td>101</td><td>小键盘 6</td><td>102</td><td>小键盘 7</td><td>103</td></tr>
+                <tr><td>小键盘 8</td><td>104</td><td>小键盘 9</td><td>105</td><td>小键盘 乘</td><td>106</td><td>小键盘 加</td><td>107</td></tr>
+                <tr><td>小键盘 减</td><td>109</td><td>小键盘 小数点</td><td>110</td><td>小键盘 除</td><td>111</td><td>F1</td><td>112</td></tr>
+                <tr><td>F2</td><td>113</td><td>F3</td><td>114</td><td>F4</td><td>115</td><td>F5</td><td>116</td></tr>
+                <tr><td>F6</td><td>117</td><td>F7</td><td>118</td><td>F8</td><td>119</td><td>F9</td><td>120</td></tr>
+                <tr><td>F10</td><td>121</td><td>F11</td><td>122</td><td>F12</td><td>123</td><td>NumLock</td><td>144</td></tr>
+                <tr><td>ScrollLock</td><td>145</td><td>左 Shift</td><td>160</td><td>右 Shift</td><td>161</td><td>左 Ctrl</td><td>162</td></tr>
+                <tr><td>右 Ctrl</td><td>163</td><td>左 Alt</td><td>164</td><td>右 Alt</td><td>165</td><td>分号 ;</td><td>186</td></tr>
+                <tr><td>等号 =</td><td>187</td><td>逗号 ,</td><td>188</td><td>减号 -</td><td>189</td><td>句号 .</td><td>190</td></tr>
+                <tr><td>斜杠 /</td><td>191</td><td>反引号 `</td><td>192</td><td>左方括号 [</td><td>219</td><td>反斜杠 \</td><td>220</td></tr>
+                <tr><td>右方括号 ]</td><td>221</td><td>引号 '</td><td>222</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十二 玩家控制 -->
+        <div class="section-title">入门 - 八 玩家控制</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">玩家位置</td><td>读写玩家脚下坐标 x, y, z，无参读取；传参即瞬移</td><td>获取 / 设置</td><td>局部 X坐标, Y坐标, Z坐标 = 获取_玩家位置()</td></tr>
+                <tr><td class="t-cyan">输入锁</td><td>锁定后忽略鼠标转向与移动/奔跑/跳跃按键，适合过场动画；无参读取</td><td>设置 / 获取</td><td>设置_输入锁(真或假)</td></tr>
+                <tr><td class="t-cyan">玩家速度</td><td>当前速度向量</td><td>获取</td><td>局部 速度X, 速度Y, 速度Z = 获取_玩家速度()</td></tr>
+                <tr><td class="t-cyan">锁定速度</td><td>设置玩家锁定速度，持续生效且优先于走/跑速度</td><td>设置</td><td>设置_锁定速度(速度值)</td></tr>
+                <tr><td class="t-cyan">跳跃力</td><td>设置跳跃初速</td><td>设置</td><td>设置_跳跃力(初速值)</td></tr>
+                <tr><td class="t-cyan">移动速度</td><td>读写走速与跑速，无参读取返回 走, 跑</td><td>设置 / 获取</td><td>设置_移动速度(走速, 跑速)</td></tr>
+                <tr><td class="t-cyan">奔跑开关</td><td>启用 Shift 奔跑机制</td><td>设置 / 获取</td><td>设置_奔跑开关(真或假)</td></tr>
+                <tr><td class="t-green">正在奔跑</td><td>本帧是否在奔跑</td><td>检测</td><td>如果 检测_正在奔跑() 那么 {</td></tr>
+                <tr><td class="t-cyan">视角</td><td>读写视角（度），无参读取返回 偏航, 俯仰</td><td>设置 / 获取</td><td>设置_视角(偏航角度, 俯仰角度)</td></tr>
+                <tr><td class="t-cyan">视高</td><td>眼睛高度，蹲下/爬梯用</td><td>设置</td><td>设置_视高(高度米数)</td></tr>
+                <tr><td class="t-cyan">视场</td><td>相机视场角，开镜用</td><td>设置</td><td>设置_视场(角度)</td></tr>
+                <tr><td class="t-cyan">相机侧倾</td><td>读写相机横滚弧度</td><td>设置 / 获取</td><td>设置_相机侧倾(弧度)</td></tr>
+                <tr><td class="t-cyan">视点位置</td><td>眼睛世界坐标</td><td>获取</td><td>局部 眼X, 眼Y, 眼Z = 获取_视点位置()</td></tr>
+                <tr><td class="t-cyan">相机前方</td><td>相机朝向单位向量</td><td>获取</td><td>局部 方向X, 方向Y, 方向Z = 获取_相机前方()</td></tr>
+                <tr><td class="t-cyan">瞄准点</td><td>眼睛沿视线 d 米处坐标，默认 1 米</td><td>获取</td><td>局部 瞄X, 瞄Y, 瞄Z = 获取_瞄准点(距离米数)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十四 时间 · 随机 · 时序 -->
+        <div class="section-title">入门 - 九 时间 · 随机 · 时序</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">帧间隔</td><td>上一帧耗时秒数</td><td>获取</td><td>局部 帧间隔 = 获取_帧间隔()</td></tr>
+                <tr><td class="t-cyan">运行秒数</td><td>脚本累计运行秒数</td><td>获取</td><td>执行_打印(获取_运行秒数())</td></tr>
+                <tr><td class="t-cyan">帧号</td><td>累计帧数</td><td>获取</td><td>执行_打印(获取_帧号())</td></tr>
+                <tr><td class="t-cyan">时间流速</td><td>读写时间缩放，0 为冻结，2 为两倍速；不带参读取</td><td>设置 / 获取</td><td>设置_时间流速(倍率)</td></tr>
+                <tr><td class="t-cyan">暂停</td><td>读写暂停开关；不带参读取</td><td>设置 / 获取</td><td>设置_暂停(真或假)</td></tr>
+                <tr><td class="t-cyan">随机</td><td>0 到 1 之间的小数</td><td>获取</td><td>局部 随机数 = 获取_随机()</td></tr>
+                <tr><td class="t-cyan">随机范围</td><td>区间内小数</td><td>获取</td><td>获取_随机范围(下限, 上限)</td></tr>
+                <tr><td class="t-cyan">随机整数</td><td>区间内整数，含两端</td><td>获取</td><td>获取_随机整数(下限, 上限)</td></tr>
+                <tr><td class="t-cyan">随机种子</td><td>固定种子，让序列可复现</td><td>设置</td><td>设置_随机种子(种子整数)</td></tr>
+                <tr><td class="t-purple">等待</td><td>挂起当前函数剩余代码，指定秒数后自动继续，不冻结引擎</td><td>执行</td><td>执行_等待(秒数)</td></tr>
+                <tr><td class="t-purple">命令</td><td>立即执行传入的函数（可含等待）</td><td>执行</td><td>执行_命令(函数名)</td></tr>
+                <tr><td class="t-purple">渐变</td><td>对对象数值属性做逐帧插值，链式 用时(秒) 到(值)</td><td>执行</td><td>执行_渐变(实体句柄, 属性名):用时(秒数):到(目标值)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十五 数学与三维运算 -->
+        <div class="section-title">入门 - 十 数学与三维运算</div>
+        <table class="tbl-lib">
+            <thead><tr><th>函数</th><th>用途和接受的参数</th><th>演示</th></tr></thead>
+            <tbody>
+                <tr><td>数学.绝对值(v)</td><td>绝对值</td><td>数学.绝对值(数值)</td></tr>
+                <tr><td>数学.开方(v)</td><td>平方根</td><td>数学.开方(数值)</td></tr>
+                <tr><td>数学.最小(a, b)</td><td>取较小</td><td>数学.最小(值甲, 值乙)</td></tr>
+                <tr><td>数学.最大(a, b)</td><td>取较大</td><td>数学.最大(值甲, 值乙)</td></tr>
+                <tr><td>数学.限制(v, 下, 上)</td><td>夹在区间内</td><td>数学.限制(数值, 下限, 上限)</td></tr>
+                <tr><td>数学.插值(a, b, t)</td><td>线性插值，t 为 0 到 1</td><td>数学.插值(起点, 终点, 比例)</td></tr>
+                <tr><td>数学.正弦(v)</td><td>正弦，参数为弧度</td><td>数学.正弦(弧度)</td></tr>
+                <tr><td>数学.余弦(v)</td><td>余弦，参数为弧度</td><td>数学.余弦(弧度)</td></tr>
+                <tr><td>数学.转弧度(角度)</td><td>度转弧度</td><td>数学.转弧度(角度)</td></tr>
+                <tr><td>数学.转角度(弧度)</td><td>弧度转度</td><td>数学.转角度(弧度)</td></tr>
+                <tr><td>数学.符号(v)</td><td>正返 1，负返 -1</td><td>数学.符号(数值)</td></tr>
+                <tr><td>数学.圆周率</td><td>圆周率，属性不是函数</td><td>数学.圆周率</td></tr>
+                <tr><td>MathGv.向量(x, y, z)</td><td>构造向量</td><td>MathGv.向量(X分量, Y分量, Z分量)</td></tr>
+                <tr><td>MathGv.向量加(a, b)</td><td>逐分量相加</td><td>MathGv.向量加(向量甲, 向量乙)</td></tr>
+                <tr><td>MathGv.向量减(a, b)</td><td>逐分量相减</td><td>MathGv.向量减(向量甲, 向量乙)</td></tr>
+                <tr><td>MathGv.点乘(a, b)</td><td>点乘，判断方向关系；大于 0 为同向</td><td>MathGv.点乘(向量甲, 向量乙)</td></tr>
+                <tr><td>MathGv.叉乘(a, b)</td><td>叉乘，求垂直向量</td><td>MathGv.叉乘(向量甲, 向量乙)</td></tr>
+                <tr><td>MathGv.长度(a)</td><td>向量长度</td><td>MathGv.长度(向量)</td></tr>
+                <tr><td>MathGv.归一化(a)</td><td>单位化，长度变 1</td><td>MathGv.归一化(向量)</td></tr>
+                <tr><td>MathGv.距离(a, b)</td><td>两点距离</td><td>MathGv.距离(点甲, 点乙)</td></tr>
+                <tr><td>MathGv.球面插值(a, b, t)</td><td>四元数平滑旋转</td><td>MathGv.球面插值(四元数甲, 四元数乙, 比例)</td></tr>
+                <tr><td>MathGv.射线与球求交(原点, 方向, 球心, 半径)</td><td>返回 命中, 距离, 命中点</td><td>命中, 距离, 点 = MathGv.射线与球求交(原点, 方向, 球心, 半径)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 七 模型 -->
+        <div class="section-title">进阶 - 十一 模型</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-blue">模型</td><td>从外部路径加载 obj 或 glb 为实体，实体名用第一个参数，返回句柄</td><td>加载</td><td>局部 句柄 = 加载_模型(实体名, "模型文件.obj", X坐标, Y坐标, Z坐标)</td></tr>
+                <tr><td class="t-blue">缩放锚点</td><td>缩放中心偏移（模型空间），缩放围绕该点进行</td><td>设置 / 获取</td><td>设置_缩放锚点(实体名, X偏移, Y偏移, Z偏移)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 八 骨骼动画 -->
+        <div class="section-title">进阶 - 十二 骨骼动画</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-blue">骨骼模型</td><td>从外部路径加载 glb 骨骼模型并放置，返回布尔（成功/失败）</td><td>加载</td><td>加载_骨骼模型("模型文件.glb", X坐标, Y坐标, Z坐标)</td></tr>
+                <tr><td class="t-green">骨骼数量</td><td>骨骼根数</td><td>获取</td><td>执行_打印(获取_骨骼数量())</td></tr>
+                <tr><td class="t-green">动画数量</td><td>模型内动画条数</td><td>获取</td><td>局部 条数 = 获取_动画数量()</td></tr>
+                <tr><td class="t-green">动画名称</td><td>按序号取动画名</td><td>获取</td><td>局部 名称 = 获取_动画名称(动画序号)</td></tr>
+                <tr><td class="t-green">动画时长</td><td>按序号取时长秒</td><td>获取</td><td>局部 秒数 = 获取_动画时长(动画序号)</td></tr>
+                <tr><td class="t-green">动画</td><td>播放指定序号的动画</td><td>播放 / 停止</td><td>播放_动画(动画序号, 是否循环)</td></tr>
+                <tr><td class="t-green">动画播放中</td><td>是否在播放</td><td>检测</td><td>如果 检测_动画播放中() 那么 {</td></tr>
+                <tr><td class="t-green">动画速度</td><td>读写播放速度倍率，无参读取</td><td>设置 / 获取</td><td>设置_动画速度(速度倍率)</td></tr>
+                <tr><td class="t-green">动画进度</td><td>读写当前时间秒，无参读取</td><td>设置 / 获取</td><td>设置_动画进度(秒数)</td></tr>
+                <tr><td class="t-green">骨骼模型位置</td><td>设置世界坐标</td><td>设置</td><td>设置_骨骼模型位置(X坐标, Y坐标, Z坐标)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 九 纹理与材质 -->
+        <div class="section-title">进阶 - 十三 纹理与材质</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-blue">纹理列表</td><td>全部内置纹理名称</td><td>获取</td><td>循环 序号, 纹理名 在 数组遍历(获取_纹理列表()) 执行 {</td></tr>
+                <tr><td class="t-blue">纹理</td><td>给实体套用内置纹理</td><td>设置 / 加载</td><td>设置_纹理(实体句柄, 纹理名)</td></tr>
+                <tr><td class="t-orange">透明度</td><td>读写整体透明度 0 到 1</td><td>设置 / 获取</td><td>设置_透明度(实体句柄, 透明度)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十 特效 -->
+        <div class="section-title">进阶 - 十四 特效</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-green">特效</td><td>在坐标处播放，返回句柄；第五参数为是否循环</td><td>播放 / 停止 / 移动</td><td>局部 特效句柄 = 播放_特效(特效名, X坐标, Y坐标, Z坐标, 是否循环)</td></tr>
+                <tr><td class="t-green">特效播放中</td><td>是否仍在播放</td><td>检测</td><td>如果 检测_特效播放中(特效句柄) 那么 {</td></tr>
+                <tr><td class="t-green">实体特效</td><td>挂在实体上的特效，随实体移动</td><td>—（实体方法）</td><td>局部 特效句柄 = 实体:播放特效(特效名, 是否循环)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十三 相机与坐标转换 -->
+        <div class="section-title">进阶 - 十五 相机与坐标转换</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">世界转屏幕</td><td>世界坐标投影为屏幕像素，第三人返回是否在相机前方</td><td>获取</td><td>局部 屏X, 屏Y, 在相机前方 = 获取_世界转屏幕(世界X, 世界Y, 世界Z)</td></tr>
+                <tr><td class="t-cyan">屏幕转世界</td><td>屏幕像素加深度映射为世界坐标，深度省略为 1，小于等于 0 表示按相机前方距离</td><td>获取</td><td>局部 世界X, 世界Y, 世界Z = 获取_屏幕转世界(屏X, 屏Y, 深度)</td></tr>
+                <tr><td class="t-cyan">屏幕射线方向</td><td>屏幕像素对应的世界射线单位方向</td><td>获取</td><td>局部 方向X, 方向Y, 方向Z = 获取_屏幕射线方向(屏X, 屏Y)</td></tr>
+                <tr><td class="t-cyan">相机矩阵</td><td>返回 视图矩阵, 投影矩阵, 屏宽, 屏高, 眼X, 眼Y, 眼Z, 前方X, 前方Y, 前方Z, 视场, 横滚, 近裁面, 远裁面</td><td>获取</td><td>局部 视图矩阵, 投影矩阵, 屏宽, 屏高 = 获取_相机矩阵()</td></tr>
+                <tr><td class="t-red">相机</td><td>切换相机模式："玩家" 为玩家相机（默认），"工程" 为可飞行的工程相机（穿墙、按右键锁鼠标）</td><td>设置 / 获取</td><td>设置_相机("工程")</td></tr>
+                <tr><td class="t-red">相机目标</td><td>让相机跟随指定名字的实体，传 空 取消跟随；跟随开启后相机位置 = 目标位置 + 相机偏移，用于第三人称跟随</td><td>设置</td><td>设置_相机目标("player")</td></tr>
+                <tr><td class="t-cyan">相机偏移</td><td>相机相对跟随目标的偏移 x, y, z（第三人称后拉距离）；读取返回 3 个值</td><td>设置 / 获取</td><td>设置_相机偏移(0, 6, 10)<br>局部 偏X, 偏Y, 偏Z = 获取_相机偏移()</td></tr>
+                <tr><td class="t-cyan">相机角度</td><td>直接设置相机偏航 / 俯仰角度（度）</td><td>设置</td><td>设置_相机角度(0, -15)</td></tr>
+                <tr><td class="t-cyan">飞行速度</td><td>工程相机的飞行速度，默认 12，按住 Shift 临时加速三倍</td><td>设置</td><td>设置_飞行速度(速度值)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十四 射线检测 -->
+        <div class="section-title">进阶 - 十六 射线检测</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-green">射线命中</td><td>朝方向打一条射线，可命中三角网格与静态几何；返回 名字, 命中点xyz, 命中法线xyz, 距离, 唯一ID；未命中返回 空</td><td>检测</td><td>局部 命中名, 命中X, 命中Y, 命中Z, 法线X, 法线Y, 法线Z, 距离, 标识 = 检测_射线命中(起点X, 起点Y, 起点Z, 方向X, 方向Y, 方向Z, 最远距离)</td></tr>
+                <tr><td class="t-green">射线表面</td><td>只取表面几何，不要求命中实体；返回 命中点xyz, 命中法线xyz, 距离；未命中返回 空</td><td>检测</td><td>局部 命中X, 命中Y, 命中Z, 法线X, 法线Y, 法线Z, 距离 = 检测_射线表面(起点X, 起点Y, 起点Z, 方向X, 方向Y, 方向Z, 最远距离)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十五 触发区 -->
+        <div class="section-title">进阶 - 十七 触发区</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-orange">触发区</td><td>以中心与半长定义轴对齐盒 AABB</td><td>创建 / 删除</td><td>创建_触发区(触发区名, 中心X, 中心Y, 中心Z, 半长X, 半长Y, 半长Z)</td></tr>
+                <tr><td class="t-green">玩家在触发区</td><td>玩家当前是否在内</td><td>检测</td><td>如果 检测_玩家在触发区(触发区名) 那么 {</td></tr>
+                <tr><td class="t-green">实体在触发区</td><td>指定实体是否在内</td><td>检测</td><td>如果 检测_实体在触发区(触发区名, 实体名) 那么 {</td></tr>
+                <tr><td class="t-green">进入触发区</td><td>玩家本帧刚进入（边沿）；与 检测_离开触发区 共享边沿状态，不要同帧同时用</td><td>检测</td><td>如果 检测_进入触发区(触发区名) 那么 {</td></tr>
+                <tr><td class="t-green">离开触发区</td><td>玩家本帧刚离开（边沿）；与 检测_进入触发区 共享边沿状态，不要同帧同时用</td><td>检测</td><td>如果 检测_离开触发区(触发区名) 那么 {</td></tr>
+                <tr><td class="t-green">进入触发区</td><td>注册玩家进入回调：每帧引擎自动检测，玩家刚进入时调用该函数，传 nil 取消</td><td>注册</td><td>注册_进入触发区(触发区名, 函数)</td></tr>
+                <tr><td class="t-green">离开触发区</td><td>注册玩家离开回调：玩家刚离开时调用该函数，传 nil 取消</td><td>注册</td><td>注册_离开触发区(触发区名, 函数)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十六 屏幕绘制 -->
+        <div class="section-title">进阶 - 十八 屏幕绘制</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-purple">文本</td><td>在像素坐标绘制文字</td><td>绘制</td><td>绘制_文本(屏X, 屏Y, 字号缩放, 文本内容)</td></tr>
+                <tr><td class="t-purple">矩形</td><td>绘制实心矩形</td><td>绘制</td><td>绘制_矩形(屏X, 屏Y, 宽, 高, 红, 绿, 蓝, 透明度)</td></tr>
+                <tr><td class="t-purple">图片</td><td>绘制 png 图片，宽高省略或传 0 用原图尺寸</td><td>绘制</td><td>绘制_图片("图片文件.png", 屏X, 屏Y)</td></tr>
+                <tr><td class="t-cyan">窗口尺寸</td><td>窗口宽高，用于相对定位</td><td>获取</td><td>局部 屏宽, 屏高 = 获取_窗口尺寸()</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十七 2D 画布 -->
+        <div class="section-title">进阶 - 十九 2D 画布</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-purple">圆角矩形</td><td>圆角矩形</td><td>绘制</td><td>绘制_圆角矩形(屏X, 屏Y, 宽, 高, 圆角半径, 红, 绿, 蓝, 透明度)</td></tr>
+                <tr><td class="t-purple">圆</td><td>圆</td><td>绘制</td><td>绘制_圆(圆心屏X, 圆心屏Y, 半径, 红, 绿, 蓝, 透明度)</td></tr>
+                <tr><td class="t-purple">线</td><td>线段</td><td>绘制</td><td>绘制_线(起点X, 起点Y, 终点X, 终点Y, 线宽, 红, 绿, 蓝, 透明度)</td></tr>
+                <tr><td class="t-purple">弧</td><td>圆弧，角度单位为度</td><td>绘制</td><td>绘制_弧(圆心屏X, 圆心屏Y, 半径, 起始角度, 结束角度, 线宽, 红, 绿, 蓝, 透明度)</td></tr>
+                <tr><td class="t-purple">旋转图片</td><td>带旋转的 png 图片</td><td>绘制</td><td>绘制_旋转图片(图片句柄, 屏X, 屏Y, 宽, 高, 旋转角度, 透明度)</td></tr>
+                <tr><td class="t-purple">裁剪</td><td>限制后续 2D 绘制范围，需与 删除_裁剪() 配对</td><td>绘制 / 删除</td><td>绘制_裁剪(左上X, 左上Y, 右下X, 右下Y)</td></tr>
+                <tr><td class="t-purple">二维入口</td><td>纯二维游戏用 当二维开始时 作入口，引擎切到二维模式后整条三维管线被旁路：只提交画布队列与引擎界面队列，不建场景、不调相机、不执行任何三维绘制。脚本里无需再手动切换模式</td><td>当二维开始时() {<br>&nbsp;&nbsp;绘制_矩形(20, 20, 120, 60, 0.2, 0.6, 1, 1);<br>&nbsp;&nbsp;绘制_文本("你好", 20, 120, 1.3, 1, 1, 1, 1);<br>}</td></tr>
+                <tr><td class="t-purple">二维时机</td><td>主菜单停留期间不推进脚本，游戏不会在菜单背景里提前跑起来；暂停菜单打开时冻结输入并以零步长重绘一帧，画面定格、逻辑不推进，菜单以半透明遮罩叠在定格画面上</td><td>无需脚本配合，引擎自动处理</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十八 世界空间线段 -->
+        <div class="section-title">进阶 - 二十 世界空间线段</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-purple">世界线</td><td>世界空间彩色线段；每帧提交后立即清空，必须在每帧重画</td><td>绘制 / 删除</td><td>绘制_世界线(起点X, 起点Y, 起点Z, 终点X, 终点Y, 终点Z, 红, 绿, 蓝, 透明度)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 十九 界面与鼠标 -->
+        <div class="section-title">进阶 - 二十一 界面与鼠标</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">鼠标位置</td><td>鼠标像素坐标</td><td>获取</td><td>局部 鼠标X, 鼠标Y = 获取_鼠标位置()</td></tr>
+                <tr><td class="t-green">鼠标按下</td><td>0 左键 1 右键 2 中键</td><td>检测</td><td>如果 检测_鼠标按下(键位编号) 那么 {</td></tr>
+                <tr><td class="t-green">鼠标悬停</td><td>鼠标是否在矩形内</td><td>检测</td><td>如果 检测_鼠标悬停(矩形左, 矩形上, 矩形宽, 矩形高) 那么 {</td></tr>
+                <tr><td class="t-cyan">测量文本</td><td>文本像素宽高，做热区用</td><td>获取</td><td>局部 宽, 高 = 获取_测量文本(文本内容, 字号缩放)</td></tr>
+                <tr><td class="t-cyan">显示鼠标</td><td>释放鼠标捕获，让光标可见可点界面</td><td>设置</td><td>设置_显示鼠标()</td></tr>
+                <tr><td class="t-cyan">捕获鼠标</td><td>重新捕获鼠标用于 3D 视角控制</td><td>设置</td><td>设置_捕获鼠标()</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十 音频 -->
+        <div class="section-title">进阶 - 二十二 音频</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-green">音效</td><td>加载 wav，返回句柄，失败返回 空；第二参数为是否循环</td><td>加载 / 播放 / 停止 / 删除</td><td>局部 音效句柄 = 加载_音效("音频文件.wav", 是否循环)</td></tr>
+                <tr><td class="t-green">音效播放中</td><td>是否在播放</td><td>检测</td><td>如果 检测_音效播放中(音效句柄) 那么 {</td></tr>
+                <tr><td class="t-green">音效暂停</td><td>暂停或恢复</td><td>设置</td><td>设置_音效暂停(音效句柄, 真或假)</td></tr>
+                <tr><td class="t-green">音效音量</td><td>单个音效音量</td><td>设置</td><td>设置_音效音量(音效句柄, 音量)</td></tr>
+                <tr><td class="t-green">音效音高</td><td>播放速度倍率</td><td>设置</td><td>设置_音效音高(音效句柄, 倍率)</td></tr>
+                <tr><td class="t-green">全局音量</td><td>全局音量</td><td>设置</td><td>设置_全局音量(音量)</td></tr>
+                <tr><td class="t-green">音效空间化</td><td>开关 3D 衰减</td><td>设置</td><td>设置_音效空间化(音效句柄, 真或假)</td></tr>
+                <tr><td class="t-green">音效位置</td><td>空间音效的世界坐标</td><td>设置</td><td>设置_音效位置(音效句柄, X坐标, Y坐标, Z坐标)</td></tr>
+                <tr><td class="t-green">音效衰减</td><td>衰减开关与 rolloff</td><td>设置</td><td>设置_音效衰减(音效句柄, 是否启用, 衰减系数)</td></tr>
+                <tr><td class="t-green">音频听者</td><td>听者位置与朝前</td><td>设置</td><td>设置_音频听者(听者X, 听者Y, 听者Z, 朝前X, 朝前Y, 朝前Z)</td></tr>
+                <tr><td class="t-green">音效进度</td><td>跳转到指定秒数</td><td>设置</td><td>设置_音效进度(音效句柄, 秒数)</td></tr>
+                <tr><td class="t-green">音效当前秒</td><td>读取播放位置秒数</td><td>获取</td><td>局部 秒数 = 获取_音效当前秒(音效句柄)</td></tr>
+                <tr><td class="t-green">音效时长</td><td>读取音效总时长秒数</td><td>获取</td><td>局部 总长秒数 = 获取_音效时长(音效句柄)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十八 系统与窗口 -->
+        <div class="section-title">进阶 - 二十三 系统与窗口</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-purple">打印</td><td>输出一行到引擎日志，可传多个值</td><td>执行</td><td>执行_打印(文本, 值, 值)</td></tr>
+                <tr><td class="t-blue">日志</td><td>写入引擎日志文件</td><td>保存</td><td>保存_日志(文本内容)</td></tr>
+                <tr><td class="t-cyan">帧率</td><td>当前帧率</td><td>获取</td><td>执行_打印(获取_帧率())</td></tr>
+                <tr><td class="t-cyan">窗口标题</td><td>设置窗口标题</td><td>设置</td><td>设置_窗口标题(标题文本)</td></tr>
+                <tr><td class="t-cyan">窗口尺寸</td><td>读取窗口宽高，返回宽、高两个值</td><td>获取</td><td>局部 宽, 高 = 获取_窗口尺寸()</td></tr>
+                <tr><td class="t-purple">退出</td><td>请求关闭窗口并退出</td><td>执行</td><td>执行_退出()</td></tr>
+                <tr><td class="t-blue">脚本</td><td>运行包内或磁盘的 Gvtcier 脚本，失败返回 空, 原因</td><td>加载</td><td>加载_脚本("脚本路径.gvts")</td></tr>
+                <tr><td class="t-blue">保存</td><td>把内容写入文件（UTF-8 路径，支持中文），路径可空默认当前目录</td><td>执行</td><td>执行_保存("内容", "文件名.txt", "路径")</td></tr>
+                <tr><td class="t-yellow">资源存在</td><td>查询资产（包内或磁盘）是否存在</td><td>检测</td><td>检测_资源存在("assets/Vein/1_1_vein_mid_Grass.png")</td></tr>
+                <tr><td class="t-yellow">随机</td><td>0 到 1 之间的随机浮点数</td><td>获取</td><td>获取_随机()</td></tr>
+                <tr><td class="t-yellow">随机范围</td><td>区间内的随机浮点数</td><td>获取</td><td>获取_随机范围(最小值, 最大值)</td></tr>
+                <tr><td class="t-yellow">随机整数</td><td>区间内的随机整数</td><td>获取</td><td>获取_随机整数(最小值, 最大值)</td></tr>
+                <tr><td class="t-yellow">随机种子</td><td>设置随机数种子，用于复现同一串随机数</td><td>设置</td><td>设置_随机种子(1234)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>日志文件在哪</h3>
+        <p>游戏启动后不会弹出控制台窗口，所有输出都写进游戏包同目录的 <code>gvtcier.log</code>。文件每次启动都会覆盖重写，只保留本次运行的记录。</p>
+        <p>开场阶段日志分成四段，一眼能看出卡在哪一步：</p>
+        <pre><code>===== 阶段 0: 初始化设备 =====
+[OpenGL] 初始化成功 4.6
+|____GPU: NVIDIA GeForce RTX 4060 Laptop GPU
+|____厂商: NVIDIA Corporation
+[Audio] 初始化成功
+|____声卡: Generic Software
+
+===== 阶段 1: 组件自检 =====
+[自检] 渲染器 成功
+[自检] 物理世界 成功
+
+===== 阶段 2: 加载资源 =====
+[资源] 贴图 245 / 245 成功
+[资源] 音频 62 / 62 成功
+[资源] 碰撞 成功
+[资源] 天空盒 成功
+[资源] 几何 成功
+[资源] 后处理 成功
+[资源] 玩家 成功
+
+===== 阶段 3: 切入主菜单 =====</code></pre>
+        <p>阶段 2 里「几何」包含地图与主脚本，脚本里 <code>执行_打印</code> 的内容会紧接在后面出现，前面带 <code>[gvts]</code> 前缀。任何一项写着「失败」，后面都会跟一句原因，照着那句话查即可。</p>
+
+        <!-- 二十九 场景切换与网络 -->
+        <div class="section-title">精通 - 场景切换与网络</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-orange">切换</td><td>切换执行目标：值是函数名则调用该函数，是 .gmap 则卸载当前场景（含物理注销）并加载新地图</td><td>执行</td><td>执行_切换("关卡2.gmap") / 执行_切换("函数名")</td></tr>
+                <tr><td class="t-cyan">服务器</td><td>以客户端连接 TCP 服务器（非阻塞），失败返回 空</td><td>连接</td><td>局部 连接 = 连接_服务器("127.0.0.1", 22800)</td></tr>
+                <tr><td class="t-cyan">端口</td><td>开 TCP 服务器监听（非阻塞），失败返回 空</td><td>监听</td><td>局部 监听 = 监听_端口(22800)</td></tr>
+                <tr><td class="t-cyan">连接</td><td>从监听取一个新接入的客户端编号，无则 空</td><td>接受</td><td>局部 新连接 = 接受_连接(监听编号)</td></tr>
+                <tr><td class="t-cyan">文本</td><td>向连接发送文本，成功返回 真</td><td>发送</td><td>发送_文本(连接编号, "你好")</td></tr>
+                <tr><td class="t-cyan">文本</td><td>从连接收取文本（非阻塞），无数据返回 空</td><td>接收</td><td>局部 消息 = 接收_文本(连接编号)</td></tr>
+                <tr><td class="t-cyan">连接</td><td>关闭连接或监听</td><td>断开</td><td>断开_连接(编号)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十一 渲染效果开关 -->
+        <div class="section-title">精通 - 二十四 渲染效果开关</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-yellow">阴影</td><td>阴影总开关，无参读取</td><td>设置 / 获取</td><td>设置_阴影(真或假)</td></tr>
+                <tr><td class="t-yellow">阴影预设</td><td>按名称切换：关 / 开 / 调试</td><td>设置</td><td>设置_阴影预设("关")</td></tr>
+                <tr><td class="t-yellow">阴影调试</td><td>阴影可视化</td><td>设置 / 获取</td><td>设置_阴影调试(真或假)</td></tr>
+                <tr><td class="t-yellow">抗锯齿</td><td>FXAA 抗锯齿开关，无参读取</td><td>设置 / 获取</td><td>设置_抗锯齿(真或假)</td></tr>
+                <tr><td class="t-yellow">渲染分辨率</td><td>引擎离屏渲染分辨率，渲染后拉伸到窗口；读取用 获取_渲染分辨率</td><td>设置 / 获取</td><td>设置_渲染分辨率(宽像素, 高像素)　局部 宽, 高 = 获取_渲染分辨率()</td></tr>
+                <tr><td class="t-yellow">HDR</td><td>HDR 开关</td><td>设置 / 获取</td><td>设置_HDR(真或假)</td></tr>
+                <tr><td class="t-yellow">泛光强度</td><td>Bloom 强度</td><td>设置 / 获取</td><td>设置_泛光强度(强度)</td></tr>
+                <tr><td class="t-yellow">环境光强度</td><td>环境光强度</td><td>设置 / 获取</td><td>设置_环境光强度(强度)</td></tr>
+                <tr><td class="t-yellow">环境光开关</td><td>环境光总开关</td><td>设置 / 获取</td><td>设置_环境光开关(真或假)</td></tr>
+                <tr><td class="t-yellow">太阳光开关</td><td>太阳平行光</td><td>设置 / 获取</td><td>设置_太阳光开关(真或假)</td></tr>
+                <tr><td class="t-yellow">雾浓度</td><td>雾浓度</td><td>设置 / 获取</td><td>设置_雾浓度(浓度)</td></tr>
+                <tr><td class="t-yellow">天空颜色</td><td>天空底色</td><td>设置 / 获取</td><td>设置_天空颜色(红, 绿, 蓝)</td></tr>
+                <tr><td class="t-yellow">天空盒</td><td>是否绘制天空盒</td><td>设置 / 获取</td><td>设置_天空盒(真或假)</td></tr>
+                <tr><td class="t-yellow">体积光开关</td><td>体积光总开关</td><td>设置 / 获取</td><td>设置_体积光开关(真或假)</td></tr>
+                <tr><td class="t-yellow">体积光强度</td><td>体积光强度</td><td>设置 / 获取</td><td>设置_体积光强度(强度)</td></tr>
+                <tr><td class="t-yellow">线框</td><td>线框渲染</td><td>设置 / 获取</td><td>设置_线框(真或假)</td></tr>
+                <tr><td class="t-yellow">准星</td><td>准星显示</td><td>设置 / 获取</td><td>设置_准星(真或假)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十二 卡通描边 -->
+        <div class="section-title">精通 - 二十五 卡通描边</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-yellow">卡通描边</td><td>读写开关，无参读取</td><td>设置 / 获取</td><td>设置_卡通描边(真或假)</td></tr>
+                <tr><td class="t-yellow">描边宽度</td><td>读写外扩宽度，无参读取</td><td>设置 / 获取</td><td>设置_描边宽度(宽度)</td></tr>
+                <tr><td class="t-yellow">描边颜色</td><td>读写描边颜色，无参读取</td><td>设置 / 获取</td><td>设置_描边颜色(红, 绿, 蓝)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十三 环境光遮蔽与遮挡剔除 -->
+        <div class="section-title">精通 - 二十六 环境光遮蔽与遮挡剔除</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-yellow">环境光遮蔽</td><td>GTAO 开关，不带参数时读取当前值</td><td>设置 / 获取</td><td>设置_环境光遮蔽(真或假)</td></tr>
+                <tr><td class="t-yellow">遮蔽预设</td><td>按名称切换：关 / 低 / 中 / 高</td><td>设置</td><td>设置_遮蔽预设("中")</td></tr>
+                <tr><td class="t-yellow">遮蔽层数</td><td>采样层数，越大越精细</td><td>设置 / 获取</td><td>设置_遮蔽层数(层数)</td></tr>
+                <tr><td class="t-yellow">遮蔽步数</td><td>每层采样步数</td><td>设置 / 获取</td><td>设置_遮蔽步数(步数)</td></tr>
+                <tr><td class="t-yellow">遮蔽半径</td><td>采样半径，单位米</td><td>设置 / 获取</td><td>设置_遮蔽半径(半径米数)</td></tr>
+                <tr><td class="t-yellow">遮蔽强度</td><td>变暗强度</td><td>设置 / 获取</td><td>设置_遮蔽强度(强度)</td></tr>
+                <tr><td class="t-yellow">遮蔽衰减</td><td>幂次衰减</td><td>设置 / 获取</td><td>设置_遮蔽衰减(幂次)</td></tr>
+                <tr><td class="t-yellow">遮蔽偏移</td><td>深度偏移，过大易漏光</td><td>设置 / 获取</td><td>设置_遮蔽偏移(偏移量)</td></tr>
+                <tr><td class="t-yellow">遮挡剔除</td><td>HZB 开关</td><td>设置 / 获取</td><td>设置_遮挡剔除(真或假)</td></tr>
+                <tr><td class="t-yellow">被遮挡数</td><td>上一帧被剔除的物体数</td><td>获取</td><td>执行_打印(获取_被遮挡数())</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十六 场景存取与校验 -->
+        <div class="section-title">精通 - 二十七 场景校验</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-blue">地图</td><td>加载 .gmap 地图文件</td><td>加载</td><td>加载_地图("地图文件.gmap")</td></tr>
+                <tr><td class="t-green">场景问题</td><td>遍历全场景返回问题列表：重名 / 位置 NaN / 缩放非法 / 父级异常 / 模型缺网格；空表即通过</td><td>检测</td><td>循环 序号, 问题 在 检测_场景问题() 执行 {</td></tr>
+                <tr><td class="t-green">资源存在</td><td>资产（包内或磁盘）是否存在</td><td>检测</td><td>如果 检测_资源存在("模型文件.glb") 那么 {</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十七 Gmap 地图格式 -->
+        <div class="section-title">精通 - 二十八 Gmap 地图格式（.gmap）</div>
+        <div class="note">.gmap 是纯文本场景描述文件，无文件头，直接以块开始。块用 <b>块名 { ... }</b> 包裹，块内每行 <b>字段 值 [值 ...]</b>，空格或制表符分隔；<b>#</b> 开头为注释。文件必须保存为 UTF-8（无 BOM）。旧英文写法不再支持。</div>
+
+        <div class="section-title sub">Gmap - 块类型</div>
+        <table>
+            <thead><tr><th>块名</th><th>用途</th></tr></thead>
+            <tbody>
+                <tr><td class="t-blue">世界</td><td>全局环境：天空 / 环境光 / 太阳 / 雾 / 重力，全图一份</td></tr>
+                <tr><td class="t-green">画刷</td><td>静态几何体（轴对齐盒子）</td></tr>
+                <tr><td class="t-green">画刷实体</td><td>带物理与脚本的画刷</td></tr>
+                <tr><td class="t-green">功能实体</td><td>功能型画刷（推动 / 移动等）</td></tr>
+                <tr><td class="t-red">触发器</td><td>不可见触发区，仅保留盒碰撞</td></tr>
+                <tr><td class="t-yellow">灯光</td><td>点光 / 聚光 / 平行光</td></tr>
+                <tr><td class="t-purple">点实体</td><td>特效 / 音频 / 图片 / 文本 / 模型 / 相机</td></tr>
+                <tr><td class="t-cyan">玩家</td><td>玩家出生点、移动与相机参数</td></tr>
+                <tr><td class="t-orange">物品</td><td>可拾取物，绑定模型与脚本</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-title sub">Gmap - 世界字段</div>
+        <table>
+            <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+            <tbody>
+                <tr><td class="t-blue">天空</td><td>R G B</td><td>天空颜色，取值 0 到 1</td></tr>
+                <tr><td class="t-blue">环境光</td><td>R G B 强度</td><td>环境光颜色与强度</td></tr>
+                <tr><td class="t-blue">太阳</td><td>X Y Z</td><td>太阳方向向量，出现即启用太阳光</td></tr>
+                <tr><td class="t-blue">太阳颜色</td><td>R G B</td><td>太阳光颜色</td></tr>
+                <tr><td class="t-blue">雾</td><td>系数</td><td>雾浓度</td></tr>
+                <tr><td class="t-blue">重力</td><td>数值</td><td>重力加速度</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-title sub">Gmap - 画刷字段</div>
+        <table>
+            <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+            <tbody>
+                <tr><td class="t-green">位置</td><td>X Y Z</td><td>盒体中心的世界坐标</td></tr>
+                <tr><td class="t-green">尺寸</td><td>X Y Z</td><td>三轴全长（不是半长）：尺寸 2 即 2 米宽，与物体缩放的 Godot 语义一致</td></tr>
+                <tr><td class="t-green">包围盒</td><td>中心X 中心Y 中心Z 半宽X 半宽Y 半宽Z</td><td>旧写法，第 4~6 个参数是半尺寸，引擎会乘二换算后继续可用；新地图请用 位置 + 尺寸</td></tr>
+                <tr><td class="t-green">名称</td><td>字符串</td><td>物体名称</td></tr>
+                <tr><td class="t-green">标签</td><td>字符串</td><td>分组标签</td></tr>
+                <tr><td class="t-green">贴图</td><td>资源名</td><td>贴图资源，留空用棋盘格</td></tr>
+                <tr><td class="t-green">材质</td><td>整数</td><td>材质索引</td></tr>
+                <tr><td class="t-green">贴图缩放</td><td>数值</td><td>UV 缩放</td></tr>
+                <tr><td class="t-green">碰撞</td><td>盒 / 网格 / 球 / 无</td><td>碰撞体类型，默认 盒</td></tr>
+                <tr><td class="t-green">可见</td><td>真 / 1</td><td>是否可见</td></tr>
+                <tr><td class="t-green">透明</td><td>真 / 1</td><td>是否透明</td></tr>
+                <tr><td class="t-green">刚体</td><td>真 / 1</td><td>启用刚体物理</td></tr>
+                <tr><td class="t-green">运动学</td><td>真 / 1</td><td>运动学物体，不受重力</td></tr>
+                <tr><td class="t-green">可推动</td><td>真 / 1</td><td>可被玩家推动</td></tr>
+                <tr><td class="t-green">质量</td><td>数值</td><td>刚体质量</td></tr>
+                <tr><td class="t-green">摩擦</td><td>数值</td><td>摩擦系数</td></tr>
+                <tr><td class="t-green">脚本</td><td>路径</td><td>绑定脚本</td></tr>
+                <tr><td class="t-green">目标</td><td>名称</td><td>联动目标物体名</td></tr>
+                <tr><td class="t-green">移动</td><td>X Y Z</td><td>往复移动向量</td></tr>
+                <tr><td class="t-green">速度</td><td>数值</td><td>移动速度</td></tr>
+                <tr><td class="t-green">单次</td><td>真 / 1</td><td>移动只执行一次</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-title sub">Gmap - 灯光字段</div>
+        <table>
+            <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+            <tbody>
+                <tr><td class="t-yellow">种类</td><td>点光 / 聚光 / 平行光</td><td>灯光类型，默认 点光</td></tr>
+                <tr><td class="t-yellow">名称</td><td>字符串</td><td>名称</td></tr>
+                <tr><td class="t-yellow">标签</td><td>字符串</td><td>分组标签</td></tr>
+                <tr><td class="t-yellow">位置</td><td>X Y Z</td><td>世界坐标</td></tr>
+                <tr><td class="t-yellow">朝向</td><td>X Y Z</td><td>方向（聚光 / 平行光用）</td></tr>
+                <tr><td class="t-yellow">颜色</td><td>R G B</td><td>灯光颜色</td></tr>
+                <tr><td class="t-yellow">强度</td><td>数值</td><td>亮度</td></tr>
+                <tr><td class="t-yellow">范围</td><td>数值</td><td>影响半径</td></tr>
+                <tr><td class="t-yellow">角度</td><td>数值</td><td>聚光锥角（度）</td></tr>
+                <tr><td class="t-yellow">阴影</td><td>真 / 1</td><td>是否投影</td></tr>
+                <tr><td class="t-yellow">脚本</td><td>路径</td><td>绑定脚本</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-title sub">Gmap - 点实体字段</div>
+        <table>
+            <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+            <tbody>
+                <tr><td class="t-purple">类别</td><td>特效 / 音频 / 图片 / 文本 / 模型 / 相机</td><td>点实体种类</td></tr>
+                <tr><td class="t-purple">名称</td><td>字符串</td><td>名称</td></tr>
+                <tr><td class="t-purple">标签</td><td>字符串</td><td>分组标签</td></tr>
+                <tr><td class="t-purple">位置</td><td>X Y Z</td><td>世界坐标</td></tr>
+                <tr><td class="t-purple">旋转</td><td>X Y Z</td><td>欧拉角（度）</td></tr>
+                <tr><td class="t-purple">资源</td><td>资源名</td><td>关联资源（模型 / 图片 / 音频）</td></tr>
+                <tr><td class="t-purple">文本</td><td>字符串</td><td>文本内容</td></tr>
+                <tr><td class="t-purple">尺寸</td><td>数值</td><td>缩放</td></tr>
+                <tr><td class="t-purple">参数0 / 参数1</td><td>数值</td><td>通用参数</td></tr>
+                <tr><td class="t-purple">朝向</td><td>数值</td><td>方向角（度）</td></tr>
+                <tr><td class="t-purple">自发光</td><td>数值</td><td>自发光强度</td></tr>
+                <tr><td class="t-purple">自动播放</td><td>真 / 1</td><td>音频自动播放</td></tr>
+                <tr><td class="t-purple">循环</td><td>真 / 1</td><td>音频循环</td></tr>
+                <tr><td class="t-purple">音量</td><td>数值</td><td>音量</td></tr>
+                <tr><td class="t-purple">声音范围</td><td>数值</td><td>可听半径</td></tr>
+                <tr><td class="t-purple">音调</td><td>数值</td><td>播放速率</td></tr>
+                <tr><td class="t-purple">脚本</td><td>路径</td><td>绑定脚本</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-title sub">Gmap - 玩家 · 物品字段</div>
+        <table>
+            <thead><tr><th>字段</th><th>值</th><th>含义</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">位置</td><td>X Y Z</td><td>出生点（玩家）/ 世界坐标（物品）</td></tr>
+                <tr><td class="t-cyan">速度</td><td>数值</td><td>移动速度（玩家）</td></tr>
+                <tr><td class="t-cyan">跳跃</td><td>数值</td><td>跳跃初速度（玩家）</td></tr>
+                <tr><td class="t-cyan">视场角</td><td>数值</td><td>相机 FOV（玩家）</td></tr>
+                <tr><td class="t-cyan">近平面 / 远平面</td><td>数值</td><td>裁剪面距离（玩家）</td></tr>
+                <tr><td class="t-orange">名称</td><td>字符串</td><td>名称（物品）</td></tr>
+                <tr><td class="t-orange">标签</td><td>字符串</td><td>分组标签（物品）</td></tr>
+                <tr><td class="t-orange">模型</td><td>资源名</td><td>模型资源（物品）</td></tr>
+                <tr><td class="t-cyan">脚本</td><td>路径</td><td>绑定脚本（玩家 / 物品）</td></tr>
+            </tbody>
+        </table>
+
+        <div class="section-title sub">Gmap - 示例</div>
+        <table class="gmap-demo">
+            <thead><tr><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td><pre>玩家 {
+位置 0 1.2 0
+跳跃 1.8
+}
+
+世界 {
+天空 0.62 0.78 0.96
+环境光 1.0 1.0 1.0 0.12
+太阳 0.5 -1.0 0.3
+雾 0.004
+重力 30
+}
+
+画刷 {
+名称 ground
+包围盒 0 -0.5 0 8 0.5 8
+贴图缩放 16
+碰撞 盒
+}</pre></td></tr>
+            </tbody>
+        </table>
+
+        <!-- 二十九 能力自省 -->
+        <div class="section-title">困难 - 二十九 能力自省</div>
+        <table>
+            <thead><tr><th>宾语</th><th>用途</th><th>适配动词</th><th>示例</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">能力列表</td><td>返回全部能力及分组说明的表列表</td><td>获取</td><td>循环 序号, 能力项 在 获取_能力列表() 执行 {</td></tr>
+                <tr><td class="t-cyan">能力</td><td>按名称片段模糊查找，返回 [名称, 分类, 说明, 可用] 列表</td><td>查询</td><td>循环 序号, 能力项 在 查询_能力(名称关键字) 执行 {</td></tr>
+                <tr><td class="t-cyan">全局量</td><td>按名称前缀列出脚本全局量，每项含名称与类型两项</td><td>列出</td><td>循环 序号, 项 在 列出_全局(&quot;前缀&quot;) 执行 {</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 三十 状态机库 -->
+        <div class="section-title">困难 - 三十 状态机库（状态机.gvts，纯 gvts） </div>
+        <table class="tbl-lib">
+            <thead><tr><th>成员</th><th>用途和接受的参数</th><th>演示</th></tr></thead>
+            <tbody>
+                <tr><td>状态机.新建(名, 定义)</td><td>按状态定义创建实例，返回 m</td><td>状态机.新建(实例名, 状态定义表)</td></tr>
+                <tr><td>m.转至(新状态)</td><td>切换状态，成功返真</td><td>实例.转至(目标状态)</td></tr>
+                <tr><td>m.更新(...)</td><td>调用当前状态的 更新 回调，参数原样透传</td><td>实例.更新(参数...)</td></tr>
+                <tr><td>m.是(状态)</td><td>判断当前是否处于某状态，返回布尔</td><td>如果 实例.是(状态名) 那么 {</td></tr>
+                <tr><td>m.取历史()</td><td>取状态切换历史字符串表，用于调试</td><td>循环 序号, 记录 在 实例.取历史() 执行 {</td></tr>
+                <tr><td>定义.初始</td><td>定义表字段：起始状态名</td><td>初始 = "关闭"</td></tr>
+                <tr><td>定义.状态</td><td>定义表字段：状态名到回调表的映射</td><td>状态 = [ 关闭 = [ ... ] ]</td></tr>
+                <tr><td>回调.进入</td><td>每个状态可选的进入回调</td><td>进入 = 函数() { 执行_打印("闸门关闭"); }</td></tr>
+                <tr><td>回调.离开</td><td>每个状态可选的离开回调</td><td>离开 = 函数() { 执行_打印("闸门重新关上"); }</td></tr>
+                <tr><td>回调.更新</td><td>每个状态可选的每帧回调</td><td>更新 = 函数(dt) { }</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 三十一 裸 OpenGL -->
+        <div class="section-title">困难 - 三十一 裸 OpenGL（Gv_only_OpenGL 表）</div>
+        <table>
+            <thead><tr><th>成员</th><th>用途和接受的参数</th><th>演示</th></tr></thead>
+            <tbody>
+                <tr><td>Gv_only_OpenGL.开始([版本])</td><td>进入裸模式，返回是否成功；传版本号进固定管线兼容上下文，不传为现代管线</td><td>如果 Gv_only_OpenGL.开始(版本号) 那么 {</td></tr>
+                <tr><td>Gv_only_OpenGL.视口(x, y, 宽, 高)</td><td>设置绘制区域</td><td>Gv_only_OpenGL.视口(左上X, 左上Y, 宽, 高)</td></tr>
+                <tr><td>Gv_only_OpenGL.清屏颜色(R, G, B, A)</td><td>设置背景色，需在 开始 之后</td><td>Gv_only_OpenGL.清屏颜色(红, 绿, 蓝, 透明度)</td></tr>
+                <tr><td>Gv_only_OpenGL.清屏([颜色, 深度])</td><td>清除颜色与深度缓冲，每帧 绘制 首行调用</td><td>Gv_only_OpenGL.清屏()</td></tr>
+                <tr><td>Gv_only_OpenGL.开启(名)</td><td>开启 GL 能力：深度测试 / 剔除 / 混合</td><td>Gv_only_OpenGL.开启(能力名)</td></tr>
+                <tr><td>Gv_only_OpenGL.关闭(名)</td><td>关闭 GL 能力</td><td>Gv_only_OpenGL.关闭(能力名)</td></tr>
+                <tr><td>Gv_only_OpenGL.取错误()</td><td>读 GL 错误码，0 表示无错</td><td>执行_打印(Gv_only_OpenGL.取错误())</td></tr>
+                <tr><td>Gv_only_OpenGL.读像素(x, y)</td><td>读屏幕像素 RGBA，返回 0 到 255 数组</td><td>局部 像素 = Gv_only_OpenGL.读像素(屏X, 屏Y)</td></tr>
+                <tr><td>Gv_only_OpenGL.固定管线可用()</td><td>当前是否处于固定管线模式</td><td>如果 Gv_only_OpenGL.固定管线可用() 那么 {</td></tr>
+                <tr><td>创建着色器</td><td>创建着色器对象</td><td>Gv_only_OpenGL.创建着色器(类型, 源码)</td></tr>
+                <tr><td>创建程序</td><td>创建程序对象</td><td>Gv_only_OpenGL.创建程序()</td></tr>
+                <tr><td>使用程序</td><td>使用指定程序</td><td>Gv_only_OpenGL.使用程序(程序)</td></tr>
+                <tr><td>创建VAO</td><td>创建顶点数组对象</td><td>Gv_only_OpenGL.创建VAO()</td></tr>
+                <tr><td>绑定VAO</td><td>绑定顶点数组对象</td><td>Gv_only_OpenGL.绑定VAO(vao)</td></tr>
+                <tr><td>创建缓冲</td><td>创建缓冲对象</td><td>Gv_only_OpenGL.创建缓冲()</td></tr>
+                <tr><td>缓冲数据</td><td>写入缓冲数据</td><td>Gv_only_OpenGL.缓冲数据(缓冲, 数据)</td></tr>
+                <tr><td>缓冲字节</td><td>缓冲字节长度查询</td><td>Gv_only_OpenGL.缓冲字节(缓冲)</td></tr>
+                <tr><td>缓冲整数</td><td>缓冲整数数据读写</td><td>Gv_only_OpenGL.缓冲整数(缓冲)</td></tr>
+                <tr><td>顶点属性</td><td>声明顶点属性</td><td>Gv_only_OpenGL.顶点属性(位置, 大小, 类型)</td></tr>
+                <tr><td>启用属性</td><td>启用顶点属性</td><td>Gv_only_OpenGL.启用属性(位置)</td></tr>
+                <tr><td>设置浮点</td><td>设置浮点 uniform</td><td>Gv_only_OpenGL.设置浮点(位置, 值)</td></tr>
+                <tr><td>设置整数</td><td>设置整数 uniform</td><td>Gv_only_OpenGL.设置整数(位置, 值)</td></tr>
+                <tr><td>设置三维</td><td>设置三维向量 uniform</td><td>Gv_only_OpenGL.设置三维(位置, x, y, z)</td></tr>
+                <tr><td>设置矩阵</td><td>设置矩阵 uniform</td><td>Gv_only_OpenGL.设置矩阵(位置, 矩阵)</td></tr>
+                <tr><td>绘制数组</td><td>按数组绘制图元</td><td>Gv_only_OpenGL.绘制数组(模式, 起点, 数量)</td></tr>
+                <tr><td>绘制索引</td><td>按索引绘制图元</td><td>Gv_only_OpenGL.绘制索引(模式, 数量, 类型, 偏移)</td></tr>
+                <tr><td>绘制图元</td><td>开始绘制指定图元</td><td>Gv_only_OpenGL.绘制图元("三角形")</td></tr>
+                <tr><td>顶点</td><td>提交一个顶点</td><td>Gv_only_OpenGL.顶点(X, Y, Z)</td></tr>
+                <tr><td>颜色</td><td>设置当前颜色</td><td>Gv_only_OpenGL.颜色(红, 绿, 蓝)</td></tr>
+                <tr><td>法线</td><td>设置当前法线</td><td>Gv_only_OpenGL.法线(X, Y, Z)</td></tr>
+                <tr><td>矩阵模式</td><td>切换矩阵栈：投影 / 模型视图</td><td>Gv_only_OpenGL.矩阵模式("投影")</td></tr>
+                <tr><td>单位阵</td><td>当前矩阵置为单位阵</td><td>Gv_only_OpenGL.单位阵()</td></tr>
+                <tr><td>压入矩阵</td><td>压栈当前矩阵</td><td>Gv_only_OpenGL.压入矩阵()</td></tr>
+                <tr><td>弹出矩阵</td><td>弹栈矩阵</td><td>Gv_only_OpenGL.弹出矩阵()</td></tr>
+                <tr><td>平移</td><td>当前矩阵平移</td><td>Gv_only_OpenGL.平移(x, y, z)</td></tr>
+                <tr><td>旋转</td><td>当前矩阵旋转</td><td>Gv_only_OpenGL.旋转(角度, x, y, z)</td></tr>
+                <tr><td>缩放</td><td>当前矩阵缩放</td><td>Gv_only_OpenGL.缩放(x, y, z)</td></tr>
+                <tr><td>透视</td><td>设置透视投影</td><td>Gv_only_OpenGL.透视(视场角, 宽高比, 近裁面, 远裁面)</td></tr>
+                <tr><td>观察</td><td>设置观察矩阵</td><td>Gv_only_OpenGL.观察(眼X, 眼Y, 眼Z, 中心X, 中心Y, 中心Z, 上X, 上Y, 上Z)</td></tr>
+                <tr><td>加载矩阵</td><td>直接加载矩阵</td><td>Gv_only_OpenGL.加载矩阵(矩阵)</td></tr>
+                <tr><td>乘矩阵</td><td>当前矩阵右乘</td><td>Gv_only_OpenGL.乘矩阵(矩阵)</td></tr>
+                <tr><td>着色模式</td><td>平滑 / 平面着色</td><td>Gv_only_OpenGL.着色模式(模式名)</td></tr>
+                <tr><td>线宽</td><td>设置线宽</td><td>Gv_only_OpenGL.线宽(线宽值)</td></tr>
+                <tr><td>点大小</td><td>设置点大小</td><td>Gv_only_OpenGL.点大小(点大小值)</td></tr>
+            </tbody>
+        </table>
+
+        <!-- 三十二 用 C++ 编写 UI -->
+        <div class="section-title">困难 - 三十二 用 C++ 给游戏编写 UI</div>
+        <p>前面所有章节都用 Gvts 脚本做事。但脚本的绘制能力是有限的：它擅长画矩形、文字、图片，适合做游戏内的 HUD 与菜单，却画不出完全自定义的控件外观与精细交互。当你要的是「一套自己的界面」——圆角按钮、自绘边框、拖动条、虚拟摇杆——可以在 Demo 目录里写一个 C++ 文件，让引擎在每帧渲染结束后回调你，由你用引擎的 2D 绘制接口把界面画上去。这一章讲的就是这条通路。</p>
+
+        <h3>覆盖层是什么</h3>
+        <p>引擎在安卓入口处预留了两个<b>弱符号</b>。所谓弱符号，就是「引擎声明了它、但不要求你一定实现」：你实现了，引擎就调用你的；你不实现，引擎用一个空的默认版本，一切照常。它们让界面代码留在你的 Demo 里，而不必改引擎。</p>
+        <table>
+            <thead><tr><th>弱符号</th><th>作用</th><th>签名</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">Gvtcier_Android_DrawOverlay</td><td>每帧渲染完成后回调，用来绘制界面</td><td>void Gvtcier_Android_DrawOverlay(Renderer&amp; r, const GvWWindow* w)</td></tr>
+                <tr><td class="t-cyan">Gvtcier_Android_AppName</td><td>返回应用标题，缺省为 "Gvtcier"</td><td>const char* Gvtcier_Android_AppName()</td></tr>
+            </tbody>
+        </table>
+        <p><code>Gvtcier_Android_DrawOverlay</code> 的调用时机很关键：它在场景渲染完、2D 画布结束帧之后、交换缓冲区之前触发，因此你画上去的内容一定盖在所有游戏画面之上，正是界面该在的层级。</p>
+
+        <h3>把文件放进 Demo</h3>
+        <p>在你的 Demo 目录下新建一个名为 <code>android_main.cpp</code> 的文件，Android 构建脚本会自动发现并编译它，无需改任何构建配置。文件名固定，不能换成别的名字。</p>
+        <pre><code>Demo/盒子测试/
+    android_main.cpp   &lt;- 界面代码写在这里
+    game.gvts
+    test_scene.gmap
+    android.json</code></pre>
+
+        <h3>画出第一个按钮</h3>
+        <p>引擎的 <code>Renderer</code> 提供了四个屏幕像素坐标系的 2D 接口，界面全靠它们拼出来：</p>
+        <table>
+            <thead><tr><th>接口</th><th>用途</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">Gvtcier_Render_DrawRect2D(x, y, 宽, 高, R, G, B, A, z)</td><td>画一个填充矩形，坐标为屏幕像素，z 越大越靠前</td></tr>
+                <tr><td class="t-cyan">Gvtcier_Render_DrawText(x, y, 缩放, 文本, z, R, G, B, A)</td><td>画一行文字，xy 为左上角，缩放为字号倍率</td></tr>
+                <tr><td class="t-cyan">Gvtcier_Render_MeasureText(文本, 缩放, 出宽, 出高)</td><td>先量出文字像素尺寸，用于居中与做热区</td></tr>
+            </tbody>
+        </table>
+        <p>下面是一段最小实现：在屏幕左下角画一个半透明方块。窗口尺寸从回调参数 <code>w</code> 里取，这样不同分辨率下都能摆对位置。</p>
+        <pre><code>#include "render/renderer.h"
+#include "platform/gvw.h"
+
+extern "C" __attribute__((visibility("default")))
+void Gvtcier_Android_DrawOverlay(Renderer&amp; r, const GvWWindow* w) {
+    if (!w) return;
+    float s = 160.0f;
+    float x = 32.0f;
+    float y = w-&gt;height - 32.0f - s;
+    r.Gvtcier_Render_DrawRect2D(x, y, s, s, 0.2f, 0.5f, 0.9f, 0.75f, 900);
+}</code></pre>
+
+        <h3>让按钮有交互</h3>
+        <p>界面要能响应输入。C++ 侧靠 <code>GvW_IsKeyDown(w, 键)</code> 查询按键状态，它接受字符：W A S D 与空格分别对应前、左、后、右与跳跃。判断是否在某个矩形内则用坐标比较。把二者合起来，就能做出「按下时高亮」的按钮——位置同时喂给绘制与命中判定，保证视觉与热区完全重合。</p>
+        <pre><code>#include "render/renderer.h"
+#include "platform/gvw.h"
+
+namespace {
+const float kMargin = 24.0f;
+
+struct Rect { float x, y, w, h; };
+
+bool inRect(const Rect&amp; r, int px, int py) {
+    return px &gt;= r.x &amp;&amp; px &lt; r.x + r.w &amp;&amp; py &gt;= r.y &amp;&amp; py &lt; r.y + r.h;
+}
+
+void drawKey(Renderer&amp; r, const Rect&amp; rc, const char* label, bool down) {
+    if (down) r.Gvtcier_Render_DrawRect2D(rc.x, rc.y, rc.w, rc.h, 0.95f, 0.85f, 0.35f, 0.95f, 900);
+    else      r.Gvtcier_Render_DrawRect2D(rc.x, rc.y, rc.w, rc.h, 0.10f, 0.12f, 0.16f, 0.55f, 900);
+    float tw = 0, th = 0;
+    r.Gvtcier_Render_MeasureText(label, 2.0f, &amp;tw, &amp;th);
+    r.Gvtcier_Render_DrawText((int)(rc.x + (rc.w - tw) * 0.5f),
+                              (int)(rc.y + (rc.h - th) * 0.5f),
+                              2.0f, label, 901);
+}
+}
+
+extern "C" __attribute__((visibility("default")))
+void Gvtcier_Android_DrawOverlay(Renderer&amp; r, const GvWWindow* w) {
+    if (!w) return;
+    float s = w-&gt;height / 5.0f;
+    Rect jump = { w-&gt;width - kMargin - s * 1.5f, w-&gt;height - kMargin - s * 1.5f, s * 1.5f, s * 1.5f };
+    drawKey(r, jump, "跳", GvW_IsKeyDown(w, ' '));
+}</code></pre>
+
+        <h3>和触摸的关系</h3>
+        <p>你也许注意到上面只查了键盘状态，没有自己处理触摸。原因是安卓的触摸事件已经由引擎转成虚拟按键：引擎在 <code>gvw_android.cpp</code> 里维护了一套屏幕坐标下的按键热区，手指按下后刷新对应的键状态，<code>GvW_IsKeyDown</code> 再去读它。因此你只要在<b>同样的坐标</b>画按钮，点击就会自动落到你画的地方。这也解释了为什么按钮「能点却没显示」时，问题一定出在绘制侧——热区在引擎里，绘制在你这。</p>
+
+        <h3>几个要点</h3>
+        <p>1. 回调每帧触发一次，函数体要轻，别在里面做重活；界面状态尽量用静态变量或全局变量缓存。</p>
+        <p>2. 所有坐标是屏幕像素，锚点用 <code>w-&gt;width</code> / <code>w-&gt;height</code> 相对计算，才能适配不同尺寸的屏幕。</p>
+        <p>3. z 值决定前后层级，界面统一用一个大数（如 900 以上），保证盖过游戏内 HUD。</p>
+        <p>4. 需要文字居中、控件自适应宽度时，先用 <code>Gvtcier_Render_MeasureText</code> 量尺寸，再算位置，别写死像素。</p>
+
+        <div class="section-title">困难 - 三十三 模组（.glc）</div>
+        <p>模组是给已经发布的游戏做扩展的独立包，扩展名 <b>.glc</b>。它不需要游戏作者预留任何接口，也不需要重新打包主包：把模组文件放进游戏目录的 <b>mod</b> 子文件夹，启动时引擎自动加载。</p>
+
+        <h3>放在哪里</h3>
+        <table>
+            <thead><tr><th>路径</th><th>说明</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">Games/&lt;游戏ID&gt;/&lt;游戏名&gt;.gpk</td><td>主游戏包，一个目录一个</td></tr>
+                <tr><td class="t-cyan">Games/&lt;游戏ID&gt;/mod/&lt;模组名&gt;.glc</td><td>模组包，可放多个</td></tr>
+                <tr><td class="t-cyan">Games/&lt;游戏ID&gt;/mod/&lt;模组名&gt;.glc.disabled</td><td>同名的空文件，放了它这个模组就被跳过</td></tr>
+            </tbody>
+        </table>
+        <p>多个模组按<b>文件名升序</b>依次加载，后加载的优先。想让某个模组最后生效，就在名字前面加数字前缀。</p>
+
+        <h3>同名文件谁生效</h3>
+        <p>查找顺序是 <b>模组 → 主包 → 磁盘</b>，谁在前谁生效。所以模组里放一个和主包同名、同路径的文件，就等于把这个文件换掉了；模组里独有的文件则是纯新增。这条规则对所有资源一视同仁：贴图、模型、音频、特效 JSON、gmap 地图、被 <code>包含</code> 的子脚本，甚至主脚本 <code>game.gvts</code> 本身。</p>
+        <table>
+            <thead><tr><th>想做的事</th><th>模组里放什么</th></tr></thead>
+            <tbody>
+                <tr><td class="t-green">换掉一张贴图</td><td>同名的 .png</td></tr>
+                <tr><td class="t-green">换掉整张地图（含天空、环境光、模型摆放）</td><td>同名的 .gmap</td></tr>
+                <tr><td class="t-green">只改一行文字或配色</td><td>根目录 <b>mod.ghook</b>，每条写「替换 "原文" 为 "新文"」</td></tr>
+                <tr><td class="t-green">只换某个函数的实现</td><td><b>_override/&lt;函数名&gt;.gvts</b>，内容就是新的函数体</td></tr>
+                <tr><td class="t-green">改玩法机制（整份接管）</td><td>同名的 .gvts 子脚本；或者直接放一份 game.gvts 把主脚本换掉</td></tr>
+                <tr><td class="t-green">在主脚本的时机插自己的代码</td><td>根目录 <b>_mod.gvts</b>，定义 钩子_载入 / 钩子_每帧 / 钩子_绘制</td></tr>
+                <tr><td class="t-green">只加内容不改原内容</td><td>主包里没有的新文件，由主包脚本按名字去取</td></tr>
+            </tbody>
+        </table>
+
+        <h3>打包一个模组</h3>
+        <p>在模组目录里放一个 <b>mod.json</b> 作为身份信息，其余文件按你希望它们被游戏看到的路径摆放：</p>
+        <pre><code>{
+    "name": "绿色天空",
+    "version": "1.0",
+    "author": "你的名字",
+    "description": "把天空和环境光换成绿色"
+}</code></pre>
+        <p>然后把整个目录打成 .glc，产物会自动放进目标游戏的 mod 文件夹：</p>
+        <pre><code>python build.py -mod &lt;模组目录&gt; --game &lt;游戏ID&gt;</code></pre>
+        <p>省略 <code>--game</code> 时，如果 Games 下只有一个游戏目录就自动选中，否则要求显式指定。打包白名单为 json / png / wav / mp3 / obj / glb / txt / mp4 / gvts / gmap / ghook。</p>
+
+        <h3>只写差异，别把整个游戏拷进模组</h3>
+        <p>模组最轻的形态只携带差异。三种力度从轻到重：</p>
+        <table>
+            <thead><tr><th>形态</th><th>放什么</th><th>生效方式</th></tr></thead>
+            <tbody>
+                <tr><td class="t-cyan">mod.ghook</td><td>一条条「替换 &quot;原句&quot; 为 &quot;新句&quot;」</td><td>在主脚本原文里做文本替换，只换掉那一段字符，脚本其余部分仍是主包的</td></tr>
+                <tr><td class="t-cyan">_override/&lt;函数名&gt;.gvts</td><td>新的函数体，不带函数头</td><td>按函数名整块替换，主脚本其他函数照旧跟随主包更新</td></tr>
+                <tr><td class="t-cyan">game.gvts</td><td>整份主脚本</td><td>整体接管；主包以后改机制时，模组不会自动跟上</td></tr>
+            </tbody>
+        </table>
+        <p>想插自己的逻辑又不改主脚本，就在 <b>_mod.gvts</b> 里写 钩子_载入、钩子_每帧、钩子_绘制 三个函数中的任意几个。它们在主脚本的对应时机被调用，和主脚本共用全局量，因此可以直接给原变量赋值。</p>
+
+        <h3>怎么找到自己要改的那一处</h3>
+        <p>不要凭空猜名字。先用 <code>列出_全局(&quot;关键词&quot;)</code> 看有哪些全局量、各自是什么类型，把范围缩小；再用 <code>获取_能力列表()</code> 与 <code>查询_能力(&quot;片段&quot;)</code> 确认某个能力叫什么、怎么用。</p>
+        <p>片段覆盖的文件名必须与函数名一字不差。ghook 的「原句」必须与主脚本那一行完全一致，空格与分号都算；对不上时日志会留一行「补丁未命中」，照着这句话回去核对原文即可。</p>
+
+        <h3>示例：绿色天空</h3>
+        <p>Bloor 例子的世界天气写在地图里。把地图拷一份到模组目录，只改世界块的颜色，其余行原样保留：</p>
+        <pre><code>世界 {
+天空 0.24 0.86 0.34
+环境光 0.62 0.95 0.66 0.22
+太阳 0.34 -0.62 0.50
+太阳颜色 0.86 1.0 0.86
+雾 0.0036
+重力 30
+}</code></pre>
+        <p>打成 <code>绿色天空.glc</code> 放进 <code>Games/Bloor/mod/</code>，启动 Bloor 就是绿色天空，主包一个字节都没动。启动器 Bloor 的详情页也会多出一行「此游戏包含 1 个模组」。</p>
+
+        <h3>出错了会怎样</h3>
+        <p>模组文件损坏、版本不认识、校验值不符时，这一个模组会被整体跳过并在日志里留一行，游戏照常启动。模组里写的脚本有语法错误时，报错行号指向模组里的那份脚本，和平时改主脚本的体验一致。</p>
+
+        <div class="no-comment">基于 Gvtcier 脚本</div>
+    </div>
+    <script>
+        (function () {
+            var titles = document.querySelectorAll('.section-title');
+            var sidenav = document.getElementById('sidenav');
+            var toggle = document.getElementById('navToggle');
+            var backdrop = document.getElementById('navBackdrop');
+            var items = [];
+            var group = null;
+
+            Array.prototype.forEach.call(titles, function (title, index) {
+                var id = 'sec-' + index;
+                title.id = id;
+                var text = title.textContent.trim();
+                var isSub = title.classList.contains('sub');
+                var m = text.match(/^(前置|入门|进阶|精通|困难)\s*-/);
+                var name = m ? m[1] : '章节';
+                if (!isSub && name !== group) {
+                    group = name;
+                    var head = document.createElement('div');
+                    head.className = 'nav-group';
+                    head.textContent = name;
+                    sidenav.appendChild(head);
+                }
+                var link = document.createElement('a');
+                link.className = 'nav-item' + (isSub ? ' nav-sub' : '') + (name !== '章节' ? ' tier-' + name : '');
+                link.href = '#' + id;
+                link.textContent = text;
+                link.addEventListener('click', function () {
+                    if (window.innerWidth <= 900) setOpen(false);
+                });
+                sidenav.appendChild(link);
+                items.push(link);
+            });
+
+            function setOpen(open) {
+                document.body.classList.toggle('nav-open', open);
+            }
+
+            toggle.addEventListener('click', function () {
+                setOpen(!document.body.classList.contains('nav-open'));
+            });
+
+            backdrop.addEventListener('click', function () {
+                setOpen(false);
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') setOpen(false);
+            });
+
+            function highlight() {
+                var best = 0;
+                for (var i = 0; i < titles.length; i++) {
+                    if (titles[i].getBoundingClientRect().top <= 120) best = i;
+                }
+                items.forEach(function (item, i) {
+                    item.classList.toggle('active', i === best);
+                });
+            }
+
+            window.addEventListener('scroll', highlight, { passive: true });
+            window.addEventListener('resize', highlight);
+            highlight();
+        })();
+    </script>
+</body>
+</html>

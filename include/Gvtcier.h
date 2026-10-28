@@ -1,0 +1,92 @@
+#pragma once
+
+#include "Gvtcier2D/interface/interface.h"
+#include "Gvtcier2D/interface/passport.h"
+#include "Gvtcier2D/interface/ui.h"
+
+#include "Gvtcier2D/render/canvas2d.h"
+#include "Gvtcier2D/render/font.h"
+#include "Gvtcier2D/render/hud.h"
+#include "Gvtcier2D/render/mainmenu.h"
+#include "Gvtcier2D/render/menu.h"
+#include "Gvtcier2D/render/settings_ui.h"
+#include "Gvtcier2D/render/splash.h"
+#include "Gvtcier2D/render/ui_sound.h"
+
+#include "Gvtcier3D/asset/mesh_loader.h"
+
+#include "Gvtcier3D/physics/physics.h"
+
+#include "Gvtcier3D/render/camera.h"
+#include "Gvtcier3D/render/camera_error.h"
+#include "Gvtcier3D/render/effect.h"
+#include "Gvtcier3D/render/fx.h"
+#include "Gvtcier3D/render/hdr.h"
+#include "Gvtcier3D/render/mesh.h"
+#include "Gvtcier3D/render/opacity.h"
+#include "Gvtcier3D/render/renderer.h"
+#include "Gvtcier3D/render/shadowmap.h"
+#include "Gvtcier3D/render/texture.h"
+
+#include "Gvtcier3D/scene/scene.h"
+
+#include "Gvtcier3D/tool/gmap_format.h"
+
+#include "Rhidriver/backend.h"
+#include "Rhidriver/rhi.h"
+#include "Rhidriver/gl/gl1.h"
+#include "Rhidriver/gl/gl4.h"
+#include "Rhidriver/gl/gles.h"
+#include "Rhidriver/vk/vk.h"
+#include "Rhidriver/vk/vkResource.h"
+#include "Rhidriver/vk/vkShader.h"
+
+#include "bicu/audio/al_api.h"
+#include "bicu/audio/audio.h"
+
+#include "bicu/core/AABB.h"
+#include "bicu/core/BVH.h"
+#include "bicu/core/conventions.h"
+#include "bicu/core/crash_report.h"
+#include "bicu/core/Debug.h"
+#include "bicu/core/expand.h"
+#include "bicu/core/export.h"
+#include "bicu/core/game_pack.h"
+#include "bicu/core/gfile.h"
+#include "bicu/core/glc.h"
+#include "bicu/core/gpak.h"
+#include "bicu/core/gpu_profile.h"
+#include "bicu/core/GvtcierError.h"
+#include "bicu/core/gvtio.h"
+#include "bicu/core/identity.h"
+#include "bicu/core/limits.h"
+#include "bicu/core/log.h"
+#include "bicu/core/math.h"
+#include "bicu/core/Normal.h"
+#include "bicu/core/OBB.h"
+#include "bicu/core/Player.h"
+#include "bicu/core/res.h"
+#include "bicu/core/resource.h"
+#include "bicu/core/settings.h"
+#include "bicu/core/shader.h"
+#include "bicu/core/timer.h"
+#include "bicu/core/win32_utf8.h"
+
+#include "bicu/debug/shadow_tuning.h"
+
+#include "bicu/net/net.h"
+#include "bicu/net/net_peer.h"
+#include "bicu/net/net_protocol.h"
+#include "bicu/net/net_replication.h"
+#include "bicu/net/net_socket.h"
+
+#include "bicu/platform/gvw.h"
+
+#include "bicu/sandbox/GvtDebugger.h"
+#include "bicu/sandbox/sandbox.h"
+
+#include "bicu/script/bind/bind_common.h"
+#include "bicu/script/gvts_bind.h"
+
+#include "audio_gen.gen.h"
+#include "vein_gen.gen.h"

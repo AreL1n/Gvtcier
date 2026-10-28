@@ -1,0 +1,74 @@
+﻿SHADER_0 RCDATA "Shader/S3D/main.vert"
+SHADER_1 RCDATA "Shader/S3D/main.frag"
+SHADER_2 RCDATA "Shader/S3D/main_inst.vert"
+SHADER_3 RCDATA "Shader/S3D/main_inst.frag"
+SHADER_4 RCDATA "Shader/S3D/deferred_light.frag"
+SHADER_5 RCDATA "Shader/S3D/depth.vert"
+SHADER_6 RCDATA "Shader/S3D/depth.frag"
+SHADER_7 RCDATA "Shader/S3D/depth_skinned.vert"
+SHADER_8 RCDATA "Shader/S3D/fx.vert"
+SHADER_9 RCDATA "Shader/S3D/fx.frag"
+SHADER_10 RCDATA "Shader/S3D/gizmo.vert"
+SHADER_11 RCDATA "Shader/S3D/skinned.vert"
+SHADER_12 RCDATA "Shader/S3D/skinned.frag"
+SHADER_13 RCDATA "Shader/S3D/sky.vert"
+SHADER_14 RCDATA "Shader/S3D/sky.frag"
+SHADER_15 RCDATA "Shader/S3D/bright.frag"
+SHADER_16 RCDATA "Shader/S3D/blur.frag"
+SHADER_17 RCDATA "Shader/S3D/compose.frag"
+SHADER_18 RCDATA "Shader/S3D/gtao.frag"
+SHADER_19 RCDATA "Shader/S3D/gtao_blur.frag"
+SHADER_20 RCDATA "Shader/S3D/luminance.frag"
+SHADER_21 RCDATA "Shader/S3D/volumetric.frag"
+SHADER_22 RCDATA "Shader/S3D/volumetric_blur.frag"
+SHADER_23 RCDATA "Shader/S3D/outline.vert"
+SHADER_24 RCDATA "Shader/S3D/outline.frag"
+SHADER_25 RCDATA "Shader/S3D/outline_skinned.vert"
+SHADER_26 RCDATA "Shader/S2D/post.vert"
+SHADER_27 RCDATA "Shader/S2D/rect2d.vert"
+SHADER_28 RCDATA "Shader/S2D/rect2d.frag"
+SHADER_29 RCDATA "Shader/S2D/image.vert"
+SHADER_30 RCDATA "Shader/S2D/image.frag"
+SHADER_31 RCDATA "Shader/S2D/text.frag"
+SHADER_32 RCDATA "Shader/S2D/glass.frag"
+SHADER_33 RCDATA "Shader/S2D/fxaa.frag"
+SHADER_34 RCDATA "Shader/S3D/gvu.glsl"
+SHADER_35 RCDATA "Shader/S3D/point_depth.vert"
+SHADER_36 RCDATA "Shader/S3D/point_depth.frag"
+TITLE_LOGO_PNG RCDATA "assets/logo/Gvtcier.png"
+BADGE_PNG RCDATA "assets/logo/Gvtcier.png"
+ABOUT_LOGO_PNG RCDATA "assets/logo/Gvtcier.png"
+IDI_APP ICON "assets/logo/Gvtcier.ico"
+1 RT_MANIFEST "src/app.manifest"
+FONT_REGULAR RCDATA "assets/Fonts/SourceHanSansCN-Regular.otf"
+FONT_BOLD RCDATA "assets/Fonts/SourceHanSansCN-Bold.otf"
+
+1 VERSIONINFO
+FILEVERSION 1,6,0,0
+PRODUCTVERSION 1,6,0,0
+FILEFLAGSMASK 0x3fL
+FILEFLAGS 0x0L
+FILEOS 0x40004L
+FILETYPE 0x2L
+FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "CompanyName", "Li-HuaL1n Software"
+            VALUE "FileDescription", "Gvtcier"
+            VALUE "FileVersion", "1.6.0.0"
+            VALUE "InternalName", "Gvtcier"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Li-HuaL1n Software"
+            VALUE "LegalTrademarks", "Li-HuaL1n"
+            VALUE "OriginalFilename", "Gvtcier.dll/main.exe"
+            VALUE "ProductName", "Gvtcier"
+            VALUE "ProductVersion", "1.6.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END

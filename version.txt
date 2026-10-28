@@ -1,0 +1,1293 @@
+v0.1
+-变更 将渲染器更新为OpenGL3.3
+
+v0.2
+-修复 ShadowMap 随摄像机改变位置的BUG
+
+v0.3
+-修复 物理引擎推不动BUG
+-修复 刚体穿模BUG
+-修复 玩家穿模BUG
+-修复 地图物体无碰撞BUG
+
+v0.4
+-变更 将物理引擎替换为 Jolt
+
+v0.5
+-修复 了Jolt与引擎兼容问题
+
+v0.6
+-新增 2级CSM
+-修复 阴影痤疮BUG
+
+v0.7
+-新增 特效 火焰 烟雾 闪电
+-新增 点光源
+-新增 点阴影
+
+v0.8
+-修复 点阴影不渲染BUG
+
+v0.9
+-修复 阴影 抬头不见低头见 BUG
+
+v0.10
+-新增 体积云
+-新增 体积光
+-新增 辉光
+-新增 HDR
+
+v0.11
+-修复 HDR 过曝问题
+-新增 ACES 调色
+-优化 了卡顿问题
+-新增 BVH
+
+v0,12
+-新增 布娃娃
+
+v0.13
+-新增 GLTF2.0加载器
+
+v0.14
+-修复 天空盒未渲染BUG
+
+v0.15
+-新增 空间体积云
+
+v0.16
+-变更 将渲染器更新为OpenGL4.6 新增大量着色器文件
+
+v0.17
+-修复 摄像机贴近点光/聚光时阴影痤疮黑点（编辑器光源 castShadow 默认关闭）
+
+v0.18
+-变更 引擎改名 Crucible：Dross→Crucible（窗口/类名/日志/命名空间/文档/产物）
+-变更 宏层 DROSS→CRUCIBLE；场景后缀 drec→crec
+-变更 Lua API 别名 Dr3D_→Cr3D_；lua 绑定前缀 l_har_→l_cr_
+-新增 Cpak 打包架构：自研二进制打包，编辑器"打包游戏"菜单生成 <项目名>.cpak
+-新增 app.txt 清单（场景/脚本/资源条目），新项目默认生成
+-变更 默认资源 RCDATA 编译进编辑器 exe
+-移除 正式废除 app.dll 与 res.dll
+-新增 发布模式：exe 同目录存在 app.txt 时直接启动游戏
+-新增 编辑菜单新增体积云开关（cloudEnabled 持久化）
+-修复 摄像机贴近点光/聚光时阴影痤疮黑点（编辑器光源 castShadow 默认关闭）
+
+v0.19
+-新增 体积光开关：编辑菜单直弹"特性设置"合并弹窗
+-新增 体积光与 Bloom 一体化：编辑器视口启用 HDR 后处理链
+-新增 特效体：新物体类型 Effect（火焰/烟雾/闪电/冲击波）
+-修复 .crec kind 保存补 Effect 分支 + 加载端迁移
+-修复 特效体删除残留修复
+-新增 .inc 加载器：全局设计设置持久化
+-新增 工作相机持久化：.inc 记录编辑器退出时相机位置/朝向
+-变更 菜单重构：文件菜单仅保留打开场景/导出游戏
+-修复 属性面板：点击空白完全取消选中；EN_CHANGE 即时应用
+-变更 旋转手柄重做：arc-ball 绝对角度旋转
+-变更 右键视角机制：允许拉回中心，松开后鼠标恢复按下位置
+
+v0.20
+-变更 物理：弃用 Jolt 刚体方案，独立实现 SAT 分离轴 AABB 碰撞（玩家 AABB 对碰撞器真实 OBB）
+-变更 castRay 改为 OBB slab 测试，Ragdoll 保留独立 Jolt 路径
+-新增 移植运行功能 playLoop（960x540 播放窗口线程）
+-修复 3D 视窗偶发闪烁（主窗擦背景排除 3D 区）
+
+v0.21
+-变更 文档更新：DrossAPI.md 重命名为 CrucibleAPI.md，补全缺失 API 与真实签名
+-新增 Architecture.md
+-修复 Lua.md 修正过时的字节码打包描述
+-移除 废弃的 DrossScript.md
+
+v0.22
+-新增 编辑器属性面板采用正确类型控件（boolRow/colorRow/sliderRow/材质枚举下拉）
+-新增 引擎 Object 增加 visible/castShadow/lightShadow 字段
+-新增 属性面板暴露材质/金属度/粗糙度/碰撞/可见性/阴影开关
+
+v0.23
+-修复 运行游戏后编辑视口滚轮失效并统一输入框白底
+-修复 RAW INPUT 注册在游戏窗口销毁后重新指向编辑视口
+
+v0.24
+-新增 引擎窗口失焦后停止响应输入，防止干扰其他程序
+-新增 Window 新增 focused 焦点状态
+-新增 编辑视口输入加焦点门控
+
+v0.25
+-新增 完善运行时机制与玩家/碰撞系统
+-新增 引擎机制：时间缩放/暂停 Lua API、延迟删除队列、玩家相机物理插值
+-变更 玩家物体作为实体（scale 即胶囊碰撞尺寸）
+-新增 碰撞系统：模仿 CollisionShape3D 口径，支持 盒/球/胶囊/圆柱
+-新增 调试器：脚本区 inc 记录，"运行"真正执行脚本与触发器
+-新增 测试：新增 beep.lua 触发器脚本与玩家物体
+
+v0.26
+-变更 同步运行控制 API 与架构文档
+-新增 CrucibleAPI.md 新增 运行控制（时间缩放/暂停）小节，API 数量 36→38
+
+v0.27
+-变更 引擎更名为 Gvtcier G-v-t-c-i-e-r
+-变更 Interface 模块封装窗口/字体/UI 绘制，UI 与容器分离
+-新增 src/interface/
+-新增 相机体系统：视锥固定大小示意（参考 gizmo 口径）
+-变更 特性编辑重构：独立自绘小窗口，光源/HDR/相机分组展开
+-变更 全局换 OPPO Sans 字体
+-新增 物体列表选中项黄色描边
+
+v0.28
+-变更 Interface 控件封装全面 QT 化 + 引擎全局 UTF-8 + 乱码免疫
+-新增 引擎嵌入 activeCodePage=UTF-8 manifest
+-变更 GBK 十六进制转义串全部批量转换为 UTF-8
+-新增 Interface 新增 UI 控件封装：ifaceButton/Label/Edit/Listbox/Checkbox/Combo/Trackbar/Tree/MenuAppend/GetText
+-变更 编辑器全部控件改造（W 系）
+-变更 UI 与容器分离：绘制细节收敛到 iface 绘制 API
+
+v0.29
+-新增 引入 UiCanvas 式即时 UI 绘制系统并迁移编辑器界面
+-新增 src/interface/ui.h/cpp：扁平 UiObject 列表 + 锚点布局 + 容器自动布局 + IfStyleBox + IfTheme + z 序分层绘制 + 命中检测
+-变更 特性编辑窗口迁移 UiCanvas
+-修复 展开实时响应
+-变更 debugger 主窗口整体迁移
+
+v0.30
+-移除 物品区/目录树区域的大卡片残留边框绘制
+-优化 物品区/目录树间距 splitGap 6→14
+
+v0.31
+-新增 UI 页面身份机制 + 运行页精简 + 出生点兜底修复
+-新增 PageItem 身份机制（pageMask 位标志）
+-变更 运行页仅保留运行/停止按钮
+-变更 自定义标题栏加深一档
+-修复 运行场景兜底：g_scenePath 为空时保存临时文件供 playLoop 加载
+
+v0.32
+-新增 特性编辑器数值内联编辑 + 关闭按钮修复
+-变更 数值行改数值按钮样式，点击就地 EDIT 输入（Enter 提交/Esc 取消）
+-变更 关闭按钮改 × 单字符
+-修复 WM_NCHITTEST 排除按钮区
+
+v0.33
+-新增 碰撞随形优化 + 项目管理器 UI 同步 + 窗口居中
+-新增 碰撞：新增"随形"类型（ConvexHull，遍历物体顶点自动生成碰撞体积）
+-新增 碰撞记忆
+-修复 碰撞线框 ConvexHull 误画成胶囊/圆柱与只绕 Y 旋转
+-变更 .crec 序列化补 ConvexHull
+-变更 项目管理器：主窗口与新建项目弹窗去系统标题栏，接入自定义标题栏
+-新增 窗口居中：编辑器/游戏运行窗口/特性编辑器/新建项目弹窗创建时居中于屏幕
+
+v0.34
+-新增 今日全量改动（高亮/弹窗/图标/更名）
+-新增 脚本编辑器：RichEdit 富文本 + Lua 词法关键字高亮
+-变更 弹窗统一：About 800x700/通用确认/重命名输入全部引擎自绘样式
+-变更 按钮绘制集中 interface
+-新增 图标：标题栏 Gvtcier_1、exe Gvtcier_2.ico、About Logo Gvtcier_2_big
+-变更 引擎更名 Gvtcier 全量（API/文档/资源/窗口类）
+-新增 脚本 UTF-8 读写
+
+v0.35
+-变更 重构 Lua 绑定架构 + 修复 Physics 析构顺序 + 清理项目创建逻辑
+
+v0.36
+-新增 编辑器架构重构 + 纹理绘制器 + 工程持久化 .gpo + 内存安全修复
+
+v0.37
+-修复 按 KimiK3 健壮性审查结果修复缓冲区溢出与错误处理
+
+v0.38
+-变更 清理全部代码注释 + 预览窗口焦点与云截断修复
+
+v0.39
+-修复 补回 res.rc 遗漏的三个 shader 注册 + Play 模式读取 .inc 场景设置
+
+v0.40
+-变更 Play 内嵌编辑器重构 + Debug 双构建系统
+-变更 Play 不再走独立线程+第二 GL context，改为编辑器内嵌
+-新增 src/core/Debug.h/.cpp 统一调试开关（GV_DEBUG 编译期门控 + 运行时开关）
+-新增 build.py 双构建：dist 发行版（GV_DEBUG=0 无控制台）+ dist/Debug 调试版（GV_DEBUG=1 带控制台）
+-新增 各模块加 CSM/Play 诊断打印
+
+v0.41
+-修复 Play 与编辑器共享场景内存根治阴影丢失
+-修复 根因：Play 复制场景时丢失阴影数据，改为共享 g_ctx.scene 内存后阴影正常
+-新增 camera_error.h/.cpp：CameraValidate::check 校验玩家/固定相机
+-新增 RenderOptions 加 work 标志
+-变更 editor_run 重写：直接用 g_ctx.scene，停止时快照恢复物体 pos/rot/scale
+-变更 Play 运行时场景页预览黑屏显示 -工程相机下线-
+
+v0.42
+-新增 启动 Logo 浮层 + About 界面重排 + 窗口图标与穿透修复
+-新增 进项目启动 Logo：独立浮层窗口，停留 2 秒后销毁进编辑器
+-变更 Splash 期间子控件 pageMask 临时标记为页面 3
+-变更 About 界面重排
+-修复 Gvtcier_2.ico 重新打包
+-新增 标题栏图标按 GV_DEBUG 选图
+-修复 标题栏按钮点击穿透
+
+v0.43
+-修复 烟雾写深度遮蔽天空云太阳 + 界面多处 UTF-8 乱码修复 + 窗口按钮常驻
+
+v0.44
+-变更 RHI 抽象层落地 - 散落 GL 收集到 src/rhi/gl，引擎统一走 rhi:: API
+
+v0.45
+-新增 GvSl 着色语言落地 + 文档同步 + Cr3D_ 统一为 Gv3D_
+
+v0.46
+-新增 RHI D3D12 后端骨架（M1）- 后端表选择/DX12 设备与交换链/WGL 迁入 gl 后端/GL 自动回退
+
+v0.47
+-新增 RHI D3D12 后端 M2 静态场景 - 即时模式模拟层（resources/context/draw/PSO 缓存/GLSL→HLSL 翻译）
+
+v0.48
+-新增 RHI texImage3D/Texture2DArray + CSM 迁移到 4 层数组阴影（GL/DX12 双后端）
+
+v0.49
+-变更 重构：API 统一改造，Lua 保留字重设计，UTF-8 统一与超大文件拆分
+
+v0.50
+-变更 字体改思源黑体并内嵌 DLL + 新建物体两级分类窗口 + 菜单回归原生
+-移除 GVSL
+
+v0.51
+-修复 Release 版误用 Debug 图标（windres -D 宏定义语义）+ 新建物体两级分类窗口
+
+v0.52
+-移除 清理废弃架构残留 + 重写全部文档
+-移除 删除内置特效系统（EmitFire/EmitSmoke/AddBolt/AddShockwave 及 Lua 绑定与渲染分支）
+-移除 删除死文件 src/render/font_table.h 与根目录 draw
+-移除 删除 28 个零调用 GVTCIER_API
+-变更 重写 Docs：架构.md / 功能.md / GvtcierAPI.md / Lua.md / THIRD-PARTY-NOTICES.md
+-变更 GvtcierAPI.md 改为 Intel 手册风格纯文本
+
+v0.53
+-变更 回退全部文档与版权声明到重构后版本
+
+v0.54
+-新增 build: res.rc/res.cpp 纳入增量编译，并跟踪 res.rc 引用的全部资源文件
+
+v0.55
+-变更 移除了DirectX，Vulkan RHI后端
+
+v0.56
+-固定 Gvtcier 0.56 稳定版
+
+v0.57
+-固定 Gvtcier 0.57 稳定版
+-变更 架构第 1 步：公共设施归 Core（crash_report/timer），bvh.h 外迁 physics，main.cpp 拆出 trigger/app_launch；shader 目录 assets/shaders 迁至 src/shaders；Exper 按实验分目录
+-变更 GodRays 体积光小步迁移：裸 FBO 单 RGBA16F + 半分辨率 raymarch + 双向 blur，compose 加法合成，rhi.h 补 Tex3D/Texture4
+-修复 体积光开启场景全黑
+-修复 封闭场景穿透光：环境光/雾加 skyOccl 遮挡系数
+-修复 光柱菱形痤疮：体积光阴影图 1024→2048
+-修复 主几何剔除改仅近平面（背面）剔除
+-优化 volStrength 默认 0.4；GTAO 视锥外扩 0.66
+
+v0.58
+-固定 Gvtcier 0.58 稳定版
+-变更 不再提供独立Debug分支
+
+v0.59
+-固定 0.59 稳定版
+-新增 PBR IBL：新增 PbrSystem（天空盒烘焙 / 辐照度卷积 / 镜面预过滤 / BRDF LUT）与 7 个 shader，主 pass 接入环境反射
+-变更 玩家物理迁移到 Jolt 刚体驱动，贴地判定改用 RRayCast
+-变更 角色运动数据驱动（moveSpeed / jumpHeight），跳跃改边沿触发，场景重力 25→30
+-修复 粒子尺寸逐帧累乘导致的坍塌（baseSize）
+-修复 编辑器缩放窗口时 3D 视口闪烁（WS_CLIPCHILDREN + 缩放期间冻结视口）
+-新增 Exper/ParticleFx 独立实验（火焰 / 电火花 / 烟雾 / 激光）
+-变更 文档同步至 0.59
+-变更 Jolt Lua 内化为引擎内部功能 移除了绑定层 改为直接调用
+
+v0.60
+-变更 Build.py全面重写
+-移除 编辑器
+-移除 Gvsn
+-移除 Gvef
+-新增 Gpak
+
+v0.61
+-移除 Lua脚本
+-移除 触发器运行时、Lua 绑定与 Lua 源码，引擎侧只保留 C++
+-移除 GvtcierError 的 Lua 错误翻译 API、Object.scriptPath、ObjKind::Trigger
+-新增 扩展模块系统（src/core/expand.h）：Modes/*.dll 导出 Gvtcier_expand，注册 onInit/onTick/onDraw/onShutdown
+-新增 模块 ABI 版本校验（GVTCIER_EXPAND_ABI + abiVersion），修复引擎改结构体后旧模块布局不一致导致的堆损坏 / 空场景
+-变更 build.py 纳入 game/*Module.cpp 自动编译进 dist/Modes/
+-变更 游戏改为独立 C++ EXE（python build.py --exe 入口.cpp），参考 game/PlatformGame.cpp
+-变更 Jolt 归位至 src/Jolt/，源码随引擎编译
+-变更 文档同步至 0.61（移除 Lua.md / GvtcierAPI.md）
+
+v0.62
+-修复 致命bug
+-移除 PBR IBL
+-恢复 Lua脚本
+
+v0.63
+-新增 联网能力（src/net/）：UDP 非阻塞套接字、自研协议包头与分片可靠通道、连接状态机（握手/心跳/超时/RTT）
+-新增 状态同步：场景物体变换、玩家位置朝向、场景增删物体、自定义键值 RPC
+-新增 局域网 P2P（UDP 广播发现机房）与公网 P2P（信令打洞 + 中继兜底）
+-新增 自建房：支持自定义服务器地址，服务器兼任信令与中继
+-新增 内置客户端+服务端同进程，支持 --server [port] [room] 无头开服
+-变更 默认端口 22800
+-变更 对外 C++ API（src/net/net.h）：Gvtcier_Net_*
+
+v0.64
+-移除 独立 Debug 产物：build.py 去掉 dbg 变体与 dist/Debug，只产出 dist/Gvtcier.dll
+-变更 文档更新至 0.63：架构.md 补联网模块（协议/信令中继/状态复制/对外接口）与无头服务器，功能.md 补联网与构建章节，移除已废弃的编辑器/工具描述
+-变更 文档移除已下线的编辑器等过期内容，构建产物改为单一 DLL
+
+v0.65
+-新增 3D 平台游戏示例（game.lua + Scene::Gvtcier_Scene_BuildPlatformer）
+-新增 build.py 链接 dist/Gvtcier.exe（main.cpp 工具宿主，链引擎 DLL）
+-修复 资源未链入产物（build.py 未把 res.res 交给链接器，导致 res_get 全部失败）
+-修复 Jolt 临时分配器过小导致物理步进 abort（10MB → 64MB）
+-修复 Endpoint::disconnect 客户端断开后状态未清（isReady 仍为真）
+-变更 LuaBind 方法补 GVTCIER_API 导出，供外部 exe 调用
+-变更 Lua 脚本需以「包含 <Gvtcier>」开头才会注册引擎 API
+
+v0.66
+-变更 Lua 定位为专用游戏脚本：裁剪标准库，只保留 base/table/string/math，移除 io/os/package/debug/coroutine 与 dofile/loadfile/load/require/collectgarbage/module
+-变更 API 改为纯中文单名，去掉 Gvtcier_ 前缀与英文双名（Gvtcier_Object_Get → 取实体）
+-变更 对象方法改中文（实体:取位置 / 实体:设旋转）
+-新增 通用属性入口 取属性/设属性：按属性名字符串读写实体（标签/名称/颜色/缩放/质量/摩擦/弹性/光照/视场/音量/音高/移动速度/跳跃高度/可见/投影/刚体/可推动/运动学/碰撞/贴图/文本/模型/音频/特效）
+-新增 实体能力：创建实体/删除实体/实体存在/实体总数/实体列表/按名查找/最近实体
+-新增 空间能力：两点距离/范围内
+-新增 玩家能力：设置玩家位置/设置玩家速度/设置跳跃力/设置视角/取视角
+-新增 时间能力：帧间隔/已运行/帧号
+-新增 随机能力：随机/随机范围/随机整数/随机种子
+-新增 能力注册表与自省：能力列表/能力存在，按分组登记（输出/输入/实体/空间/玩家/物理/时间/随机/绘制/界面/音频/特效/脚本/自省），扩展模块可注册自有能力
+-新增 main.cpp 支持命令行传入脚本路径，缺省 game.lua
+-变更 game.lua 改为全顶格零缩进风格
+
+v0.67
+-新增 卡通化描边渲染：背面壳外扩（outline.vert 沿法线外扩 + outline.frag 纯色），正向剔除只画背面，保持原有光照不变
+-新增 渲染能力：卡通描边/取卡通描边、描边宽度/取描边宽度、描边颜色/取描边颜色（按「渲染」分组注册）
+-新增 Renderer 运行时描边状态与读写接口（Gvtcier_Render_SetToon/GetToon/SetOutlineWidth/GetOutlineWidth/SetOutlineColor/GetOutlineColor），经 RenderOptions.useRendererToon 生效
+-变更 rhi 常量表补 Front（0x0404）
+-变更 game.lua 默认开启描边，T 键切换卡通描边
+
+v0.68
+-修复 偶发跳不起来：jumpRequested 每帧被输入前清空，固定步进一帧跑 0 次时请求被丢弃，改为跳跃缓冲（0.15s）由物理步进消费
+-新增 土狼时间（0.10s）：离开地面后短时间内仍可起跳
+-修复 落地判定不稳：地面射线只探 playerHalf.y+0.2，改为 0.35 并在胶囊四周补 4 条偏移射线
+-变更 Player 新增 jumpBufferTime / airTime 字段
+
+v0.69
+-修复 测试用 glb 生成器 BIN chunk 长度头写错（写成 4 字节头长度而非数据长度），导致引擎只读到 4 字节、顶点全乱
+-修复 glb 立方体权重衰减过窄（falloff 1.1 → 2.2），绑定几乎全落在根骨骼，蒙皮撕裂
+-变更 glb 动画曲线：根骨骼整圈自转，子骨骼小幅反相摆动，避免父子旋转累乘导致幅度爆炸
+-新增 depth_skinned.vert / outline_skinned.vert：骨骼蒙皮版的深度与描边顶点着色器
+-新增 GLB 模型注册进阴影通道：CSM 级联阴影、点光源立方阴影、体积光阴影三处均绘制骨骼蒙皮模型
+-新增 描边 pass 绘制骨骼蒙皮模型（跟随动画姿势，不再停在绑定姿势）
+-变更 res.rc 注册 DEPTH_SKINNED_VERT / OUTLINE_SKINNED_VERT
+
+v0.70
+-修复 OBJ 加载器共享顶点导致硬边几何法线被平均，改为按面拆分顶点（每三角面独立顶点，缺 vn 时法线取面法线），硬边物体棱角与描边均正确
+-新增 Lua 能力「加载模型」：从 obj 或 glb 文件加载模型为实体（ObjKind::Model）并返回实体句柄，归入新「模型」分组
+-新增 对象方法 设缩放（此前只有取缩放，缺 setter）
+-修复 Model 实体惰性加载时机晚于阴影 pass，导致首帧模型无阴影，加载提前到渲染起始处
+-变更 描边改为按视空间深度缩放外扩量（深度 × 0.12），屏幕像素宽度恒定，近处不再糊住模型
+-变更 描边宽度默认值 0.03 → 0.0022（配合新的深度缩放系数）
+-新增 Exper/make_test_obj.py 与 tower.obj：多层塔状测试模型
+
+v0.71
+-重构 外扩描边改为平滑法线方案：Vertex 新增 smoothNormal 通道（属性 location 5），描边沿焊接后的平均法线外扩，硬边处壳闭合连续
+-新增 buildSmoothNormals / finalizeVerts：按位置量化焊接顶点（容差 1e-4）求平均法线，OBJ、glTF 静态网格、骨骼蒙皮网格统一走此路径
+-变更 Mesh::create 对 smoothNormal 做兜底（为零时取 normal），内置几何体无需改动
+-变更 两个描边着色器改用 aSmoothNormal，蒙皮版用 mat3(skin) 变换后外扩
+-修复 描边在硬边处裂开成分离面片：根因是面法线外扩使相邻面各自散开，壳不闭合
+-变更 外扩回归模型空间语义：模型空间、固定世界单位、不随距离缩放（移除此前的 depth × 0.12 系数），宽度默认 0.04
+-修复 阴影痤疮：normal offset 与 bias 改为按 slope 与 CSM texel 世界尺寸自适应，PCF 半径 2 → 3（25 → 49 采样），main.frag 两个 shadowFactor 函数同步
+-新增 game.lua 支持 [ ] 键调整描边宽度
+
+v0.72
+-修复 多实体删除时物理索引重复递减：FlushRemoves 改为先按降序清理再一次性重建映射，新增 Gvtcier_Physics_RemapObjects
+-修复 Lua 归属() 元表名不一致（"ObjHandle" vs "Gvtcier_对象"），返回句柄缺失全部方法；顺带接上失效的 l_obj_index / l_obj_newindex
+-修复 EffectAsset 指针悬空：effectAssets_ 由 vector 改 deque，去掉 findOrLoadEffect 的 LRU pop_front
+-修复 FontAtlas::glyph 图集纵向溢出导致堆写越界，补 cy_/stride 双重守卫与调用点判空；init() 开头补 destroy()
+-修复 l_randInt 跨全 int 范围时 hi-lo+1 溢出为 0 导致 % 0 除零，改用 long long 计算 span
+-修复 Renderer::Shutdown / Scene::Destroy 漏释放 cloudFbo / lumFbo / gtaoFbo / textEntityTexs / sunMesh / fileMesh / skinnedMesh / pngTexs / modelMeshs
+-修复 Mesh / Texture 无拷贝控制导致 std::move 实为拷贝、GL 句柄双重释放；补移动语义并 delete 拷贝
+-修复 glTF 越界读：scene.nodes / node.children / bone.parent / bone.node 补范围守卫，computeSkinnedBoneMats 补 ibm 长度与零骨骼退出
+-修复 Jolt Shape 裸 new 无 Ref 持有：布娃娃每次重建泄漏全部 shape，改用 RefConst 持有
+-修复 Shader 无析构导致约 20 个 GL program 泄漏，新增 Gvtcier_Shader_Destroy 并在重新加载前释放
+-修复 PhysicsImpl 的 rigidBodies 与 playerBody 从未 DestroyBody
+-修复 Gvtcier_Physics_RemoveObject 未同步删除 rigid body，删除刚性物体后 rigidBodies 与场景对象索引错位
+-修复 AddFontMemResourceEx 无 RemoveFontMemResourceEx、Gvtcier_UI_LoadFont 重入泄漏 HFONT、UI Brush 缓存无释放，新增对应释放接口并接入 Shutdown
+-修复绘制特效后 Blend 未停用污染下一帧，2D 分支未恢复 BlendFunc
+-修复 2D 模式提前 return 跳过特效系统更新与激光粒子驱动
+-修复 net 分片重组中途丢包导致 fragAccum 永久滞留，补 5 秒超时丢弃与 1MB 上限
+-清理 死代码：DualParaboloidShadow 整类、gvUtf8Length、kUiTextOnAccent、volFboInit_、lastEnv系列缓存、textVerts_、TextItem、rigidCenterOff、rideIdx、rideLastPos、laserAScale/laserBScale、isMoving
+-清理 4 处 ReadPixels 调试块（每 120 帧 GPU 同步阻塞 + 打印），保留自动曝光测光
+
+v0.73
+-修复 模型加载致命缺陷：引擎以 TINYGLTF_NO_STB_IMAGE 禁用了图片解码，导致任何内嵌贴图的 glb 直接加载失败（err: No LoadImageData callback specified），整个模型无法进场景
+-新增 GDI+ 图片解码回调注入 tinygltf LoadImageData，从内存流解码内嵌 png/jpg 为 RGBA，替换此前仅记录不解析的占位实现
+-修复 GDI+ 从未初始化：Gdiplus::Bitmap::FromStream 在未 GdiplusStartup 时崩溃，main 补启动与退出配对，build.py exe 链接补 -lgdiplus -lole32
+-新增 SkinnedMesh 材质支持：读取 glTF baseColorTexture 与 baseColorFactor，经 Scene::skinnedTex() 上传并绑定，此前硬编码白贴图导致带贴图模型恒为黑色
+-变更 skinned.frag 对贴图做 sRGB 解码并乘 baseColorFactor，接入淡色因子
+-新增 Scene 成员 skinnedTex_，随 Destroy 一并释放
+-变更 骨骼模型加载兼容老版 tinygltf 的材质 API（ParameterMap values 的 TextureIndex / ColorFactor）
+-变更 game.lua 默认关闭卡通描边（引擎主打写实，T 键仍可切换）
+-清理 临时诊断打印
+-已知 复杂模型描边退化为面片、非 skin 节点下的静态 mesh 部件未加载、骨骼模型阴影形状待复核
+
+v0.74
+-变更 完全移除 Jolt Physics：删除 src/jolt/ 全目录、jolt.lib、build_jolt.py，清掉 build.py 的链接参数、-I src/jolt 与 -DJPH_* 宏，运行时第三方库从两个降为一个
+-新增 自研物理引擎：序列冲量求解器（法向 + 库仑摩擦）、Baumgarte 位置修正、BVH 宽相、4 子步积分
+-新增 旋转自由度：RigidBody 增加 Quat rot / angVel / invInertia，球惯量 0.4mr²、方块 m/12·(…)，integrateVelocity 用 Quat::fromAxisAngle 增量旋转
+-新增 接触流形：RigidContact 持 4 点接触（kMaxManifoldPoints），每点独立累积法向与切向冲量
+-新增 方块 SAT 碰撞：15 轴（3 面轴 + 9 叉积轴）求最小穿透轴，参考面选择改用沿法线投影半径比较（投影半径小者为参考面）
+-重构 物理模块按形状拆文件：src/physics/rigid/{Rigid.h, BallBody, BlockBody}，physics.cpp 只留 14 个 API 入口与主循环编排；玩家胶囊移入 src/core/Player.{h,cpp}
+-变更 运行时第三方库约束更新（架构文档第 3 节）：Jolt 已移除，仅剩中文 Lua
+-修复 球体黏在玩家身上：AddObject 用 objects.size()-1 当 objIdx，从 Lua 改属性触发重建时索引错位，物理解算被写进别的对象；改为按地址查真实索引
+-修复 玩家出生埋进地面：collideRigid 的 sphereBox 法线 sign 手抄反，位置修正方向相反
+-修复 玩家每步卡脚：摩擦组合用 fmax 使玩家 friction=0.05 被地面 0.6 覆盖；改为几何平均 sqrt(μa·μb)
+-修复 玩家速度快速衰减到极小：切向冲量无累积器，8 次迭代各施加一次独立冲量（等效摩擦放大数十倍）；改为对累积总量钳制并只施加净变化量
+-修复 方块行为与球完全一致：流形生成固定用 a 的角点，地面(30×5×30)作 a 时 4 点全在 ±30 处、投影到箱子局部空间全部被拒 → 流形为空落进 fallback 单点；单点接触力臂恒为竖直（水平分量为零）使扭矩恒为零
+-修复 方形刚体落地后自行滚走：接触点取两钳制点中点，地面与箱子尺寸悬殊时产生虚假水平力臂；改为取参考面上的真实支撑点
+-修复 刚体开局集体弹飞：滚动阻力项量纲错误（angVel × invInertia × roll 拼不出冲量）且无累积器，maxR 正比于 accumN 使开局允许超大冲量；移除该项，滚动减速改由 angularDamping 承担
+-修复 RemoveObject 索引错位：vector::erase 逐个删时 playerIdx 修补基准错误，玩家体 objIdx=-1 可能被整条删除；改为稳定压缩并显式保护玩家
+-修复 CastRay 会命中玩家自身胶囊，射线遍历时跳过玩家体
+-变更 玩家隔离：RigidBody 增加 isPlayer，求解器对玩家的接触只解法向、跳过切向摩擦，速度完全由 playerInput 驱动
+-变更 PlayerSettings.decel 6.0 → 9.0（松键减速更快）
+-新增 docs/Ddocs/架构.md 第 14 节记录自研物理的机制、踩坑与当前限制
+-已知 玩家胶囊不支持旋转（轴恒沿世界 Y）、方块流形上限 4 点且无 warm starting（跨帧冲量不保留）
+
+v0.75
+-修复 碰撞形状与建模外观不符：盒/球/圆柱不再用缩放立方体近似，改为按网格真实包围盒与类型各自求尺寸
+-修复 OBJ / GLB / 基础几何体三类碰撞体尺寸口径不一：统一走 RigidBody 的网格局部包围盒 × 缩放（此前盒走缩放、球/圆柱走立方体半宽）
+-新增 圆柱碰撞体：RigidShape 增加 Cylinder，独立半径与半高（此前圆柱被当成盒，直径等于缩放立方体的宽）
+-新增 胶囊碰撞体：RigidShape 增加 Capsule，独立半径与圆柱段半高
+-新增 碰撞对：圆柱-圆柱 / 球-圆柱 / 圆柱-盒 / 胶囊-胶囊 / 球-胶囊 / 胶囊-盒 六类窄相
+-变更 玩家胶囊从 Block 占位改为真正的 Capsule，接球体/方块/圆柱均为真实胶囊解，胶囊可随旋转倾斜
+-变更 形状尺寸统一取自 Mesh::localHalf × scale（含模型包围盒中心偏移），圆柱/锥体/圆盘取 XZ 半径与 Y 半高，球取三轴最大
+-新增 圆柱与胶囊射线求交（rayCylinder 解析解、rayCapsule 沿线采样）
+-新增 圆柱与胶囊惯量（cylinderInvInertia 圆盘+杆解析式、capsuleInvInertia 圆柱段+两半球复合）
+-修复 碰撞线框球体画成扇形：环线半径与纬度对应，补赤道、两极环与极轴，改为规范经纬线框
+-新增 碰撞线框圆柱（上下端面圆 + 母线）与胶囊（圆柱段 + 上下半球）线框，均按刚体朝向绘制
+-新增 碰撞线框按形状配色：静态黄、盒绿、球青、圆柱橙、胶囊品红
+-新增 行采样法线：硬边几何体按面平均生成平滑法线，采样点沿法线微推进入盒内，避免表面点被判定为分离
+-新增 胶囊与圆柱多采样接触：按胶囊轴与圆柱周向、轴向撒采样球取最深接触，修正此前单球导致的点状/偏差接触
+-新增 渲染器线框几何体：Scene 增加 colliderBoxMesh（单位立方体）与 colliderCylinderMesh（单位圆柱，32 边）
+-变更 Object::Gvtcier_Object_MeshHalfExtents 统一世界半尺寸（含旋转投影），供物理与渲染共享同一口径
+-变更 Lua 创建实体自动碰撞形状按形状名映射：球→球、圆柱/锥体/圆盘→圆柱、方块/地面/三角/圆环→盒
+-变更 文档同步至 0.75：架构.md 物理章节补形状矩阵与线框说明，功能.md 与 Lua.md 修正碰撞体形状清单
+
+v0.76
+-新增 凸包碰撞体：RigidShape 增加 Hull，引入 akuukka/QuickHull（src/physics/rigid/quickhull/，10 头 + 1 源，按项目口径剥除注释）从网格顶点生成真实凸包
+-新增 复杂 OBJ / GLB 模型不再纯方块碰撞：模型体的"随形"（ConvexHull）由原来的网格包围盒盒体升级为真凸包，塔、椅、机器人等非凹模型贴合外观
+-变更 凸包管线：顶点按面拆分后量化焊接（容差 = 最大边长 × 1e-4）→ QuickHull → 面/边去重 → 体积质心平移 → 逐面惯量张量，尺寸上限 200 单位防退化
+-新增 凸包窄相：hull-hull 用完整 SAT（A 面法线 + B 面法线 + 边叉积轴，边数封顶 64），hull-ball 用面上最近点，hull-block 双向检测（盒角点入凸包 + 凸包顶点入盒，修正单侧漏检）
+-新增 凸包射线：在凸包局部空间对全部面做 slab 求交（rayHull）
+-新增 骨骼胶囊碰撞：GLB 骨骼模型由整体 AABB 改为按 bind 姿势每骨骼一个胶囊（复用 SkinnedBone 的 pos / dir / halfLen / radius），跟随骨骼朝向
+-变更 骨骼胶囊朝向：由 bone.dir 到 (0,1,0) 的轴角构造四元数，胶囊可随骨骼倾斜（此前轴恒沿世界 Y）
+-新增 碰撞线框凸包：逐面绘制三角边（青色），此前"随形"误画成胶囊/圆柱
+-变更 Lua 碰撞形状：`随形` 新增 `凸包` / `convex` 别名，新增 `无` / `none`；`加载模型` 默认碰撞形状由 `盒` 改为 `凸包`；新增只读属性 `碰撞形状` 回读当前形状
+-新增 第三方组件 akuukka/QuickHull（public domain）记入 THIRD-PARTY-NOTICES
+-变更 文档同步至 0.76：架构.md 补第 16 节凸包与骨骼胶囊，THIRD-PARTY-NOTICES 移除已废弃的 Jolt 条目
+
+v0.77
+-修复 骨骼胶囊大量多余凸出：halfLen 取「到最近子骨骼距离之半」，而「根骨骼」的子骨骼在胸口、相距 1.02 米，导致一根从骨盆上伸 1.02 米的巨型胶囊，叠加各骨骼朝向不同形成几十根方向散乱的长条
+-修复 骨骼胶囊反向穿出体外：无子骨骼（脚、手）用「父距」继续背离父骨骼延伸一整段，脚扎到地下（y=-0.46）、手甩到体外
+-修复 骨骼胶囊浮空错位：用「父距」定长度却把中心放在骨骼自身，胶囊与骨骼链条错位
+-变更 骨骼胶囊跨度改为贴合骨架链条：有子骨骼覆盖 [自身, 最近子骨骼]，末端骨骼覆盖 [父骨骼, 自身]，根骨骼不生成
+-变更 骨骼胶囊长度/朝向/中心统一由覆盖区间两端点导出（halfLen = |A−B|/2、pos = (A+B)/2），消除三者口径不一致
+-变更 骨骼胶囊半径按跨度自适应（钳制在跨度的 15%~45%），不再仅由骨骼名硬编码
+-修复 骨骼长度计算存在读取顺序依赖：逐骨骼读取 pos 时前面的已被覆写，改用 boneRawPos 快照
+-修复 骨骼包围盒收敛：y ∈ [-0.54, 2.175] → [-0.071, 2.044]，与关节包围盒 [0.047, 1.982] 吻合，最长胶囊 1.342 → 1.022 米
+
+v0.78
+-修复 骨骼胶囊过粗：半径由骨骼名硬编码（脊椎 0.16）再被 span×0.15 抬底，而「脊椎」跨度仅 0.315 → 半径 0.142 接近跨度之半，躯干与腿部胶囊几乎成球，线框比身体宽一圈
+-变更 骨骼胶囊半径改为 clamp(span × 0.12, 0.03, 0.12)：比例项让粗细随骨骼尺寸缩放，绝对上下限避免短骨骼退化与长骨骼过粗
+-移除 骨骼名启发式半径（头部 0.15 / 脊椎 0.16 / 手脚 0.07 / 其余 0.09）及其 strstr 名字匹配，改由骨架跨度统一决定
+-变更 包围盒进一步收敛：y ∈ [-0.031, 2.012]、x ∈ [-0.391, 0.391]，与模型宽度 0.353 吻合
+
+v0.79
+-修复 角色裆部有一个柱状碰撞体：根骨骼位于骨盆、其子骨骼在胸口，相距 1.02 米且骨架层级无中间关节，生成一根竖直贯穿躯干的粗胶囊（半径 0.123），与肩/脊椎三条胶囊重叠
+-修复 头、脚末端无碰撞体：胶囊只覆盖「两骨骼之间」，未覆盖骨骼自身；末端骨骼跨度退化为零被跳过
+-新增 骨骼胶囊覆盖规则：有子→胶囊[自身,最近子]；无子→自身位置放球；根骨骼（无父）→不生成；跨度 > 骨架高 × 0.35 → 改放球（防长胶囊横穿躯干）
+-变更 骨骼胶囊半径改为 clamp(max(refSpan × 0.12, 骨架高 × 0.05), 0, 0.15)，基准半径由骨架包围盒高度导出
+-变更 全部尺寸判据只依赖骨架自身几何（骨骼位置/父子关系/骨架包围盒），不依赖模型名、骨骼名或蒙皮权重，任意 GLB/GLTF 骨架通用
+-变更 包围盒 y ∈ [-0.050, 2.079]，完整覆盖骨架 [0.047, 1.982]；胶囊数 20 → 19（跳过根骨骼）
+
+v0.80
+v0.81
+-正式版上线
+-新增 全角/半角符号互认：Lua 词法器层归一，全角字母数字标点与半角等效识别（UTF-8 三字节识别，U+FF01–FF5E 按 cp - 0xFEE0 映射，中文标点显式映射）
+-变更 全角引号可作为字符串定界符，字符串内容原样保留不参与归一（新增 gv_isquotechar，read_string 闭合判断额外接受全角引号）
+-修复 全角引号包裹的字符串报「字符串未闭合」：字符串内 fwidthOff=1 后闭引号不再归一，current 恒为 E2 无法匹配
+-修复 早期失败路径退出崩溃：脚本语法错误等 4 处提前返回未调用 Gvtcier_Render_Shutdown，与 v0.80 退出崩溃同源
+-新增 游戏包形态：游戏以原生 DLL 承载身份表、Lua 源码与资源包，经 Gvtcier_Game_Info / Gvtcier_Game_Bytecode / Gvtcier_Game_Resource 三个导出提供，ABI 版本校验
+-新增 游戏宿主 main.exe：由原 main.cpp 单机入口改为薄壳，按自身目录加载 Gvtcier.dll 并转发 --game 参数，引擎初始化流程整体迁入导出的 Gvtcier_Run
+-新增 启动器 Lanc.exe：单文件 C# WinForms（csc 编译，不依赖 .NET SDK），扫描 Games/*/profile.txt 列出游戏，点击后以 Process.Start 调起 main.exe
+-变更 启动器采用窄图标条 + 封面大图的横向布局：左侧 86px 竖向图标栏，右侧封面详情区显示游戏名 / 版本 / 作者 / 简介与启动按钮
+-新增 启动器封面渲染：完整显示不裁切，两侧留白自动采样封面主色做渐变填充（48×48 缩图、跳过低饱和与过暗像素、RGB 高 4 位分桶取最大桶均值）
+-修复 启动器标题栏与任务栏无图标：-win32icon 只嵌入 EXE 文件图标，WinForms 窗体须显式赋 Form.Icon
+-修复 启动器详情区横向黑线：文字遮罩原为矩形水平渐变，矩形上边缘不透明度仍为 200 形成硬边；改为纵向渐变 + 横向铺满
+-新增 统一资源读取层 Gvtcier_Res_ReadFile：游戏包装载时只读包内资源，未装载时回退磁盘（开发期）
+-变更 模型 / 骨骼模型 / PNG 纹理 / 特效 JSON / 音频 / 物体脚本六处读取全部收敛到统一资源层；纹理由 GDI+ 路径构造改为内存流解码，音频改 ma_decoder_init_memory
+-变更 GpakReader 新增 openBytes 内存打开接口（此前只支持文件打开且全工程无引用）
+-新增 游戏包 Gvtcier_SandBox：内置 game.lua 沙箱脚本（几何体阵列 / 材质色阶 / 比例参照 / 刚体堆叠）与 角色.glb、tower.obj 资源，资源以 .gpk（CRC32 校验）形式内嵌
+
+v0.82
+-新增 引擎内置 HUD：准心（屏幕正中双色描边十字）、F3 调试面板（左上角两列），全部走 Renderer 的 canvasItems_ 队列按 z 分层排序，与 Lua 绘制内容共用同一通道
+-变更 F3 语义：由「切换碰撞线」改为「切换调试面板」，面板显示时同时开启碰撞线
+-变更 调试面板数据源全部改为引擎侧获取：帧率 / 1% Low 帧自持滑动窗口统计（此前由 Lua 用帧间隔() 自算）、内存用 GlobalMemoryStatusEx、CPU 用 __cpuid 品牌串、OpenGL 版本与 GPU 名称用此前从未调用的 Gvtcier_Rhi_GetString
+-变更 内存统计口径由「进程工作集」改为「系统物理内存已用/最大」：已用 = ullTotalPhys - ullAvailPhys，显示形如 12.4 / 31.9 GB
+-变更 HUD 职责划分：引擎只保留准心与 F3 面板（数据 Lua 拿不到），生命值等游戏界面元素交由 Lua 绘制
+-修复 准心不可见：准心原为 0.78 灰度，与天空背景 RGB(197,199,202) 几乎同色；改为深色描边 + 近白本体的双色方案，任意背景可见
+-修复 生命值文字与血条重叠：文字 y 偏移仅 -26px 而中文字形下沿延伸至 -5px，与血条顶边 -1px 相撞；改为独占一行并统一字号
+-新增 Lua 能力 窗口尺寸()：返回窗口宽高，使 Lua 侧 HUD 可做相对定位（此前无法获取，只能写死像素坐标）
+-新增 Lua 能力 绘制文本对齐 / 绘制矩形对齐：按参照矩形对齐绘制，水平支持 左/中/右，垂直支持 上/中/下
+-新增 Renderer::Gvtcier_Render_MeasureText：文本宽高测量，与 FlushCanvas 实际绘制逻辑一致，是对齐能力的前提
+-修复 小物体贴地后阴影消失、离地后出现：bias 与 normalOff 之和超过「贴地物体离地高度沿光轴分量」。球体为曲面切点接触阴影落点紧贴轮廓故先恢复，方块为平面整面贴合、其正下方深度差极小被偏移整体吃掉
+-变更 阴影偏移改为纯纹素驱动：bias = texelWorld × (0.08 + 0.25×slope)、normalOff = texelWorld × 0.15 × (1 + 2×slope)，移除 max(0.06, ...) 这一与分辨率无关的硬编码下限
+-变更 级联沿光轴外扩由固定 80.0f 改为 max(radius × 0.5, 12.0f)，随级联尺寸自适应（固定值使级联 0 的 biasScale 由约 10 膨至约 90，偏移被连带放大 9 倍）
+-修复 降分辨率后出现沿物体轮廓的痤疮：renderer.cpp 另有一份独立的硬编码 textureSize = 4096.0f 未跟随修改，导致纹素 snap 步长算小 33%、级联边界吸附到错误纹素网格；改为从 csm_[0].size() 动态读取
+-变更 阴影贴图分辨率 4096 → 3072（CSM 级联与点光源立方体），显存由约 492 MB 降至约 282 MB
+-修复 阴影贴图清除值依赖全局状态残留：ShadowMap::bind / bindLayer 补 ClearDepth(1.0)（原仅调 Clear(DepthBit)）
+-修复 CSM depth pass 未重置渲染状态：补 DepthMask / DepthTest / DepthFunc(Less) / Disable(CullFace)，原完全继承上一 pass 遗留状态
+-变更 CSM caster 循环内 SetMat4 移至 continue 之后，避免对不合格物体白设一次 uniform
+-修复 csm_[s].unbind 误写为 csm_[0]（csm_[1..3] 从未 create，恰好无害但不正确）
+-变更 沙箱 game.lua 移除自绘的朝向 / 天气文字，屏幕内容统一由引擎 HUD 提供
+
+v0.83
+-新增 F 键 + 3 组合键等价 F3：无 F3 键的键盘可通过 F 与 3 同时按下切换调试面板
+-修复 他人机器上 Gvtcier.dll Not Found：Gvtcier.dll 隐式依赖 libwinpthread-1.dll，-static-libgcc -static-libstdc++ 并不覆盖它，开发机装有 MinGW 故正常；三处链接（引擎 DLL / main.exe / 游戏包）补 -static 全静态化
+-变更 main.exe 加载失败报错区分三种情形：文件不存在 / 文件存在但无法作为代码加载（位数不匹配、被拦截、被标记阻止）/ 文件存在但依赖库缺失（错误码 126），此前统一报「Not Found Next to main.exe」误导排查方向
+-新增 Win32 UTF-8 封装层 src/core/win32_utf8.h / .cpp：全部对外以 UTF-8 为唯一口径，内部统一 MultiByteToWideChar(CP_UTF8) 转宽后走 W 系 API，产出 19 个导出（编码转换 / 路径 / 模块加载 / 目录枚举 / 窗口 / 错误文本）
+-修复 中文路径与中文游戏名乱码：主窗口由 CreateWindowA + DefWindowProcA 全面改 W 系（WNDCLASSW / RegisterClassW / PeekMessageW / DispatchMessageW），窗口标题先转宽再传入
+-变更 引擎内所有 A 系路径 API 收敛到封装层：main.cpp（模块目录 / 全路径 / 文件存在 / 库加载）、expand.cpp（Modes/*.dll 扫描，原在中文目录下静默漏加载）、crash_report.cpp（addr2line 路径与命令行）、engine_run.cpp（控制台标题）
+-变更 重复的编码转换实现删除：resource.cpp / gpak.cpp / hud.cpp / renderer.cpp 各自的 MultiByteToWideChar 内联全部改调 Gvtcier_W32_ToWide；scene.cpp 死代码 openUtf8 删除
+-新增 启动加载遮罩 src/render/splash.h / .cpp：全屏纯黑铺底，左上角引擎 Logo（从 DLL 内嵌资源 TITLE_LOGO_PNG 读取，宽度取窗口 16%），右下角「加载中......」（先测文本宽高再定位，垫半透明深色块保证可读）
+-变更 遮罩不做任何人为延时，时长即真实初始化耗时；由 splashFrame() 在第 5 / 6 / 7 / 9 步后各渲染一帧驱动，遮罩跟着真实进度推进而非循环干等
+-新增 加载顺序 10 阶段：引擎基础组件 → 天空盒 → 太阳 → 体积光 → 雾 → 几何体 → 物理 → 玩家 → HUD → 完成；其中天空盒 / 太阳 / 体积光 / 雾原先揉在 BuildPlatformer 里的属性赋值，拆为 InitSkybox / InitSun / InitVolumeLight / InitFog 四个独立函数，使顺序真实存在而非空洞标记
+-新增 输入门闩 Window::Gvtcier_Window_SetInputEnabled：遮罩期间禁用全部输入。仅靠主循环不读输入不够——WM_SETFOCUS 与 WM_LBUTTONDOWN / WM_RBUTTONDOWN 会主动调 GrabMouse(true)，窗口一获得焦点鼠标即被绑走；现三处消息分支加门闩，GrabMouse(true) 自身亦拦截，关闭时清空 keys_[256] 并解绑鼠标
+-新增 IME 三段式禁用：① ImmAssociateContextEx(wnd, NULL, IACE_IGNORENOCONTEXT) 断开窗口与 IME 的关联，按键不进 IME ② ImmSetOpenStatus(FALSE) + ImmSetConversionStatus(IME_CMODE_ALPHANUMERIC) 拉到英文数字模式 ③ LoadKeyboardLayoutW("00000409") + WM_INPUTLANGCHANGEREQUEST 切美式键盘使任务栏指示器变 EN
+-修复 WASD 失灵而空格正常：早先只调 ImmSetOpenStatus(FALSE)，IME 仍参与按键分发路径，字母键被截去做状态判断导致窗口收不到 WM_KEYDOWN，空格不受 IME 影响故正常
+-修复 ImmAssociateContextEx 传 0 无效：合法 flag 仅有 IACE_CHILDREN=0x1 / IACE_DEFAULT=0x10 / IACE_IGNORENOCONTEXT=0x20，传 0 直接返回 FALSE 什么也没做
+-修复 游戏退出后输入法未还原：WM_INPUTLANGCHANGEREQUEST 是 PostMessage，窗口销毁后收不到；改为 Gvtcier_Window_Destroy 内用同步的 ActivateKeyboardLayout(原布局, KLF_SETFORPROCESS) 兜底，并 UnloadKeyboardLayout 卸载自加载的英文布局
+-新增 Renderer::Gvtcier_Render_DrawImage 与 image.vert / image.frag：canvas 队列新增 CanvasPrim::Image 类型，FlushCanvas 内复用 text 管线的顶点布局与 VAO，按纹理切换分批 flush
+-新增 Scene::Gvtcier_Scene_LoadPngRes：从 DLL 内嵌 RCDATA 读 PNG，与此前走游戏包 / 磁盘的 LoadPngTexture 并行，两者共用 decodePng 解码逻辑
+-修复 遮罩 Logo 显示为纯白方块：内嵌资源名 TITLE_LOGO_PNG 被误当作文件路径传给 Gvtcier_Res_ReadFile，找不到文件后回退 whiteTex_
+-修复 遮罩 Logo 上下颠倒：GDI+ 解码后逐行上传使图像顶行对应 v=0，UV 原按顶行 v=1 给出
+-变更 CanvasPrim 的 DrawText / DrawRect2D 由聚合初始化改为显式逐字段赋值，避免新增字段时静默错位（新增 tex 字段即触发此问题）
+
+v0.84
+-新增 设置系统 src/core/settings.h / .cpp：GameSettings 结构承载全部可调项，持久化到游戏 DLL 目录下的 settings.ini（与 Cover.png 同级，_wfopen_s + Gvtcier_W32_ToWide 处理中文路径）
+-新增 暂停菜单 src/render/menu.h / .cpp：ESC 唤出，主界面三项（继续游戏 / 设置 / 离开游戏），背景半透明、期间场景不运行（物理与 Lua 全部跳过）
+-新增 退出确认弹窗：由引擎自带 UI 绘制「确认离开并关闭游戏？」，是 / 否 双按钮，鼠标悬停同步高亮 confirmSel_
+-新增 设置界面 src/render/settings_ui.h / .cpp：左上 `<` 返回、居中标题、四 Tab（通用 / 画面 / 操控 / 关于）带下划线指示，内容区单列纵向排列
+-新增 五种设置控件：开关 / 滑块 / 分段选择器（左右箭头）/ 按键捕获框 / 纯信息行，命中区（ctrlRectFor）与视觉分离，行高亮用整行范围、点击用控件范围
+-变更 低中高分段按钮改为左右箭头切换：分段条把控件宽度均分给 N 项，中文四字选项必然超宽，箭头方案不受选项文字长度影响
+-新增 鼠标与键盘双操作导航：mouseMoved 与 keyNav 仲裁谁接管选中项，鼠标移出列表区时取消高亮（panel_.sel = -1），键盘操作前先清 capturing_
+-修复 滑块只能点击不能拖动：原仅在 mouseClicked 时写一次值，改为 dragging_ / dragIdx_ 状态持续跟随鼠标
+-修复 点击开关或滑块的空白区域也响应：命中区此前等于整行，已收窄到控件本体
+-修复 键盘选择速度失控：mi.up/down 传的是 isKeyDown 持续状态，每帧都触发，改为边沿检测
+-新增 文本基线测量 Gvtcier_Render_MeasureTextEx：额外输出 top（字形顶端相对参考线的偏移）。DrawText 的 y 是参考线而非顶端，文字顶端 = y + top，原 MeasureText 只返回字形盒高度导致蓝条与文字错位
+-修复 切换按键预设后按键列表不更新：keyPreset 只改数字未同步 keyBindings，现 applyChange 检测 kActionKeyPreset 标记后调用 Gvtcier_Settings_ApplyPreset 真正写表；切到自定义时不做赋值以免覆盖用户已改的键
+-修复 重新打开设置数值被清零：Gvtcier_SettingsUI_Build 只重置 panel_.sel，未清 dragging_ / dragIdx_，若上次在滑块上离开设置则残留状态在重建列表后仍指向滑块项，首帧按当前鼠标 X 直接写值；现 Build 与 ResetFocus 一并清空全部交互状态
+-修复 退出按钮无功能：退出确认弹窗的 Update 分支完全没有处理鼠标，只能键盘左右加回车；现补 confirmItemAt 命中与 mouseClicked 触发，绘制与命中共用同一套 layoutDialog 坐标，按钮矩形缓存到 btnRect_ 供 Update 读取
+-新增 设置项接入引擎：applySettingsToEngine 在启动时调用一次、菜单内设置变更时调用并写盘，覆盖 HDR / Bloom / 体积光 / FOV / 各向异性 / 阴影质量 / 反光 / 自动曝光 / 光源质量 / 雾质量 / 鼠标灵敏度 / 运动相机
+-新增 阴影质量运行时切换：Gvtcier_Render_ApplySettings 按 1K/2K/3K/4K 重建点阴影立方图与 CSM 级联
+-新增 各向异性过滤可调：纹理创建读取 Gvtcier_Rhi_Anisotropy() 全局档位（1x/2x/4x/8x），此前硬编码取 maxAniso 上限
+-新增 光源质量 uniform：main.frag 与 deferred_light.frag 的 uLightLimit 限制单 tile 光源数
+-新增 雾质量倍率：uFogDensity 按低/中/高乘 0.25 / 1.0 / 3.0
+-新增 垂直同步开关：通用 Tab 内追加，走 Gvtcier_Rhi_SetVsync 即时生效
+-修复 关闭 HDR 后场景不渲染且 HUD 不擦除：HDR 关闭分支缺少 Disable(DepthTest) / Disable(CullFace) / Disable(Blend) / Clear 与 uVolume / uSunStrength 设置，全屏 compose quad 被主 pass 遗留的深度测试裁掉；现两个分支的帧缓冲状态准备完全一致
+-新增 延迟渲染管线：光照由逐物体 Forward 改为全屏统一计算，保留 Forward 路径供透明物体使用（Deferred + Forward 混合）
+-新增 G-Buffer：ColorFbo 从 2 张 attachment 扩到 4 张（光照结果 / 法线 / Albedo+Alpha / 材质参数+自发光标记）
+-新增 deferred_light.frag：从深度重建世界坐标（uInvViewProj * (uv*2-1, d*2-1, 1) 再除 w），读取 G-Buffer 与 SSBO 光源列表算光照
+-新增 自发光标记：gMaterial.w 为 0 表示自发光（太阳 / uMaterial==5 发光体 / 天空），延迟 pass 直接输出 gAlbedo 不做光照
+-变更 sky.frag 额外输出天空色到 gAlbedo 供延迟 pass 取用；天空不写深度故该区域深度恒为 1.0，判断用 d >= 0.99999（用 >= 1.0 会因浮点精度漏判，天空走进光照分支后法线为零导致全黑）
+-新增 透明通道：Object 增加 transparent 字段，不透明循环跳过透明物体，延迟光照跑完后单独一个透明 pass（深度测开 / 深度写关 / SrcAlpha 混合），复用 main.frag 的 shadeForward 即原 Forward 光照代码
+-新增 main.frag 的 uTransparent 开关：为 1 时走完整 Forward 光照并输出 texCol.a，为 0 时只写 G-Buffer、fragColor 置黑由延迟 pass 覆盖
+-变更 骨骼模型接入延迟路径：skinned.vert 输出世界坐标，skinned.frag 由自算光照改为只写 G-Buffer，此前骨骼走 Forward、与延迟着色不一致
+-修复 延迟 pass 破坏 G-Buffer：延迟 shader 只输出 location 0，而 hdrFbo_ 有 4 个 attachment，location 1/2/3 无输出即未定义值会覆盖几何 pass 写好的法线，导致后续 GTAO 与体积光读到错误数据；现在绘制前用 DrawBuffer(ColorAttachment0) 限定只写 attachment 0，绘制后 DrawBuffers(4) 还原
+-新增 RenderLimits src/core/limits.h / .cpp：此前散落的硬编码容量（光源池 256 / 粒子 2048 / 光束 256 / 平行光 4 / 单 tile 光源 512 / tile 尺寸 16）全部收敛为可配置项
+-变更 光源规模上限由光源池决定而非着色器：此前 uLightLimit 提到 2048 但 kMaxLights 仍是 256，扩容无效；现 maxDynamicLights / maxPersistentLights / maxLightsPerTile 统一由 Gvtcier_Limits_ApplyQuality 按低/中/高映射为 256/1024/4096 与 64/512/2048
+-变更 平行光上限 4 → 8，shader 内 uDirLights / uDirLightCols 数组同步扩到 8
+-变更 光源池淘汰由 erase(v.begin()) 改为 trimOldest 批量丢弃 1/4：vector 头删是 O(n) 全量搬移，上万粒子时每帧触发一次开销极大；语义仍为淘汰最老的
+-新增 GPU compute 支持：rhi 层补 glDispatchCompute / glMemoryBarrier 函数指针与 ComputeShader / ShaderStorageBarrierBit 常量，core/shader 新增 Gvtcier_Shader_LoadCompute（只有 compute stage 的程序）
+-新增 tile_build.comp：tile 光源列表构建搬到 GPU，local_size 8×8，每个 work group 处理一个 tile，遍历光源做屏幕空间 AABB 测试，结果写入定长区（tileData[t*2] = count、tileData[t*2+1] = tileId × maxLightsPerTile）
+-新增 Gvtcier_Rhi_HasCompute：判断条件是「函数指针可用」而非「shader 编译成功」，二者不等价；不可用时自动回退 CPU 路径
+-变更 CPU 回退路径同步优化：光源投影只算一遍（结果缓存到 lightTileRanges_），全部缓冲提升为成员变量避免每帧堆分配，内层循环预取行指针
+-修复 场景不渲染且屏幕出现规整黑块：tile 构建结束后误插 Gvtcier_Rhi_UseProgram(0)，而其后紧跟主 shader 的数十个 uniform 设置（uTileW / uModel / uCSMVp / uShadowLightIdx 等）且几何绘制循环内未重新 Use，导致 glUniform* 全部作用于 program 0 被静默丢弃，顶点变换与阴影全错；现改为显式重新绑定 mainShader_
+
+v0.85
+-变更 GL 调用全面收敛：散落在各文件的裸 GL 调用与常量统一为 RHI 层 API 与语义化常量，引擎侧不再出现原始 GL 枚举
+-新增 src/core/conventions.h：图形约定表（深度范围 / 矩阵主序 / 手性 / 正面绕序 / ClipY），Mat4::perspective 与 ortho 增加约定重载，按约定选择 NDC 深度映射
+-变更 rhi.h 常量去 GL 化：RHI 常量由 GL 枚举值改为语义序号（100 起分族），新增深度/混合/图元/像素格式/内部格式/纹理单元/Uniform 块查询等常量与 TexSlot 贴图槽位表
+-变更 rhi_gl.cpp 承担全部 GL 枚举翻译：新增 toGlCap / toGlFace / toGlWinding / toGlDepthFunc / toGlPolygonMode / toGlBlendFactor / toGlTexTarget / toGlPixelFormat / toGlScalarType / toGlUsage / toGlAttachment / toGlTexParam 等映射，GL 枚举只在此文件出现
+-新增 rhi 接口补 Uniform 块反射（GetUniformBlockIndex / UniformBlockBinding / GetActiveUniformBlockiv / GetUniformIndices / GetActiveUniformsiv / GetActiveUniformName）与 VertexAttribDivisor / DrawElementsInstanced
+-新增 Renderer 帧状态收敛：新增 PassState 结构描述深度 / 剔除 / 混合 / 裁剪 / 图元模式，全部渲染 pass 改为「填状态 + applyPassState」统一下发，消除逐处手写 Enable / Disable 序列
+-变更 贴图单元改用 TexSlot 语义槽位（Scene / NormalTex / ShadowMap / Noise 等），替换散落的 0 / 1 / 2 魔数
+-变更 canvas2d 全量改走 RHI：FBO、纹理、VAO、Buffer、Program 的创建与销毁与实例化属性设置删除裸 GL 调用
+-新增 日志落盘：log.h / log.cpp 新增 Gvtcier_Log_InitFile / Gvtcier_Log_Write / Gvtcier_Log_Close，输出到游戏 DLL 同目录 gvtcier.log，log::once 同时写文件
+-变更 rhi 未初始化时不再崩溃：RHI_DISPATCH 补空表守卫与 RhiZero 默认返回值
+-变更 Exper/common/GL4 补 glBindBufferBase 函数指针加载
+-变更 build.py 去掉 volk.c 编译源、-DVK_USE_PLATFORM_WIN32_KHR 宏、Vulkan include 路径与 -lvulkan-1 -lvolk 链接
+-移除 Vulkan 后端：删除 src/rhi/vk/（设备/交换链/三角形示例与 SPV 头）、src/core/vk_triangle_test.cpp、src/shaders/VK/ 与 tools/Vulkan/（Volk 源码与 vulkan-1 导入库）
+-移除 engine_run 中强制进入 Vulkan 测试的分支，启动路径回归 GL
+-已知 多后端尝试六次未果，症结在着色器无法统一；当前 OpenGL 为唯一后端
+
+v0.86
+-新增 父子物体：Object 增加 parent 与 localPos / localRotDeg / localScale，pos / rotDeg / scale 作为推导出的世界变换，渲染与物理下游零改动
+-新增 Scene 父子接口：SetParent（保持世界位置不变，由世界变换反算局部变换）/ IsAncestor（环检测）/ RefreshTransforms（递归推导世界变换，带深度守卫）/ DetachChildren
+-新增 物理跟随：Gvtcier_Physics_SyncChildren 每帧把子物体物理体同步到父推导出的世界变换，子物体 invMass 置 0 不参与动力学但仍可被碰撞，解除父子时恢复原质量（RigidBody 新增 isChild / childInvMass）
+-修复 删除物体时 parent 索引错位：FlushRemoves 的 oldToNew 表同时用于修正全部 parent，父被删则子物体自动转为无父，避免悬空索引
+-变更 物理回写跳过子物体：Gvtcier_Physics_Step 末尾不再用物理体位置覆盖子物体的世界变换（子的变换归父管）
+-变更 移动平台由「速度继承 + 位置补偿」重做为子物体跟随：平台静止时等同普通静态物体，平台移动时玩家位置由平台坐标系推导（syncPlatform / commitPlatformLocal），playerInput 完全在玩家自身坐标系工作，不再掺入平台速度
+-新增 承载接触对（玩家 ↔ 当前所站平台）跳过求解：solveContacts 与 resolvePenetration 均跳过，位置与速度已由平台坐标系接管，避免每子步「推开 - 拉回」循环
+-修复 玩家站在移动平台上先下沉再被拉回：integrateVelocity 对子物体模式玩家跳过纵向位移，syncPlatform 每子步压制 vel.y，杜绝重力在子步间累积
+-修复 起跳后被平台每子步拽回：playerInput 跳跃分支清 platformBody
+-修复 推刚体各方向抖动：根因是 capsuleBlock 只保留最深探针（脚 / 中 / 头三球交替领先导致接触点跳变、力臂突变），改为输出全部命中接触点并取法线均值
+-变更 玩家参与常规摩擦求解：去掉「玩家隔离」中跳过切向摩擦的分支，玩家与箱子之间恢复摩擦约束，消除「推一下溜走 - 追上再顶」的循环
+-新增 推物体甩出钳制：被推物体沿法向速度已超过推动者时不再施加加速冲量
+-新增 Lua 父子能力：属性入口 父物体（读写，读返回句柄或 nil）/ 局部位置 / 局部旋转 / 局部缩放，新增查询能力 取子物体
+-变更 启动器运行按钮三态：未运行绿色底座「运行」/ 启动中灰底 / 运行中深底绿字并描边；运行中再点击改为把游戏主窗口切到前台
+-变更 启动器改用 CreateProcessW：.NET Framework 无 ProcessStartInfo.ArgumentList（.NET Core API），改 P/Invoke CreateProcessW 以宽字符命令行传参
+-修复 中文路径下报「找不到游戏包」：启动器 ProcessStartInfo.Arguments 按系统 ANSI 代码页拼接、main.exe 的 main 函数按代码页解码 argv、引擎按 UTF-8 处理，三处编码口径不一致，中文目录名变乱码后路径失配
+-变更 main.exe 入口改 wmain：argv 直接为宽字符，经 Gvtcier_W32_ToUtf8 转 UTF-8，彻底绕开系统代码页（build.py 链接补 -municode）
+-新增 沙箱示例：电梯（E 呼叫往返）、门（E 旋转开门 / R 平移开门，含运动学枢轴绕门边旋转）、转盘父子组（旋转父带四柱子公转）
+-新增 运动学枢轴：RigidBody 新增 kinPivot，物体可绕中心外的铰链点旋转，Lua 侧对应属性 平台枢轴
+-变更 移除 src/rhi/vk 后残留的废弃根目录 game.lua
+
+v0.87
+-新增 视锥剔除：按标准投影矩阵平面提取（法线朝外，顺序近/远/左/上/右/下）+ 凸形状相交测试，取代此前只用「物体中心是否在相机前方半球」的粗判
+-修复 屏幕内物体被过早剔除：0.66 世界单位内缩方向上写反（法线朝外约定下放宽应 d += ε，写成 d -= ε 反而收紧一圈），四周物体在屏幕内即消失
+-变更 剔除视锥按窗口尺寸自适应外扩：用放大 FOV 重建的独立 cullProj 提平面，每边多留 64 像素（按 opt.height 归一），主渲染投影不受影响
+-修复 射线命中判定错位：slab 测试的 tmin 以 0 起始，射线起点在包围盒内时 t1 全负使 tmin 保持 0，返回 t=0 的贴身命中；玩家站在电梯上时电梯 OBB 包住脚下，看向任意方向（含低头看地面）都命中电梯，交互提示全线误触发
+-变更 三处射线实现（OBB / Block / Hull）的 tmin 改为 -1e20f 起始、t2 < 0 直接拒绝、末尾 tmin < 0 归 0 再判超距
+-修复 F3 面板 GPU 信息为空：hud.cpp 传的是裸 GL 枚举 0x1F01 / 0x1F02，而 RHI 层 toGlParamName 是 switch 只认语义常量，不匹配返回 0 使 glGetString(0) 返回空；改用 rhi::RendererName / rhi::Version
+-修复 GTAO 在屏幕边缘整块失效：越界采样 continue 丢弃后遮蔽源缺失、weightSum 塌缩，AO 抬升至接近无遮蔽；改为 clamp 采样使边缘保留完整样本
+-新增 内置纹理表与纹理能力：场景侧统一登记（测试纹理 / 棋盘 / 条纹 / 纯白），Lua 新增 纹理数量 / 纹理列表 / 纹理名称 / 纹理存在 / 设置纹理 五项能力，纹理 属性改走统一接口并支持回读
+-新增 UV 平铺：Object 增加 uvScale 与 texName，main.vert 新增 uUvScale，Lua 属性 纹理平铺 控制循环平铺次数
+-新增 文字描边：FlushCanvas 与 2D 模式两处文字分支改为两遍绘制（8 方向偏移黑色 + 原位白色），flushText 增加颜色参数，字形顶点生成抽为 pushGlyph
+-变更 HUD 精简：Lua 侧移除坐标 / 落地状态 / 电梯 Y 等调试信息，仅保留生命值与交互提示，F3 面板承担调试数据
+-变更 交互提示移到准心下方居中，文案简化为「按 E 使用」
+-变更 交互判定由邻近范围改为准心射线瞄准（从眼高沿相机朝向 3.5 米），并加实体名白名单，避免命中地面等无关物体
+-变更 默认地面改由 Lua 创建：引擎 BuildPlatformer 只保留 Hero 与 Sun，Ground 移除，沙箱在初始化时用方块自建
+-修复 纹理不生效：改 assets/game.lua 后未重跑 build_sandbox.py，游戏包内嵌的脚本副本停留在旧版本
+-变更 资源目录 assets/UI 更名 assets/Vein，Test_Vein.png 路径同步；顺带移除 res.rc 中 5 处指向已不存在文件的坏引用（geo.png / light.png / obj.png）
+-变更 沙箱新增纹理阵列展示，按 纹理列表() 自动生成各内置纹理展示板
+
+v0.88
+-新增 脏标记机制：面向程序化生成的海量静态物体（数千方块），只在变化时重算，其余时间读缓存
+-新增 Object 变换矩阵缓存 cachedMatrix / matrixDirty，Gvtcier_Object_Matrix() 仅在脏时按平移·XYZ旋转·缩放重建
+-新增 Object 包围盒缓存 cachedBounds / boundsDirty，Gvtcier_Object_Bounds(half) 仅在脏时重算世界 AABB，half 由场景 MeshHalfExtents 查表提供以保持旧口径
+-新增 Gvtcier_Object_MarkXformDirty() 统一置脏入口；补齐全部写入点：物理同步回写、Lua 属性（位置/旋转/缩放/缩放X·Y·Z/局部位置/局部旋转/局部缩放）、Lua 实体方法（设置位置/设置旋转/设置缩放）、父子关系（SetParent/DetachChildren）与变换解析 resolveOne
+-新增 静态物体标记：Object 增加 staticXform，Lua 属性 静态 读写；静态物体世界矩阵与包围盒只算一次，后续帧直接命中缓存
+-新增 阴影级联剔除：CSM 四层阴影 pass 原先对全部物体无条件遍历四次，现按每层光空间视锥（由 csmVp_[s] 提取六平面）做凸形状相交剔除
+-优化 Shader uniform 位置缓存 locCache_：Shader_SetXxx 不再每次走驱动级 glGetUniformLocation 字符串查找（原先每帧上千次：CSM 4 层 × 物体数 + 主 pass 每物体 6 次 uniform），首次查询后全部命中缓存，Gvtcier_Shader_Destroy 清空
+-变更 Gvtminecraft 的建方块默认标记 静态，程序化世界生成后不再每帧重算变换与包围盒
+-新增 架构文档第 25 节：脏标记三层结构与静态标记、阴影级联剔除、uniform 位置缓存
+-变更 Lua.md 属性表补 静态
+
+v0.89
+-新增 MathGv 三维数学库：全局表 MathGv，含向量（加/减/乘/除/点乘/叉乘/长度/归一化/距离/插值/逐分量乘/取分量）、矩阵（单位/乘/逆/平移/绕XYZ转/缩放/观察/透视/变换点）、四元数（单位/轴角/欧拉/乘/旋转/球面插值/归一化/转矩阵/转欧拉）、几何求交（射线球交/射线面交/射线盒交/线段最近点/点在面侧/投到平面）四组共 39 项
+-新增 向量参数双形态：既接受 x, y, z 三个数字，也接受 {x=, y=, z=} 表，混用不串位（按参数槽位自适应推进）
+-变更 屏幕空间↔世界空间重建为渲染相机口径：投影与反投影共用同一份 view/proj 矩阵并做逆投影，替代此前从玩家状态重算的做法，自动涵盖主相机 / 跟随目标 / 镜头横滚 / 相机插值
+-新增 世界转屏幕：世界坐标投影为屏幕像素，返回屏x、屏y 与是否在相机前方，与 屏幕转世界 互为逆运算可往返校验
+-新增 屏幕射线方向：返回屏幕像素对应的世界射线单位方向
+-新增 相机矩阵：返回当前渲染相机的视图 / 投影矩阵与屏宽屏高 / 眼位 / 前方 / 视场 / 横滚 / 近远裁面
+-修复 屏幕转世界偏离准心：此前用玩家位置 + 眼高 1.7 与玩家 yaw/pitch 自算方向，与真实渲染相机不一致，物体拾起后偏向准心右侧并偶尔跑到身后
+-变更 屏幕尺寸 返回 2 个值（宽、高），此前误返回 4 个值
+-新增 眼位置 / 准心点：直接给出眼睛世界坐标与视线前方 d 米处的世界坐标
+-新增 数学 汉化数学库：22 项基础数学能力（绝对值 / 取整 / 开方 / 三角函数 / 转角度 / 幂对数 / 限制 / 插值 / 符号等），与原生 math 并存
+-修复 原生 math.atan2 在本引擎不存在（lmathlib 内被 LUA_COMPAT_MATHLIB 条件编译包住且该宏未定义），脚本调用报「尝试调用空值nil」；改由 数学.方位角 提供
+-新增 能力查找：按名称片段模糊搜索已注册能力，返回名称 / 分类 / 说明 / 可用四项
+-移除 沙箱拾取（抓握）功能：可抓取 / 瞄准抓取目标 / 收进手中 / 跟随手中 / 释放手中 / 处理抓取按键 及相关状态与提示全部删除，保留 按 E 使用 交互
+
+v0.90
+-修复 Hi-Z 遮挡剔除着色器链接失败：hiz_copy.frag / hiz_reduce.frag 与通用顶点着色器 post.vert 配对，但 varying 名不匹配（post.vert 输出 vUV，两个 frag 声明 vUv），GLSL 大小写敏感致链接报「vUv not declared as an output from the previous stage」
+-变更 修复方向为让 Hi-Z 两个 frag 适配 post.vert（vUv → vUV），不改 post.vert：后者为 FXAA / GTAO / 体积光 / Bloom 等全部后期 pass 共用的顶点着色器，且视锥剔除依赖同一套相机矩阵口径，改动会连带影响剔除方向
+-修复 Hi-Z 着色器加载返回值未检查：三处 LoadFromMemory 结果被完全忽略，链接失败后 Hi-Z 静默失效（金字塔不构建、遮挡剔除不生效）而无任何提示；现补 return false 使同类错误在启动时暴露
+-已知 Hi-Z 反投影深度判据有误：hiz_occ.frag 取包围盒中心的 NDC 深度当最近深度（应取朝向相机的角点），使物体被判为「在地面之后」而整片剔除，即向前剔除；当前以 hizQuerySupported_ 强制 false 关闭 Hi-Z 规避，待重做后启用
+-移除 Hi-Z 遮挡剔除：该方案反复引入「向前剔除」——物体被判为在地面之后而整片消失，与预期相反，判定其性价比不足，整体移除
+-移除 着色器 hiz_copy.frag / hiz_reduce.frag / hiz_occ.vert / hiz_occ.frag 与 res.rc 中对应四条注册
+-移除 Renderer 的 Hi-Z 成员：hizMips_[12] / hizLevels_ / hizW_ / hizH_ / hizBox_ / hizQueries_[2] / hizVisible_ / hizQuerySupported_ / hizPrevValid_ / hizFrame_ / hizPrevVP_ 与两个成员函数 hizCaptureMainDepth / hizOcclusionTest
+-移除 两处绘制循环的可见性过滤（不透明与透明通道各一处），物体回归由视锥剔除单独决定
+-移除 RHI 遮挡查询接口：Gvtcier_Rhi_GenQueries / DeleteQueries / BeginQuery / EndQuery / GetQueryObjectuiv / HasOcclusionQuery 六个导出、AnySamplesPassed / AnySamplesPassedConservative 两个常量、backend.h 表项，以及 gl4 层的函数指针加载与 GL_DECL 声明（该接口仅服务 Hi-Z，无其他调用方）
+-变更 视锥剔除不受影响：剔除仍由 Renderer 内基于投影矩阵平面提取的独立路径负责，与本次移除无耦合
+
+v0.91
+-新增 shader_guard 全局失败计数（src/core/shader.h/.cpp）：着色器编译或链接失败时计数并记录首个失败者 tag，与调用点是否检查返回值无关
+-新增 Renderer 初始化收尾检查：Gvtcier_Render_Init 开头重置计数、结尾检查，大于 0 即 return false 触发 bootFail，着色器失效不再被静默吞掉
+-修复 六处漏检查返回值的着色器加载点：tileBuildShader_ 与 gtaoShader_ / gtaoResolveShader_ / gtaoBlurShader_、volShader_ / volBlurShader_ 均补 return false（此前这些分支加载失败会静默继续）
+-新增 架构文档第 26 节「着色器约定与失效防护」：着色器错误三种形态（编译失败 / 静默失效 / 语义错误）的区分、varying 命名约定与各顶点着色器配对表（标注 post.vert 为共享顶点着色器）、坐标系与比较方向三条约定（深度方向 / 降采样方向 / 保守方向）、失效防护机制、新增着色器六步清单
+-变更 该节为踩坑沉淀：vUv/vUV 不匹配链接失败、Hi-Z 剔除方向反、post.vert 改动外 溢三类问题，前两类已被机制覆盖，第三类收敛为改动前对照清单
+
+v0.92
+-新增 裸 Lua 模式：main.exe 支持 --lua <脚本.lua> 参数，跳过游戏包 DLL 直接加载脚本源码；引擎侧在 Gvtcier_Run 内按扩展名判定分支，裸模式下不调 Gvtcier_GamePack_Open、不设资源包、不收尾关闭包，资源改由 Gvtcier_Res_ReadFile 走 readDisk 回退读磁盘
+-新增 main.exe --lua 自动切换工作目录：取脚本所在目录调 SetCurrentDirectoryW，使脚本内的资源路径可直接写文件名（如 "贴图.png"），无需关心启动器的工作目录
+-新增 音频能力 11 项：加载音效 / 播放音效 / 停止音效 / 音效播放中 / 音效音量 / 音效音高 / 音效空间化 / 音效位置 / 音效衰减 / 释放音效 / 音量；此前底层 Gvtcier_Audio_* 12 个导出中仅「音量」暴露给 Lua，3D 空间音频脚本完全无法使用
+-新增 音效句柄表：按 路径 + 循环标志 去重缓存，同路径同循环模式复用同一 ma_sound，上限 64；LuaBind::shutdown 时统一释放，避免退出时泄漏
+-修复 界面图片 为假实现：该能力注册说明为「界面层绘制图片」，实际调用 Gvtcier_Render_DrawRect2D 只画一个纯色矩形，从未贴图；现改为经 Scene::Gvtcier_Scene_LoadPngTexture 取纹理并走 Gvtcier_Render_DrawImage 真渲染
+-变更 界面图片 参数改为 (png路径, x, y, 宽?, 高?, 透明度?)，宽高省略时用原图尺寸；此前签名为 (x, y, 宽, 高, R, G, B, A) 与实现同为矩形语义
+-修复 播放特效 位置硬编码：此前恒以 Vec3(0,0,0) 播放且不返回句柄，特效只能出现在世界原点，脚本无法定位也无法单独停止
+-新增 播放特效 支持 (路径, x?, y?, z?, 循环?) 并返回稳定句柄；新增 停止特效 按句柄、特效播放中 按句柄、移动特效 四项控制
+-新增 EffectInstance::id 单调递增标识与 EffectSystem::Gvtcier_Effect_FindById / StopById / SetPositionById 三个按 id 查询接口：EffectSystem 回收实例时用 instances_[i] = instances_.back() + pop_back() 交换填充，元素地址会移动，故不能以对象地址作句柄，改用稳定 id
+-新增 界面交互能力 6 项：鼠标位置 / 鼠标按下（0 左 1 右 2 中）/ 鼠标悬停（矩形热区判定）/ 显示鼠标（松开捕获供界面点击）/ 捕获鼠标（恢复 3D 视角控制）/ 测量文本（返回整数像素宽高，供居中排版与热区计算）
+-修复 1% Low 帧指标为错误实现：原 slowWindow_ 逻辑仅统计「过去 1 秒的帧数」，即又一个瞬时 FPS，既未排序也未取 1% 分位，导致该值与 fps_ 分属两个独立窗口、刷新时机不同步时出现「1% Low 高于平均帧」的不可能结果；frameTimes_ 与 slowAccum_ 为从未读取的死字段
+-变更 HUD 第三行改为显示机器本地时间「时间(2): HH:MM:SS」，移除 1% Low 与 0.1% Low 两个指标及其字段（HudStats.low1/low01、Hud::low1()/low01()、frameTimes_/scratch_/frameHead_/frameCount_/sincePercentile_ 与 recomputePercentiles 全部删除），Gvtcier_Hud_Update 回归仅统计 fps 与 ms
+-新增 SDK/dist 分发目录：Gvtcier.dll / main.exe / Lanc.exe / Lua.md / Lua教程.html / GvtcierAPI.md，Game/ 下按工程目录放用户脚本与资源
+-变更 Lua教程.html 重写为裸 Lua 工作流：删除全部打包相关章节（build_sandbox.py / game.dll / Games/ 目录 / profile.txt），改为「双击 Lanc.exe → 选择 Lua → 运行 Lua」，新增 16.5 节「声音与界面」覆盖音效、空间音频、粒子特效、按钮热区、图片显示与鼠标捕获
+-变更 文档版本对齐：GvtcierAPI.md 宿主引擎 0.63 → 0.93，功能.md 版本 0.63 → 0.93
+-修复 架构文档第三方依赖登记过时：原文称「运行时第三方库仅剩一个，物理引擎为自研」，实际 v0.90 已接入 Bullet Physics 3，现更正为三个（Lua 5.4.7 / Bullet Physics 3 / miniaudio）并同步修正 physics/ 目录说明与功能.md 中残留的 Jolt 构建描述
+
+v0.93
+-修复 中文输入法干扰键盘输入：此前按键状态完全依赖 WM_KEYDOWN 的 wParam 虚拟键码，输入法激活时 Windows 将其替换为 VK_PROCESSKEY(229)，真实键码丢失，导致开着输入法按 WASD 游戏无响应
+-修复 原始输入设备注册遗漏键盘：窗口创建时 RegisterRawInputDevices 只注册了 usUsage=0x02（鼠标），从未注册 usUsage=0x06（键盘），因此 WM_INPUT 根本收不到键盘事件——这才是输入不稳定的根因，输入法只是暴露它的场景
+-变更 WM_INPUT 接管按键状态：解析 RAWKEYBOARD 的 MakeCode 与 Flags，按 RI_KEY_BREAK 判定按下/抬起，经 MAPVK_VSC_TO_VK_EX 还原为虚拟键码后写入 keys_[]，原始输入取自驱动层，不经过输入法转换，从根本上免疫 IME 干扰
+-新增 左右修饰键区分：VK_SHIFT/VK_CONTROL/VK_MENU 按 RI_KEY_E0 与 MapVirtualKey 细分为 L/R 版本；同时按微软规范过滤 E0 小键盘回车（改判 VK_SEPARATOR）与 E1 的 Pause 伪键
+-变更 WM_KEYDOWN/WM_KEYUP 遇 VK_PROCESSKEY 时直接忽略，避免输入法把 229 写进按键表污染状态；非 IME 场景下保留原路径作为兼容
+-新增 Window::Gvtcier_Window_ReleaseAllKeys：失焦时清空全部按键状态与待处理按键，修复切出窗口时按住某键、切回后该键永久卡在「按下」的问题（WM_KILLFOCUS 调用）
+-删除 Docs/GvtcierAPI.md：其内容为已废弃的 Gvtcier_对象_* 旧对象模型接口，与现行 LuaBind + regCap 中文能力体系完全不符，能力清单已由 Lua.md 完整覆盖，源代码可直接查阅，保留只会误导
+
+v0.94
+-新增 Gv_only_OpenGL 纯 OpenGL 直通模式：脚本可编译着色器、建 VAO/VBO/EBO、配置顶点属性、传 uniform、按数组或索引绘制，直接驱动 RHI 绕过引擎全部渲染管线（天空盒/太阳/后处理/玩家控制全旁路），填补引擎此前只能画线、无法提交实心三角面的能力空白
+-新增 26 个 Lua 关键字：按键刚按下/同步按键/鼠标滚轮、复制实体/立即删除/解除子物体/世界包围盒/立即刷新、玩家速度/设置视高/设置玩家视场/相机侧倾、重置布娃娃、裁剪矩形/取消裁剪/设置透明度/绘制旋转精灵、音频听者/音效暂停/音效进度/音效当前秒/音效时长、写日志/帧率/窗口标题/退出游戏
+-修复 鼠标滚轮完全失效：WM_MOUSEWHEEL 在窗口过程里被直接丢弃，Gvtcier_Window_ConsumeScroll 为空实现恒返回 0，脚本永远读不到滚轮；现改为累加滚轮增量并按 WHEEL_DELTA 归一化
+-修复 空间音效只能绑死默认听者：Gvtcier_Audio_SetListener 早已实现却从未绑定，新增 音频听者 关键字暴露
+-新增 音频暂停/跳转/进度/时长底层接口：audio.h 此前仅 12 个导出，缺暂停恢复与播放位置能力，现补齐 SourceSetPaused/SourceSeek/SourceCursor/SourceLength
+-新增 语言错误提示：脚本误用英文关键字时报「语言错误 <x> 为英文内容 预期为中文的，建议改成 <y>」，覆盖 20 个英文关键字；采用词法感知扫描，跳过字符串、// 与 -- 注释、[[ ]] 长字符串，只对真实标识符整词匹配，不误报
+-终止 绘制数组越界：示例中 8 顶点缓冲曾被以 36 顶点绘制导致越界，补 绘制索引 与 缓冲整数（32 位索引上传）后由索引绘制替代
+-新增 Gv_only_OpenGL(110) 固定管线模式：引擎另建兼容 profile 上下文并切换，glBegin/glEnd 等 OpenGL 1.1 立即模式函数可用，脚本无需着色器/VAO/VBO 即可直接画几何，彻底绕开现代渲染抽象
+-新增 src/rhi/gl/gl1.h 与 gl1.cpp：独立固定管线模块，24 个 GL 1.1 函数从 opengl32.dll 直接加载，与 gl4 完全隔离，不污染现代管线代码
+-新增 双上下文：主上下文保持 4.6 core 不变，按需创建兼容 profile 2.1 上下文并通过 wglShareLists 共享；RHI 暴露 Gvtcier_Rhi_LegacyCreate/LegacyBind/CoreBind
+-新增 21 个固定管线 Lua 关键字：固定管线可用、绘制图元、顶点、颜色、法线、矩阵模式、单位阵、压入矩阵、弹出矩阵、平移、旋转、缩放、透视、观察、加载矩阵、乘矩阵、着色模式、线宽、点大小
+-变更 裸 OpenGL 模式强化为完全真空：进入后引擎的天空盒、太阳、后处理、HUD、准星、ESC 菜单、物理步进、ECS 刷新、网络 tick、启动画面全部停止，每帧仅清屏并执行脚本 draw()；主循环把裸模式判断提到最前，短路所有引擎逻辑
+-变更 Gvtcier_Render_UserGlFrame 不再强制重置任何 GL 状态，纯 OpenGL 模式的状态控制权完全交给脚本（此前强制设置深度测试/剔除/正面朝向，会与用户绕序冲突导致缺面）
+-修复 缺面与画面空白的根因：引擎上下文为 4.6 core profile，立即模式函数在其中被移除，NVIDIA 驱动对此返回 GL_INVALID_ENUM(1280)，该错误从引擎启动持续残留并干扰后续调用；改用兼容 profile 后错误码归零
+-修复 鼠标滚轮与按键边沿：ConsumeScroll 此前恒返回 0（WM_MOUSEWHEEL 被直接丢弃），按键刚按下改为 Lua 侧快照边沿检测，配合 同步按键 每帧刷新
+-变更 Lua.md：补充裸 OpenGL 直通与固定管线两节完整接口说明，并补齐实体/玩家/绘制/音频/其他各节本版新增关键字
+
+v0.95
+-新增 物理约束系统：Bullet 约束接口落地，此前 Gvtcier_Physics_AddConstraint 为空实现直接返回 false
+-新增 四类约束：铰链 btHingeConstraint（绕轴旋转可限角度）、滑块 btSliderConstraint（沿轴平移可限行程）、点对点 btPoint2PointConstraint（两体一点连接）、六自由度 btGeneric6DofConstraint（每轴平移旋转独立限位）
+-新增 约束马达：铰链与滑块可加马达（目标速度 + 最大力），用于自动门、升降台、转盘；约束限位运行时可改
+-新增 空体锚定：约束一端可省（传 nil）自动挂到静态锚点，实现物体与世界的铰接（吊灯、秋千、合页门）
+-新增 约束级联清理：物体被删除时其相关约束自动移除，句柄不悬空
+-新增 9 个 Lua 关键字（物理组）：铰链约束 / 滑块约束 / 点约束 / 六自由度约束 / 约束驱动 / 约束限位 / 移除约束 / 约束数量
+-新增 软件 HZB 遮挡剔除：读回上一帧深度缓冲降采样为深度金字塔，对 BVH 节点包围盒做屏幕空间遮挡测试，被完全遮挡的小物体不进绘制列表
+-新增 保守剔除策略：包围盒屏幕投影超过金字塔半幅的物体永不剔除，避免大物体（遮挡体自身）被误剔；仅剔除屏幕上占比小的物体
+-新增 Lua 关键字（渲染组）：遮挡剔除（读写开关）/ 被遮挡数（上一帧剔除计数）
+-新增 delta 快照压缩：场景快照协议加字段掩码，仅有变化的字段入包，静止物体完全不占带宽（此前每包全量发送位置/旋转/可见性）
+-新增 服务端 baseline：按实体名哈希维护上次发送值，逐字段比对生成掩码；新 peer 加入或实体增删时自动失效并转全量
+-变更 快照实体数相同但字节数大幅下降，带宽不再随静止实体数线性增长
+-新增 客户端预测误差平滑：客户端收到自身权威位置时不硬覆盖，改为记录偏差并在后续帧按 10/s 速率平滑收敛，消除权威纠正带来的位置瞬跳
+-新增 大偏差瞬移：位置偏差超过 6 米（传送、重生）时直接采用权威位置，不做平滑
+-变更 Player 增加 predictError / predictErrorRot / predictSeq 字段承载预测状态
+
+v0.96
+-新增 场景文件 .gvsn（二进制）：把运行期场景落成磁盘文件，填补此前「无场景文件格式、关卡只能靠脚本现场搭建」的核心缺口
+-新增 src/core/gvsn.h / gvsn.cpp：独立二进制格式模块，magic "GVSN" + 版本号 + 物体数 + 逐物体定长/变长混合记录，全小端
+-变更 与旧版文本 gvsn 的本质区别：本次为紧凑二进制，浮点按 4 字节原样写入，无文本解析开销
+-新增 格式内容：物体名 / 类型 / 位置 / 旋转 / 缩放 / 父物体索引 / 可见 / 投影 / 材质 / 基色 / 高光 / 纹理名 / 平铺 / 模型名 / 图片名
+-设计 定位为「纯数据」：只存静态骨架，脚本、物理参数、动画状态、光照设置一律不入档，读档后由 Lua 自行决定
+-新增 Scene 三方法：Gvtcier_Scene_ExportSnapshot（导出快照）/ ApplySnapshot（按快照重建，模型与纹理自动重新加载）/ ClearObjects（清空）
+-新增 4 个 Lua 关键字（场景组）：保存场景 / 加载场景 / 场景存在 / 清空场景
+-新增 鲁棒性守卫：magic 校验、版本非零校验、物体数上限 100 万、字符串长度上限 4096、越界即拒绝
+-修复 vec3 读取的求值顺序未定义行为：Vec3(f32(), f32(), f32()) 三个参数求值顺序 C++ 未指定，实测在 GCC 下从右往左求值导致 X/Z 颠倒，改为逐个取临时变量再构造
+
+v0.97
+-新增 OBJ 分组加载：`loadObjGroups` 按 OBJ 的 `o` 分组拆分，逐分组独立成 Mesh，含顶点索引重映射（全局索引 → 分组内索引，键 = pi×1000003 + pt×101 + pn）
+-新增 Scene 分组接口：`Gvtcier_Scene_LoadObjGroups`（返回分组名列表并缓存）/ `Gvtcier_Scene_GroupMesh`（按路径 + 分组名查网格），缓存成员 `objGroups_` / `objGroupNames_`
+-新增 Lua 能力「加载模型分组」：`加载模型分组(名, 路径, x, y, z)` 为每个分组各建一个独立实体，返回分组句柄表（含 `整体`），整体实体只承载物理碰撞并置 `visible=false`，不重复渲染
+-新增 Lua 能力「分组相对坐标」：`分组相对坐标(分组句柄)` 返回该分组中心相对整体中心的 XYZ 偏移，供脚本按位置驱动门/部件
+-变更 OBJ 分组实体均为独立对象而非父子关系：分组网格顶点本身即模型绝对坐标，独立实体各自持有分组网格，位置统一取模型放置点
+-修复 分组句柄误存整数索引：`整体` 原返回实体索引而非实体句柄，脚本将其当句柄使用时非法访问崩溃
+-变更 沙箱电梯改用分组加载：整体抬高至底面贴地（Y 起点 0，模型中心 1.03），左/右门作为独立分组实体默认闭合，按 E 开门（沿 X 向两侧滑动 1.1 单位）/ 进轿厢后按 E 关门 / 再按 E 上下运行
+-变更 沙箱电梯承载改用隐形碰撞地板：模型自带地板仅作视觉，另建不可见碰撞盒（跟随电梯升降）承载玩家，移除整体凸包碰撞使玩家可走入轿厢
+-修复 沙箱脚本误用英文 `in` 与 `继续`：中文 Lua 泛型 for 关键字为 `在`，且不支持 `继续`，改用嵌套条件替代
+
+v0.98
+-新增 Lua 能力「顶点数量」：返回实体网格顶点总数，供脚本遍历校验真实尺寸
+-新增 Lua 能力「顶点世界坐标」：返回第 N 个顶点的世界坐标 XYZ（含缩放与旋转，经 `Object::Gvtcier_Object_Matrix()` 变换），N 从 1 起，越界返回 nil
+-变更 尺寸调整可自证：脚本可遍历顶点求包围盒，验证 `缩放` 是否真实生效（实测缩放 2 倍尺寸精确翻倍 3.00×2.00×1.88 → 6.01×4.01×3.76）
+-变更 沙箱电梯放大到 1.5 倍：整体与两扇门统一 `缩放` 1.5，位置 Y 抬到 1.55 使底面贴地，门滑动距离与承载地板、交互判定范围同步放大
+-新增 功能.md「踩坑记录」章节：记录「模型调整尺寸：写入正确 ≠ 行为正确」的误判与对策，明确凡"看起来没生效"的改动须先补可量化回读能力
+
+v0.99
+-新增 模型拆分工具 Exper/ObjMultiTest/split_obj.py：把 OBJ 按 `o` 分组离线拆成一部件一文件的独立 obj（保持模型绝对坐标，仅重映射顶点/UV/法线索引），规避引擎侧运行时分组
+-变更 引擎移除运行时分组逻辑：删除 `loadObjGroups` / `ObjGroupData`、`Scene::Gvtcier_Scene_LoadObjGroups` / `GroupMesh` 与其缓存 `objGroups_` / `objGroupNames_`、Lua 能力「加载模型分组」/「分组相对坐标」；拆分改由 Python 离线完成，引擎用现成「加载模型」逐个加载拼装
+-新增 Object.pivot（缩放锚点）与 Lua 能力「缩放锚点」：缩放围绕 pivot 进行而非实体 pos，缺省零向量即旧行为；解决多部件模型按整体中心缩放时子部件位置漂移
+-变更 沙箱电梯改为 38 个拆分部件的独立实体拼装：统一 `缩放` 1.5、统一位置与缩放锚点，门开合 / 电梯升降 / 交互判定全部改由脚本按部件组维护
+-变更 make_pack.py 自动纳入 assets/电梯部件/ 下的全部 obj 与 mtl
+-已知 模型碰撞无法保形：OBJ / GLB 碰撞体一律退化为单一凸包，凹形结构（电梯轿厢"外壳 + 内腔"、多部件组合体）被凸包填实成实心块，玩家无法走入；当前靠脚本另建不可见承载盒规避，引擎侧尚无凹形 / 多部件合并碰撞方案（记入 功能.md 已知缺口）
+
+v0.100
+-变更 CPU 侧数学全量 Double 化：Vec2/3/4、Mat4、Quat、AABB、Plane3 改 double，GPU 顶点流、uniform 与网络协议保持 float32，精度收窄只发生在上传边界（GpuVertex 打包 / SetMat4 收窄重载 / 协议 vec3 收窄）
+-新增 Gmap 文本地图格式 v2：纯文本块结构九类记录，loadMemory 供 Gpak 直接解析，场景加载实体化，Demo 地图迁移 test_scene.gmap
+-修复 Gmap box 半尺寸解析 off-by-one：half.z 守卫写错致墙刷 z 缩放恒为 0，缩放归零后法线矩阵求逆出 NaN 崩坏成黑块（即 v0.32 时代「缩放压到极致出黑块」同源路径）
+-移除 LightMap 烘焙器（Light.exe 行级任务 + LightUi GUI）整体下线，场景光源收敛为太阳 + 环境光
+-修复 资源链路静默失败三处：中文路径 GetFileAttributesA 恒失败致 pak 未挂载（改 Gvtcier_W32_FileExistsUtf8）、mesh_loader sscanf %f 直写 double 留栈垃圾（改 %lf）、引擎错误只弹窗不落日志（改写 rlog）
+-变更 深度语义反转为反向 Z（近 1 远 0）：投影矩阵符号翻转、深度比较全局改 Greater、清屏 0.0、主深度与级联深度改 32F、HZB 回读改 float 取 max、天空/延迟/GTAO/体积光守卫与比较方向全链路适配；浮点精度集中近处，大幅缓解 Z-Fighting
+-新增 太阳 CSM 4 级阴影：2048×4 深度数组纹理，对数+线性混合分割，级联锥包围球拟合 + 稳定光源基，前背面剔除深度 pass；deferred 与 forward（main / 实例化）双路 sampleCSM 采样，3×3 PCF
+-新增 阴影边缘三件套：法线偏移按级联 texel 世界尺寸斜率自适应（修接缝漏光）、IGN 每像素旋转抖动 PCF（台阶锯齿转细噪点交 FXAA 收尾）、光源空间 texel snapping（消除相机移动时阴影游动）
+-修复 阴影痤疮参数多轮收敛：终值 bias = 0.0005×slope 纯斜率项，自遮挡交由法线偏移承担
+-新增 碰撞三步判断法：静态碰撞体 BVH 广筛（惰性重建 + 精确脏标记，动态体直入候选）→ AABB 粗筛 → OBB 细筛；resolvePlayer / resolveMovers / castRayImpl 全量扫描改候选遍历
+-新增 Gvtcier_Ratio 渲染分辨率控制
+-变更 Gvm 并入 dist：产物直出 dist 与引擎共用 Gvtcier.dll，移除独立 GVM 目录；运行 Gvts 时工作目录自动切到脚本所在目录，资源自动从脚本目录加载
+-变更 Demo 测试场景：Gmap 地图（地面 + 四墙）+ 形状阵列 / 色阶 / 箱堆 / 转盘，FXAA 默认开启
+
+v0.101
+-清理 功能重复的关键字：删 屏幕尺寸（≡窗口尺寸）、界面文本/界面矩形/界面开始/界面结束（并入 绘制 轨与 二维模式）、绘制文本对齐/绘制矩形对齐（测量文本 可拼）、屏幕中心（屏幕尺寸÷2）、实体存在/实体总数（取实体/实体列表 覆盖）、纹理数量/纹理名称/纹理存在（纹理列表 覆盖）、能力存在（能力列表 覆盖）
+-合并 删除实体 与 强制删除：删除实体(名称[, 立即]) 第二参为真立刻生效，缺省帧末
+-更名 界面图片 → 绘制图片（自动原图尺寸语义迁入 绘制 轨）；设置玩家速度 → 锁定速度（与既有 玩家速度 速度向量读取区分，并消解与 移动速度 走/跑双速的语义冲突）
+-保留 有用重复：设置纹理（比 设属性 字符串键清晰）、鼠标按下/鼠标悬停（比虚拟键/手算矩形可用）、瞄准点、是否在范围内、随机范围/随机整数、运行秒数、阴影预设/遮蔽预设、相机前方 与 屏幕射线方向
+-修复 二维模式(假) 不冲刷画布：关闭 2D 模式时自动 FlushCanvas，原 界面结束 承担的收尾职责并入
+
+v0.102
+-变更 关键字体系全面改造为「动词_宾语」：204 个关键字全部重命名，宾语为独立功能单元，动词为可选前置
+-新增 动词闭集 14 个：加载 / 创建 / 新建 / 删除 / 获取 / 设置 / 查询 / 检测 / 播放 / 停止 / 移动 / 保存 / 绘制 / 执行
+-定义 新建 与 创建 的边界：新建 = 从 0 凭空生成（不依赖任何已有对象），创建 = 必须依赖已有资源或模板
+-定义 加载 与 创建 的边界：加载 = 从外部路径获取资源，创建 = 从内部数据或已有资源生成
+-变更 渲染配置全部并入 设置_ 族：设置_阴影 / 设置_抗锯齿 / 设置_泛光强度 / 设置_渲染分辨率 等，原短形式（阴影(真) / 抗锯齿(真)）取消
+-变更 gl 直通关键字归入统一动词：执行_开始绘制 / 设置_视口 / 创建_着色器 / 绘制_数组 / 获取_错误码 等 35 项
+-新增 宾语独立登记机制：regCap 自动解析名字中的「动词_宾语」，宾语登记进 objRegistry，同一宾语可搭配不同动词
+-新增 游戏脚本入口 当程序开始时()：语法层新增保留字，块包裹为引擎主循环，每帧自动执行；游戏脚本不必再写 刻(dt) / 绘制()
+-新增 顶层严格规则：出现 当程序开始时 后，顶层只允许 全局 声明与 当程序开始时 本身，其余语句报错
+-新增 全局 关键字：声明跨帧持久化的全局变量，语法为 全局 名字 = 值；函数内读写全局直接写名字，无需前缀
+-新增 执行_等待(秒)：协程式非阻塞等待，挂起当前函数剩余代码，到点自动继续，不冻结引擎；实现基于 Lua coroutine，注册表持引用防止 GC 回收
+-新增 执行_命令(函数)：为新函数创建独立协程立即执行，支持其内部使用 执行_等待
+-新增 执行_渐变(对象, "属性"):用时(秒):到(值)：数值属性逐帧插值，作用目标涵盖实体 / 玩家 / 相机 / 渲染参数；链式成员 用时() 与 到()，因 在 为保留字故时长方法取名 用时
+-修复 主循环绘制闪烁：绘制队列在渲染开始时清空，主循环改在 draw 阶段（渲染中）执行，绘制入队时机正确
+-修复 主循环协程被 GC 回收导致退出：startCo / resumeCo / g_time_exec 三处创建协程后经 gvtsG_ref 保活，结束时 unref
+-修复 全局声明与主循环未生效：singlevaraux 对不在局部 / upvalue 中的名字返回空，新增 singlevarstr 回退 _ENV 全局索引
+-变更 词法层新增保留字：全局 / 当程序开始时（Glex.h 枚举与 Glex.c 词表同步扩展）
+-变更 Demo 测试场景改用游戏脚本形态：全局变量 + 当程序开始时 主循环 + 执行_等待/执行_渐变 演示
+-移除 .gvsn 场景存取整体下线：删 src/core/gvsn 模块与 保存_场景 / 加载_场景 / 检测_场景存在 关键字，场景数据来源仅剩运行期脚本搭建与 .gmap 地图加载
+-变更 包含 语法语义：引擎功能默认启用，包含 <Gvtcier> 变为兼容空操作；包含 <文件> 登记为脚本依赖，加载_地图 仅认可已包含文件，未包含给出明确提示；修复 包含 解析器按 4 字节偏移截断 UTF-8 标记导致的文件名乱码
+-新增 Demo 俄罗斯方块：纯 2D 绘制实现（绘制_矩形 网格化七种方块、旋转踢墙、软降/硬降、消行计分、P 暂停、R 重开、锁定抖动反馈），用于压测 2D 绘制稳定性与脚本主循环
+
+v0.103
+-新增 Gfile 统一文件 I/O（src/core/gfile.h）：Gopen 读 / Gsave 写 / Gappend 追加 / Gexists 检测 / Gfh 流式句柄，UTF-8 路径自动转宽字符根治中文路径码页问题，全部第一方文件调用已迁移
+-新增 脚本关键字 执行_保存(内容, "文件名.格式", 路径)：把内容写入文件，路径可空
+-新增 脚本关键字 执行_切换("值")：值是函数名则调用该函数，是 .gmap 则卸载当前场景（含物理注销）并加载新地图
+-新增 触发区回调 注册_进入触发区(名, 函数) / 注册_离开触发区(名, 函数)，引擎每帧边沿检测自动触发，传 nil 取消
+-新增 脚本网络关键字（非阻塞 TCP）：连接_服务器 / 监听_端口 / 接受_连接 / 发送_文本 / 接收_文本 / 断开_连接
+-变更 OBJ / GLB 模型碰撞体移除凸包，统一改为大小相似的立方体盒碰撞
+-更新 Docs/Gvtcier.html 教程与 Docs/Ddocs/功能.md 适配上述全部新能力
+
+v0.104
+-新增 安卓端跨平台：引擎可在 Android(NDK r27 / arm64-v8a / API 24) 上编译运行，与 PC 共用同一套引擎源码
+-新增 RHI GLES 后端（src/rhi/gl/GLES后端.cpp + gles.h）：Backend 枚举新增 Gles，与 GL 后端同表同接口，引擎上层零改动切换
+-新增 安卓平台层 gvw_android.cpp：EGL 上下文与 Surface 管理、ANativeWindow 生命周期、触摸输入转虚拟按键与拖动视角、虚拟手柄 WASD + 跳跃按钮绘制与命中
+-新增 安卓内嵌资源层 src/core/资源_android.cpp：从 AAssetManager 读取 assets/gvres/filelist.txt 清单装载全部引擎资源（着色器 / 字体 / 图标），替代 Windows 的 RCDATA 路径
+-新增 着色器 ES 适配（src/core/着色器.cpp）：GLES 分支把 GLSL 源头部替换为 "#version 320 es" + highp 精度块（float / int / sampler2D / sampler3D / sampler2DArray / samplerCube / sampler2DShadow），并按 stage 区分（vertex 不注入 sampler 精度）
+-新增 2D 画布双版本着色器（src/render/二维画布.cpp）：GLES 走 "#version 320 es"，桌面走 "#version 330 core"
+-新增 像素回读抽象：GLES 用 glMapBufferRange + glUnmapBuffer 走 PBO，桌面保留 glMapBuffer
+-新增 安卓 Demo（Demo/俄罗斯方块/）：android_main.cpp 实现 ANativeActivity 回调（窗口 / 输入队列 / 沉浸式全屏）、独立渲染线程、启动画面 → 游戏主循环两段式，含虚拟手柄；game_export.cpp 提供游戏身份与内嵌脚本
+-新增 安卓构建链：android_build.py 用 NDK clang 交叉编译引擎+Demo 为 libgvts_fangkuai.so（-DGVWCIER_USE_GLES -D__ANDROID__），apk_build.py 用 aapt2 / d8 / zipalign / apksigner 出 tetris.apk，pack_res.py 从 res.rc 解析资源清单并打包 game.gpak
+-变更 引擎侧平台差异全部收敛为编译期分支：GVWCIER_USE_GLES 门控 RHI 后端 / Window 封装 / 渲染器 GL 头 / 着色器源 / 2D 画布头，PC 构建不受影响
+-变更 对应平台专用源文件在 PC 构建中排除（build.py）：src/core/资源_android.cpp、src/script/bind/绑定_android.cpp
+-修复 PC 端编译 4 处回归：android 专用源误纳入 PC 构建（缺 android/asset_manager.h 与符号重复定义）、界面.cpp 窗口游标接口由指针改引用后调用点未同步、抬头显示.cpp 前向声明缺失与 gettimeofday 在 Windows 不可用（改用 Gvtcier_NowSeconds）
+
+v0.105
+-变更 安卓后端由 OpenGL ES 3.1 升至 ES 3.2：EGL 上下文改以 EGL_CONTEXT_MAJOR_VERSION 3 + MINOR_VERSION 2 协商，不支持时回退 ES 3.0 并打日志；AndroidManifest 的 glEsVersion 由 0x00030001 改 0x00030002
+-变更 GLES 着色器版本 310 es / 300 es 统一升至 320 es，与 ES 3.2 后端对齐（compute 与 SSBO 依赖）
+-变更 着色器加载器统一源码 + 宏适配（src/core/着色器.cpp）：GLES 注入 "#version 320 es" + "#define GV_ES 1"，桌面注入 "#define GV_ES 0" 且保留 "#version 460 core"，差异点可由源码内 #if GV_ES 分支处理
+-修复 GLES 着色器精度注入未区分 stage：vertex shader 原先也注入了 sampler2D/3D/2DArray/Cube 精度限定符（ES 规范中 vertex 阶段声明 sampler 精度非法），现按 stage 分流，vertex 仅注入 float / int
+-修复 各向异性过滤在安卓端可能触发 GL_INVALID_ENUM：GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT 在无 GL_EXT_texture_filter_anisotropic 的设备上查询非法，现改为初始化时探测扩展字符串，无扩展时安全返回 1
+-修复 安卓端 CPU 遮挡剔除在无 PBO 映射能力时永久失效：glMapBufferRange / glUnmapBuffer 不可用时补同步 glReadPixels 兜底回读，HZB 仍可生效
+-修复 HZB 首帧把 hzbValid_ 无条件置真（PBO 首帧尚无回读数据即标记有效，导致剔除误判），现仅在实际取得深度数据时置真
+-新增 着色器源 ES 兼容修正：volumetric_blur.frag 的 float[](...) 省略长度数组构造器改为 float[5](...)，GLSL ES 不允省略长度
+-修复 两端 Window 游标接口签名不一致：安卓封装 gvts_bind.h 的 Gvtcier_Window_CursorPos 由指针参数改为引用参数，与桌面 interface.h 口径统一，界面.cpp 调用点两端共用
+
+v0.106
+-变更 构建入口统一：build.py 支持 -win / -and 两个目标，缺省 -win 保持原有行为；-and [Demo目录] 依次执行资源打包 → .so 交叉编译 → APK 打包
+-变更 安卓构建从 Demo 目录收归引擎：新增 src/platform/android/{android_build.py, apk_build.py, pack_res.py}，三者全部参数化（--demo / --lib / --package / --appname / --gpak-entry），路径探测改为脚本自身位置推导（ENGINE=src，ROOT=项目根）
+-新增 安卓通用模板 src/platform/android/template/：AndroidManifest.xml 占位符化（@PACKAGE@ / @LIBNAME@ / @VERSION_CODE@ / @VERSION_NAME@）与 res/values/strings.xml（@APP_NAME@），由 apk_build.py 渲染
+-新增 安卓通用入口 src/platform/android/Gvtcier安卓入口.cpp：ANativeActivity 全回调、沉浸式全屏、输入队列解析、启动画面 → 主循环两段式、内部分辨率 640 宽、锁 60 帧（vsync + 帧尾补足）、printf 重定向到 logcat 与外部日志文件、drawcall 与分段耗时统计；整体以 #ifdef __ANDROID__ 包裹，PC 构建排除
+-新增 安卓覆盖层接口：引擎入口以弱符号声明 Gvtcier_Android_DrawOverlay(Renderer&, const GvWWindow*) 与 Gvtcier_Android_AppName()，游戏侧实现即生效、缺省为空，虚拟手柄因此留在 Demo 不进引擎
+-变更 Demo/俄罗斯方块 瘦身为纯游戏内容：仅保留 android_main.cpp（实现上述两个弱符号 + 虚拟手柄绘制）、game_export.cpp、generated.h、game.gvts、assets/、android.json；构建脚本与 Manifest 全部移出
+-新增 Demo 安卓构建配置 android.json：appname / package / lib / versionCode / versionName / gpak 条目清单，由 build.py -and 读取
+-变更 安卓主循环分辨率：内部分辨率固定 640 宽（实测 58-60 帧），窗口 2696x1260 下由 20 帧提升至 59 帧；锁 60 帧由 vsync 加帧尾 usleep 补足到 16.67ms
+-新增 安卓多点触控：触点按 pointerId 独立追踪，按下时判定属于按钮区或视角区，按钮触点与视角触点互不干扰，支持边移动边转视角
+-修复 虚拟手柄 WASD 定位悬空：定位公式多减一倍按钮高度导致按钮组悬在屏幕中部，改为贴合左下角；触摸判定（gvw_android.cpp）与绘制（Demo android_main.cpp）两处公式同步修正
+-变更 触摸转视角灵敏度 0.18 度/像素 → 0.36 度/像素
+-修复 安卓 APK 安装后启动崩溃 Unable to find native library：交叉编译产物命名漏掉 lib 前缀（gvts_fangkuai.so），Android 按 Manifest 的 lib_name 固定查找 libgvts_fangkuai.so；android_build.py 输出名与 apk_build.py 的 so_src / so_rel 三处补回 lib 前缀
+-变更 APK 打包：.so 以 ZIP_STORED 不压缩写入并 zipalign -p 4 页对齐（native lib 从 APK 直接加载的前提），其余条目保持 DEFLATED
+-变更 安卓日志持久化：引擎 printf 经管道写入 logcat 与 /sdcard/Android/data/<包名>/files/gvengine.txt（包名由 internalDataPath 推导），可由 adb pull 取回宿主
+
+v0.107
+-变更 游戏包形态全面切换为 .gpk：游戏以单文件 .gpk 承载身份信息、封面、脚本与全部资源，不再使用 DLL 导出
+-新增 Gpk 容器格式：magic(GPK\0) + 版本 + 条目数 + 目录表（逐条目 路径长度/路径/偏移/大小/CRC32）+ 数据区，紧凑二进制，支持整包内存解析与文件解析两种打开方式
+-新增 gpk 约定条目：meta.json（name / description / author）、cover.png、game.gvts，Pack 解析后直接内存取用，替代 Gvtcier_Game_Info / Gvtcier_Game_Bytecode / Gvtcier_Game_Cover 三个导出
+-新增 Gvtcier_GamePack_OpenGpk：按 .gpk 打开游戏包，读 meta.json 填充名称 / 简介 / 作者（缺省回退文件名）、读 game.gvts 作脚本、读 cover.png 作封面
+-变更 Gvtcier_Run 分流为三模式：.gpk 走 gpk 模式、.gvts 走裸脚本模式、其余按扩展名回落 dll
+-变更 宿主入口 --game 兼容 --gpk，错误提示改为「游戏包应为 游戏名.gpk（内含身份信息、封面、脚本与全部资源）」
+-新增 Gvtcier_Res_SetPackFileOk：按文件打开资源包并返回是否成功，供 gpk 打开流程判定
+-变更 安卓引擎资源改走 gpk：资源_android.cpp 从「AAssetManager 读 assets/gvres/filelist.txt 清单」改为「gpk 内读取（回退裸文件与 AAsset）」，按需缓存，名称大小写不敏感
+-新增 引擎资源条目名归一：pack_res.py 为每条资源同时写入「源文件名」「逻辑名小写」「逻辑名小写 + 原扩展名」（如 main.vert / main_vert / main_vert.vert），资源_android.cpp 按 原名 / 小写 / 下划线转点 / 追加 .otf 依次回退匹配，解决 res_get 键（vol_frag）与源文件名（volumetric.frag）不一致导致渲染器初始化失败
+-变更 安卓入口：从 assets 读 game.gpk 并优先整包内存解析（不再落盘），脚本改从 gpk 内 game.gvts 读取，移除 ensureGameScript 与内嵌字节码回退
+-新增 安卓应用图标：apk_build.py 用 Pillow 把引擎 assets/logo/Gvtcier.png 生成 mipmap-mdpi/hdpi/xhdpi/xxhdpi/xxxhdpi 五档 ic_launcher.png，AndroidManifest 设 android:icon，可用 --icon 覆盖
+-变更 pack_res.py 重写为 gpk 打包器：--out 出 .gpk，--meta 注入 meta.json，--entry realpath|storename 逐条注入，--no-engine 跳过引擎资源；引擎资源按 res.rc 清单读取并注入多种条目名，另加 FONT_REGULAR.otf / FONT_BOLD.otf 字体别名
+-新增 build.py -pak [Demo目录]：产出 <游戏名>.gpk（仅游戏内容，引擎资源走 res.rc），并复制到 dist/Games/<游戏ID>/
+-变更 build.py -and：先生成 meta.json 并打包自包含 game.gpk（引擎资源 + 游戏内容），再交叉编译 .so 与出 APK
+-变更 启动器 Lanc.cs 改为直接解析 .gpk：按 Gpk 目录表定位 meta.json 与 cover.png，扫描 Games/*/*.gpk，进程参数由 --game <dll> 改为 --gpk <gpk>
+-移除 旧游戏包机制：删除 Demo 下 game_export.cpp、android_build.py 对 game_export.cpp 的编译项，清理 assets/gvres 与旧 game.gpak 产物
+-变更 文档同步：功能.md 更新游戏包形态 / 启动链路 / 安卓资源分流 / 构建入口，version.txt 记入本版
+-清理 着色器目录：删除 14 个 .glsl 旧合体格式残留（早期单文件 //#vertex 方案，已被 .vert/.frag 拆分取代，全工程零引用）与 pbr.vert（PBR IBL 移除后的孤儿），src/shaders/GLSL 仅保留 res.rc 注册且被引用的 44 个着色器
+
+v0.108
+-新增 安卓统一包名规范：所有游戏包名统一为 com.Li.HuaL1n.Gvtcier.<游戏标识>，build.py 缺省包名按该前缀 + lib 生成，俄罗斯方块改为 com.Li.HuaL1n.Gvtcier.tetris
+-修复 安卓后台空转：暂停判据由窗口创建/销毁改为 Activity 生命周期（onPause/onStop 暂停、onResume/onStart 恢复），暂停时用条件变量阻塞等待唤醒替代 usleep 轮询，多任务视图下 CPU 占用由 44~48% 降至 0.0%；splash 阶段同步响应暂停，onDestroy 唤醒阻塞线程
+-修复 安卓挖孔区域未被游戏覆盖：applyImmersive 通过 JNI 设置 WindowManager.LayoutParams.layoutInDisplayCutoutMode = SHORT_EDGES，窗口延伸进摄像头挖孔，横屏下左侧 104px 黑边消除
+
+v0.109
+-新增 统一所有权身份机制 src/core/identity.h：GvtId<T> 身份牌 {index, generation} + GvtRegistry<T> 槽位注册表（销毁回收复用 + 世代递增防 ABA）+ Gvtcier_Object<T> 所有权中心门面；任何可被拥有的资源用它注册拿身份牌，完成后凭身份牌销毁，牌失效后一律取不到对象
+-变更 场景对象接入身份牌：Scene.objects 由 std::vector<Object> 改为 Gvtcier_Object<Object>，Object::parent、脚本句柄 ObjHandle、物理 Entry::objIdx、MainLoop::playerObj、Renderer::objIndexBuf_/effectPlaying_、EffectInstance::boundObject、Opacity 透明度表、GvtsTween::obj 全部由整数下标/裸指针改为 GvtId<Object>
+-变更 Mesh/Texture 资源接入身份牌：Object::mesh/tex 由 AssetHandle 改为 GvtId<Mesh>/GvtId<Texture>，Scene 新增 meshes_/texs_ 所有权中心与 GetMesh/GetTex 解析器，getter 与加载接口改返回身份牌；连带删除 AssetHandle 假引用计数（src/core/asset_handle.h）与死代码 src/core/资产句柄.cpp
+-变更 特效接入身份牌：EffectSystem::instances_ 改 Gvtcier_Object<EffectInstance>，Play 返回 GvtId<EffectInstance> 替代裸指针；EffectInstance::asset 由 const EffectAsset* 改 GvtId<EffectAsset>，渲染器持有唯一 EffectAsset 所有权中心，脚本侧独立缓存并入同一中心
+-变更 UI 对象接入身份牌：UiCanvas::objs 改 Gvtcier_Object<UiObject>，UI 接口身份由 int id 改 GvtId<UiObject>，Remove 不再 erase 压缩，通行证 uiId 同步
+-修复 对象删除不再使其它对象下标整体位移：Gvtcier_Scene_FlushRemoves 重写为「收集待删牌 → 逐个 Destroy」，删除旧的 oldToNew 重映射、数组 std::move 压缩与 nameIndex_ 重算，物理 Gvtcier_Physics_RemapObjects 随之删除；根治脚本句柄、物理索引、特效绑定、透明度表在删除后错位指向其它对象的问题
+-修复 渲染器物体贴图判空漏洞：此前 o.mesh 判空而 o.tex 未判空，贴图缺失即空指针解引用；改身份牌后统一经解析器取指针并判空
+-修复 场景销毁顺序倒置：此前先销毁资源后清 objects，中间窗口期句柄悬垂；现先让全部身份牌失效再释放，杜绝悬垂窗口
+
+v0.110
+-新增 ABI 覆盖补齐：此前 36 个头文件有导出、13 个自有头文件零导出，功能对外够不着；本次补齐资源三件套 Mesh / Texture / FontAtlas、模型加载器 mesh_loader、网络三子模块 net_peer / net_replication / net_protocol、阴影图 ShadowMap / CubeShadowMap、HDR ColorFbo 全部公开方法的 GVTCIER_API 导出
+-变更 命名硬伤修正：通行证 5 个中文函数名改英文（建立→Create / 归属→SetBind / 继承→Inherit / 生效→SetActive / 擦除→Erase）；FxSystem 与 EffectSystem 共用 Gvtcier_Effect_ 前缀的冲突拆开，FxSystem 6 个方法改 Gvtcier_Fx_*；渲染分辨率 Gvtcier_Ratio / Gvtcier_Ratio_Get 纠正为 Gvtcier_Render_SetRatio / Gvtcier_Render_GetRatio
+-变更 构建系统集中化：Gvm.exe 构建从独立脚本 src/gvm/build.py 收编进主 build.py，一次构建产出 Gvtcier.dll + main.exe + Lanc.exe + Gvm.exe 全部产物；删除失效的 src/sandbox/build.py（源文件名与产物名均已不符）
+-清理 垃圾清理：删除 Demo 各自携带的过时覆盖层 android_main.cpp（手柄等覆盖层代码早已进引擎）及其在 android_build.py 中的死引用、stb_src 源码副本与一次性生成脚本、apkwork 打包临时目录、各类崩溃与性能日志、旧格式残留（.dll / .gpak / profile.txt / 乱码名日志）、根目录 Python 缓存与空构建目录
+
+v1.0
+-正式版上线
+-变更 版本号体系回归 0.x 连续编号：此前误用 1.x 分段，本次统一改为从 0.80 起连续递增至 0.110，1.0 作为正式版里程碑
+
+v1.1
+-修复 无 2D 绘制时画面只剩天空盒并残留上一帧内容：主渲染清屏的 Clear(ColorBit|DepthBit) 位于 applyPassState(depthWrite=true) 之前，而 glClear(DepthBit) 受 glDepthMask 门控；当本帧画布队列为空（无准星/面板/脚本绘制）时 flushQueue 提前返回，上一帧残留的 DepthMask=false 使深度清除被静默跳过，深度缓冲保留旧值，新帧几何被深度测试大面积判废，画面只剩天空且帧间残留，转动视角时旧几何从缝隙中隐约透出
+-变更 hdrFbo_.bind() 后先 applyPassState 设置深度写入/测试/剔除等状态，再执行 ClearColor 与 Clear(ColorBit|DepthBit)，保证每帧清屏不受上一帧残留状态影响
+
+v1.2
+-变更 CSM 阴影接收端统一法线偏移改为 base_normal_bias = N * (1 - max(0, dot(L, -N)))，随后 normal_bias -= L * dot(L, normal_bias) 去除光方向分量，偏移量按级联 texel 尺寸缩放；替代此前自造的 (1 + 3(1 - NdotL)) 经验系数与 tanTheta 斜率项
+-变更 方向光级联分割改为 shadowMaxDist=120、lambda=0.6 的紧凑实用范围，替换原先以 2000 远平面均匀分割（级联 0 覆盖半径约 104 米、texel 高达 10 厘米导致球体仅约 24 个纹素）的方案，近处纹素降至约 1 厘米
+-修复 相机旋转时阴影游离并整体偏移：级联投影中心原取视锥 8 角点重心，随相机朝向漂移，且先后用世界空间 bx/by 轴与光照空间 lv 轴做了两次 texel 对齐互相破坏；现投影中心与半径改为只依赖相机位置与级联远距、与朝向无关的纯几何量，texel 对齐合并为光照空间单次
+-修复 高曲率（环面）与掠射角表面的自阴影条纹：掠射角下法线偏移去除光方向分量后几乎不改变光空间深度，一个纹素覆盖的斜面深度跨度随 tanθ 放大；补回沿光方向的斜率补偿 texel * (0.02 + slopeTan * 1.3)（slopeTan 以 12.0 封顶），压住条纹且不产生 peter-panning
+-变更 阴影深度写入端不再做偏移：depth.vert 删除斜率偏移，回归纯深度写入，bias 全部移到接收端，与参考引擎的深度 pass 行为一致
+-变更 player_shadow.frag 同步常量偏移沿光方向，渲染器补传 uLightDir
+
+v1.3
+-新增 物体透明度：Object 增加 alpha 字段（0 到 1），alpha 小于 1 时自动进入透明渲染队列；main.frag 透明路径最终 alpha 取贴图 alpha 乘 uAlpha；脚本「设置_属性(对象, "透明度", 值)」与「获取_属性」、动画状态机属性轨道、gmap 均支持该属性
+-修复 脚本设置透明度无效：引擎存在两套属性写入函数（脚本路径 propSetNum 与场景层 Gvtcier_Prop_SetNum），首版只改了后者，导致动画能改透明而脚本设置_属性改不了；已同步补齐两处及对应读取
+-变更 自动曝光改用行业标准人眼适应模型：以 16x16 采样的对数平均亮度（模拟人眼对数响应）为测光，目标中灰 key=0.18，曝光 = key / 平均亮度；加入不对称时间适应（变亮适应快 2.5 倍率、变暗适应慢 1.0 倍率），对应瞳孔收缩快于扩张的生理特性
+-修复 自动曝光长驻过曝：原实现把曝光与「玩家是否踩在阴影里」的阴影探针绑定，阴影判定方式变更后探针恒判在阴影，exposureBoost 卡在 2.6 倍；现整体移除 playerShadowVis_ / playerDarkness_ / exposureBoost_ 及 player_shadow 探针联动，compose.frag 亦删除按像素亮度 boost 的门控，自动曝光从此不依赖阴影判定
+-新增 雾质量四档：无（不加雾）/ 低（屏幕空间指数高度雾）/ 中（光线步进体积雾，输出散射与透射率，可糊住背景）/ 高（同体积雾但密度更高、作用更远、步数更多）；settings 枚举扩为 FOG_NONE/LOW/MEDIUM/HIGH，设置界面选项同步为四项
+-新增 体积雾着色器能力：volumetric.frag 增加 uMode（区分散射-only 与含透射率）、uAmbient（雾受环境光照明，背光处不死黑），输出 a 通道为透射率；compose.frag 按透射率合成 hdr = scene * exposure * mix(1, 透过率, 权重) + 散射
+-变更 体积光调用条件由 volumeLightEnabled 改为 fogLevel 大于等于 2，雾与体积光解耦；屏幕空间雾仅在「低」档启用，中/高档交由体积雾承担避免叠加
+-新增 引擎层动画状态机：Scene 新增 AnimStateMachine / AnimState / AnimTrack 数据结构与创建、加状态、加轨道、切换、设速度、查询当前状态、每帧推进等接口；轨道支持位置/旋转/缩放/颜色/透明度/光照强度等属性，切换状态时从当前实际值起步插值，支持循环与一次性，含线性/缓入/缓出/缓入缓出/阶跃五种缓动；每帧在定步循环内、RefreshTransforms 之前推进
+-新增 动画状态机脚本接口：新建_动画状态机 / 添加_动画状态 / 添加_动画轨道 / 切换_动画状态 / 设置_动画速度 / 获取_动画状态 / 查找_动画状态机，注册于「动画」分组
+-新增 安卓虚拟手柄覆盖层接口落地：引擎以弱符号 Gvtcier_Android_DrawOverlay 供 Demo 注入界面，android_build.py 自动发现并编译 Demo 目录下的 android_main.cpp；盒子测试新增该文件，以与引擎完全一致的坐标公式绘制 WASD 与跳跃按键并做按下高亮
+-变更 构建去硬编码：build.py 的 -and / -pak 不再默认指向已删除的固定 Demo 目录，改为必须显式传入 Demo 路径，缺失时报用法错误
+-变更 Demo 迁移：原 Demo/俄罗斯方块（打包产物已旧）改为 Demo/盒子测试，仅改名不改内容，源文件 meta.json / game.gvts / test_scene.gmap 从 dist 内 gpk 包中解出
+
+v1.4
+-新增 脚本专属报错（脚本绑定层预检 checkScriptShape）：脚本未写「当程序开始时」报「缺少主循环:当程序开始时」；主循环外用「全局」与「当程序开始时」之外的语句报「未被许可的内容:请写入主循环当程序开始时内部」，命中即中止加载不进虚拟机
+-变更 预检逐行扫描并跳过空行、// 与 -- 注释、@Gvtcier 行、顶层 包含 <...> 行，以花括号深度界定主循环范围，跳过字符串内容避免误判
+-修复 错误提示变量名重复「空值「空值」」：typeerror 的 varinfo 对空值直接返回空串，空值无名字可指认不再拼出重复
+-变更 错误提示变量类别中文化：local/upvalue/global/field/method/constant/metamethod/hook/for iterator/integer index 全部改为 局部/上值/全局/字段/方法/常量/元方法/钩子/迭代器/整数索引
+-变更 启动画面 Logo 动画简化：移除 LogoA 与 LogoB 的左右滑入位移，改为原地淡入淡出，两个 Logo 各 3 秒顺序显示（A 随星空自 0.5 秒淡入，B 紧随其后），总时长 16 秒与健康忠告段不变
+-修复 复杂几何体表面放射状条纹：平滑法线焊接由「同位置全部顶点法线求和」改为「位置 + 法线方向双条件聚类」，同位置但法线夹角超过阈值（cos 0.5，约 60 度）的顶点各自成组，硬边不再互相污染
+-修复 圆锥侧面放射状明暗条纹：makeCone 重构，侧面按扇面独立顶点（每扇面 3 个顶点不共享锥顶），锥顶与底圈法线改用同构公式 normalize(H*x, R*R, H*z) 使 y 分量恒定一致，锥顶不再突变为竖直
+-修复 圆锥侧面贴图纵向退化：侧面 UV 由「全部顶点 v 恒为 0」改为 u 沿周向、v 沿母线（底 0 顶 1），底面 UV 改为以圆心为中心的径向映射
+-变更 CSM 阴影 bias 加强压 acne：接收端 slopeTan 上限 12→48、斜率系数 1.3→6.0、基础偏移 0.02→0.12、法线偏移系数 1.0→2.2，PCF 采样由 3x3=9 扩到 5x5=25（延迟路径由 16 次 poisson 扩到 24 次并加宽采样半径），压制圆环等小曲率管面在掠射角下的自阴影条纹
+
+v1.5
+-变更 CSM 阴影 bias 链路级联包围改视锥 8 端点投影求 center/radius，radius 乘 texsize/(texsize-2) 修正，texel 对齐保留中心 snap
+-变更 CSM 深度范围收紧（拉长钢筋）：eye 贴包围盒外 pancake 处，range 精确 = 2r + pancake，pancake 由常量 20m 改为 0.25r（最小 1m），深度轴缩短过半，texel 锯齿深度投影同步减半
+-变更 接收端 sampleCSM 照参考引擎 BIAS_FUNC：沿光偏移 = 0.1/100 × 级深度范围，法线偏移权重 (1 - max(0, dot(N, -lightDir))) 修正原写反方向，normalBias = base × 2.0 × texel 去沿光分量，删除拍脑袋 slope/dz 公式
+-变更 polygon offset 拍脑袋数值删除（不使用），比较改严格大于（照参考引擎硬件比较约定），PCF 盘照搬 quick_hash 每像素随机旋转打散条带
+-新增 遮挡端 pancaking：depth.vert / depth_skinned.vert 投影后 z >= 0.9999 钳制（照MODE_RENDER_DEPTH）
+-新增 CSM 调试插桩：环境变量 GVTCIER_CSMDEBUG=1 显示接收/遮挡中心深度差放大 500 倍，=2 显示原始 shadowF，默认关闭不影响渲染
+
+v1.6
+-修复 build.py 资源陈旧：着色器改动只重编 res.res 而 res.o 不认其更新导致链接旧资源，res.o 与 launcher_res.o 将 res.res 纳入依赖，rc 依赖路径锚定项目根
+-删除 渲染器尾部光线阴影废案函数（无声明无成员无调用）
+-变更 接收端沿光偏移加斜率几何精确补偿：texel × min(tanθ, 4)，tanθ 由法线算出，每点给料恰好等于斜面深度台阶需求
+-新增 阴影调试弹窗（环境变量 GVTCIER_CSMDEBUG=1 开启）：四个滑块实时调 沿光偏移/法线偏移/斜率补偿上限/采样盘半径，按钮循环调试图，默认关闭
+-变更 阴影参数固化：沿光偏移 0.001×范围、法线偏移 6.872×texel（用户实调满意值）、斜率补偿上限 4.0、采样盘半径 1.0，受光面条纹痤疮消除
+
+v1.7
+-重构 碰撞系统统一为三角网格碰撞：图元（球/圆柱/胶囊/圆盘）按解析三角形生成碰撞面（fillPrimTris），其余物体直接用网格顶点三角形，碰撞面与可见几何同源，不再出现碰撞盒与外观错位
+-修复 脚本创建物体碰撞盒尺寸硬编码 0.5：fillHalf 改用网格真实半尺寸 × 缩放（Scene::Gvtcier_Scene_MeshHalfExtents），缩放过的物体碰撞体不再错尺寸
+-修复 非随形碰撞体网格缩放丢失：attachMesh 把物体 scale 烘进三角形，与图元路径口径一致
+-修复 同一物体重复注册物理：AddObject 按身份牌去重，地图加载与初始化叠加注册导致的隐形双重碰撞消除
+-重构 玩家碰撞为「先移动再退出穿透」模型：运动完整执行后沿法线退出重叠（最多 4 次），穿透恢复与二分逼近全部移除，贴面滑行顺滑、临界点卡死与弹飞链路根除
+-变更 sphereTri 回归纯距离语义：删除深穿透分支与幻影校验，接触深度恒 ≤ 胶囊半径
+-修复 网格法线绕向依赖：接触法线按物体中心向外修正，绕向不一致不再把玩家推向物体内部
+-优化 syncMeshColQ 幂等早退：静止物体不再每帧重算 8 角点包围盒
+-修复 F3 调试面板失效：toggleDebugPanel 写错局部变量导致碰撞线框永远关闭
+
+v1.8
+-新增 Gvts 脚本可视化编辑器（编辑器/ 目录）：纯网页积木编辑器，积木与 Gvts 一一对应、双向无损，拖拽搭积木即时生成脚本，也可反向解析已有 Gvts 为积木；含欢迎页、项目新建/回归、目录树、多文件 tag、文本/积木双模式
+-新增 编辑器内置函数积木数据驱动：积木库.js 以 FN_LIB 表描述全部约 247 项引擎能力（21 个分类），积木界面、生成、解析统一由该表推导，新增能力只改表不改界面代码
+-新增 编辑器 C 型积木与语法骨架：覆盖全部需要 {} 的语法（当程序开始时、函数、如果/否则如果/否则、循环、当、重复直到等），开口朝右的 C 型嵌套外观
+-新增 编辑器 Python 中转服务（main.py + 运行我.bat）：网页编辑区经本地 HTTP 服务落盘，支持文件保存/打开/删除/目录选择，页面关闭时服务同步退出；XM.txt 记录工程路径、打开文件与打开方式，进编辑器先到欢迎页并显示回归项目
+-修复 编辑器花括号驱动解析：Gvts 是零缩进语法，原按缩进判嵌套导致函数内容散落顶层，改为按 {} 深度解析，重新打开脚本结构完整
+-修复 编辑器顶层函数定义落点：函数定义按引擎实际规则可在顶层或主循环内，解析与生成两条路径都对
+-变更 编辑器积木库实体参数放开为变量：新建_实体/删除_实体/设置_属性 等的名称类参数由文本改为任意表达式，支持用变量名当实体名
+-新增 相机第三人称跟随绑定：设置_相机目标(实体名) 让相机跟随指定实体（传 空 取消跟随）、设置_相机偏移(x,y,z) 定后拉距离、获取_相机偏移() 读回偏移、设置_相机角度(偏航,俯仰) 直接写角度，跟随开启后渲染相机位置 = 目标位置 + 偏移
+-新增 gmap 玩家实体挂球体网格：地图 玩家 段实体化时使用球网格与 0.7 缩放，便于球类原型
+-变更 玩家实体同步抬高球半径：渲染同步时若玩家实体挂网格则位置 y 抬高 0.35，与胶囊半高对齐，球体不再半埋地面
+-变更 文档同步现状：修正 Gvtcier.html 顶层结构规则（顶层实际允许 包含/全局/函数定义/函数调用 四类）并补录四个相机跟随绑定；功能.md 补能力规模、顶层规则与第三人称跟随相机；技术文档修正代码规模、物理自研口径、第三方清单误列 Jolt、Vulkan 编译项状态、阴影法线偏移系数与前后向路径参数差异、GTAO 参数数量
+
+v1.9
+-新增 引擎 Gvts 语法检查接口：导出 Gvtcier_CheckGvts(路径, 错误缓冲, 容量)，复用引擎同款预处理与顶层结构检查后直接起 Gvts 虚拟机 loadbuffer 校验，不建窗口、不播 logo、不初始化渲染，逻辑与引擎真跑时完全一致
+-新增 main.exe -gvtsvm 入口：绕过引擎直接调用 Gvts 虚拟机做纯语法检查，供编辑器调用，秒回并输出 [GvtcierGvts] 前缀报错
+-新增 语法错误迭代剥离：虚拟机遇首个语法错误即停，改为报错后将该行替换为等长空格重新校验，最多 12 轮，并按根因行去重，一处缺失可列出多处真实语法错误
+-新增 编辑器积木校验：顶部校验按钮调用引擎虚拟机检查，按行号把报错映射回积木并整体染红，无行号的结构类错误回退内置检查定位到具体积木，点错误条目滚动定位
+-新增 编辑器文本校验：文本编辑器校验按钮同源调用引擎虚拟机，顶部错误条列出问题，点击跳转对应行，并把根因行的文字临时渲染成红色
+-修复 编辑器积木拖拽落点：改为按身份判定归属容器（压到 C 块进其内部、压到普通块同级、压到背景顶层）叠加坐标精确插入，命中不再放错位置
+-新增 编辑器拖拽白色动态连线与落点几何预览：连线终点绑定实际落点（与插入标记线同源），落点处绘制半透明积木几何预览，明确指示松手后的结果
+-修复 编辑器积木拖拽闪烁：消除 drag 与 dragover 两条事件流交替计算落点的冲突，统一为单一入口计算，边缘自动滚动改为定量每帧，预览克隆缓存复用不再每帧重建
+-修复 编辑器从积木库直拖不绘预览：判断依据由「拖拽源是否在积木库」改为「鼠标是否已进入工作区」，「拖到另一个积木上」的老命中 bug 一并解决
+-修复 编辑器 C 块头部无法拖动：.c-head 被 .cblk * 的 pointer-events:none 禁用事件，补回 auto，头部任意位置（输入控件除外）均可抓取
+-新增 编辑器 C 块可抓握区提示：悬停 C 块时在脚部（.c-body 底部 18px）显示绿色描边，与真正可抓取的范围一致
+-新增 编辑器单例：新打开编辑器页面时经 BroadcastChannel 通知同源已存在的编辑器页自行停用并显示提示，不影响其他标签页
+-新增 Gmap 预览器（编辑器/gmap预览.html + gmap预览.js）：独立 WebGL 页面，前端解析 gmap 六类块（世界/画刷/灯光/点实体/玩家/物品），画刷按类别渲染半透明色块、灯光与实体渲染标记，含名称标签、图例、线框开关、轨道式视角操作与重新加载
+
+v2.0
+-变更 GTAO 全面替换为地平线搜索加解析积分（Jimenez 2016 / XeGTAO 口径）：原 ASSAO 式逐样本遮蔽累加与 resolve 交错还原链路整体下线，改为全分辨率逐像素计算，切片沿屏幕切平面做单侧地平线搜索取最大遮蔽角，再对可见角区间用闭式原函数积分（无奇点、随遮蔽角单调递减）
+-新增 GTAO 边缘图：主 pass 额外输出一张深度边缘图（第二颜色附件），边缘判据含线性斜率扣除与按中心深度归一，每边量化为两比特四档后打包；去噪权重由该边缘图提供，替代原先现场估深度差的软判定
+-变更 GTAO 去噪重构：原两轴方向模糊（横向再纵向）改为十字加对角的三乘三边缘感知加权，权重取边缘图（一为平坦可模糊、零为强边缘禁止跨越），叠加对称性强制（左右像素边缘需互相印证）与少量渗漏项，两遍串联（首遍轻模糊、次遍主模糊）
+-修复 GTAO 背景拖带：原去噪仅凭深度差加权，在屏幕空间共线的前景物体与背后平面上权重连续过渡，物体轮廓外摊出一条恒定宽度竖直灰带；边缘图以离散四档判定替代，等价于「仅半径内的真实接触遮蔽」
+-修复 GTAO 屏幕边缘整块失效：地平线搜索的越界样本由直接终止搜索改为钳制到边缘，避免边缘像素可见样本数塌缩致遮蔽被高估
+-变更 CSM 级联包围由视锥八端点重心改为相机锚定：中心取相机位置、半径由级联远距与视口张角解析求得（远平面截面外接球），使正交体只随相机位置平移、不再随朝向漂移，消除级联光栅化位置随视角跳变导致的边界亮缝
+-变更 CSM 沿光偏移改为纹素基准：偏移主项由「系数乘级联深度范围」（随视口与级联尺寸漂移）改为「倍数乘纹素世界尺寸」，同一参数在各级联与各视口下等价，法线偏移与采样盘半径同步改以纹素尺寸为基准
+-修复 CSM 掠射面漏光：原偏移链在斜率上双重补偿（显式坡度正切项与法线偏移的掠射因子各算一份），显式项又被封顶截断，导致掠射墙角补偿不足而正面过度；按参考引擎结构移除显式坡度项，斜率补偿全部交由法线偏移的掠射因子承担
+-变更 CSM 偏移实调值固化：沿光偏移 5.56 倍纹素、法线偏移 8.33 倍纹素、采样盘半径 3.06 倍纹素，取代此前的零点零零零五乘范围与 7.9280 乘纹素
+-变更 阴影调试器扩条目：由四个滑块扩为八个（沿光偏移、法线偏移、斜率上限、采样盘半径、PCF 半径倍率、深度附加量、级联过渡带宽度、接收端偏移倍率）并新增恢复默认按钮，滑块范围同步适配纹素基准新语义
+-变更 CSM 调试编译开关 GVTCIER_CSM_TUNING 置一：调试弹窗随引擎启动，调参完成后置零关闭
+-变更 前向路径（main.frag）阴影偏移与延迟路径对齐：沿光基础偏移零点零零零二归零、法线偏移系数三改八，消除两条路径参数不一致
+-变更 文档同步至 2.0：技术文档第 03 章补阴影偏移链重构与相机锚定，第 02 章 GTAO 一节按地平线搜索加边缘图去噪重写
+
+v2.1
+-修复 GTAO 屏幕边缘提前剔除：地平线搜索的采样半径改为按「该方向到屏幕边界剩余距离」自适应收缩，采样点永不越界；屏幕中央半径取原值不受影响，越靠边半径越小；移除越界钳制与边缘淡出，两者都会引入错误信息
+-修复 GTAO 水平采样步长各向异性：UV 步长由只用纵向投影缩放改为横纵分量各用各的投影缩放，修正水平方向被放大一个宽高比的错误，消除左右两侧比上下更早失效的现象
+-变更 GTAO 采样盘衰减基准：随半径收缩后，衰减曲线基准由原始半径改为收缩后半径，避免收缩时衰减失效
+-变更 CSM 法线偏移对齐参考引擎方向光默认值：由一倍纹素改为两倍纹素，常量偏移保持零点零零零二乘深度范围
+-新增 阴影调试器级联可视化：新增第四档调试图，用红绿蓝黄四色标出每像素命中的级联号，用于排查级联归属
+-变更 默认太阳方向改为北半球中纬度：方向由零点四五负一零点三五改为零点三零负零点七四零点六零，高度角由约六十一度降至约四十八度，避开掠射漏光触发区间
+-变更 盒子测试场景墙体包围盒：四面墙各在两端外扩零点五单位，四角由共用一个角点改为实心交叉重叠，消除几何接缝
+-变更 阴影调试编译开关 GVTCIER_CSM_TUNING 置零：调试弹窗不再随引擎启动
+-变更 官网页面：新增 Gvtcier Engine 官网单页，无注释、无外部依赖；Vulkan 后端描述改为 OpenGL ES，架构一节改为跨平台渲染架构；脚本示例改用真实 Gvts 语法（顶层只允许全局与当程序开始时、函数定义在入口块内）；区块副标题全部中文化；代码窗口由苹果风格圆点改为视窗风格按钮；标语与文案去套话，页脚版权改为「二〇二六 Li-HuaL1n Software」
+-说明 引擎暂不开源、官网暂不发布：保持二进制分发能力，源码留本地
+
+v2.2
+-新增 高斯模糊系统：新增降采样着色器 blur_down.frag（中心四倍加四角一倍加十字两倍除十六）与升采样 blur_up.frag（tent 滤波带强度系数），blur.frag 扩为双模（采样数不超七沿用固定权重，超出走可调半径高斯核，sigma 取半径一半）
+-变更 泛光金字塔接入新模糊：降采样与升采样分别改用上述两支着色器，升采样保留原三级权重（零点四零 / 零点一六 / 零点零五）
+-新增 UI 毛玻璃：glass.frag 用圆角 SDF 遮罩做锐利与磨砂的混合，frost 取模糊结果乘零点九四加冷色调乘色调强度，边缘加高光；绘制接口 Gvtcier_Render_DrawGlass 收集面板按 z 排序
+-新增 RHI 读缓冲到纹理接口 Gvtcier_Rhi_ReadBufferTex：GL 后端用 glCopyTexSubImage2D 把当前读缓冲直接拷进纹理（GPU 侧拷贝零回读），GLES 与 Vulkan 后端留空桩；gl4.h / gles.h 补 glCopyTexSubImage2D 声明与加载，两处函数指针表与结构体同步
+-新增 ColorFbo::createBlur 与 ColorFbo::createR8：前者建单附件 RGBA8 轻量 FBO 供毛玻璃金字塔，后者建单双附件 R8 FBO 供 GTAO
+-新增 暗角：compose.frag 末尾加圆形径向衰减（以屏幕中心距离平方乘系数），设置界面「图形」页新增暗角滑块（零到一，缺省零点七，零即关闭）
+-新增 画质选项环境光遮蔽与抗锯齿：设置界面「图形」页新增两项开关，AO 走 scene.gtaoEnabled 每帧同步进渲染选项，抗锯齿走 Gvtcier_Render_SetFxaa；补全久置未接线的设置字段 gtao / fxaa 的读写与应用（occlusion 因属底层优化不暴露）
+-新增 帧率档位并合并垂直同步：设置枚举 FrameRateMode 六档（垂直同步 / 三十 / 六十 / 九十 / 一百二十 / 无限制），常规页原垂直同步开关改为帧率选择；前四档关垂直同步并按目标帧时间在主循环帧尾节流（先休眠到差一毫秒再忙等收尾），垂直同步档交还驱动，无限制档不节流
+-优化 HZB 遮挡剔除：回读尺寸由二百五十六降至一百二十八（数据量四分之一）、改隔帧构建（奇数帧沿用上次缓存），并补齐诊断确认其为真凶——此前它被计入 tGtao 导致误判为 GTAO 瓶颈
+-优化 GTAO 工作集：三个 FBO 由四附件 RGBA32F 改为 R8 单双附件（显存与写带宽大幅下降），工作分辨率由二分之一降至三分之一，calcEdges 的深度重建由四次完整矩阵乘改为标量除法 viewZFromDepth
+-新增 全屏独占模式：窗口模式「全屏」改用 ChangeDisplaySettingsExW 切显示模式绕过桌面合成器（原与无边框模式共用同一套无边框全屏代码），保存并在退出 / 切模式 / 销毁窗口三处还原原显示模式
+-新增 主菜单：新建 MainMenu 类（render/mainmenu.h 与 render/主菜单.cpp），布局为标题左上、菜单项左下竖排带选中竖条，菜单项为开始游戏 / 设置 / 退出；启动流程改为启动画面后先进主菜单，点开始游戏才进游戏循环
+-新增 主菜单 2D / 3D 背景接口：背景模式、背景贴图（含尺寸重载，按 cover 保持宽高比铺满裁切）、背景场景三组设置；Demo 主菜单背景取内置资源 vein_1_18
+-变更 ESC 菜单四项化：继续游戏 / 设置 / 返回到菜单 / 退出到桌面，「返回到菜单」新增独立信号回主菜单（主菜单与游戏循环包进外层循环，返回即重入），确认弹窗文案改「确认退出到桌面」
+-新增 ESC 全暂停：菜单打开时置 scene.paused，物理、场景动画、全局与对象脚本、输入、粒子更新全部停止，脚本绘制时间步传零冻结动画；关闭菜单时清零累加器并重置计时基准，杜绝恢复后物理补跑时间跳跃
+-新增 HUD 隐藏：渲染器新增游戏 UI 抑制开关，在 2D 绘制唯一汇聚点 pushCanvasPrim 拦截画布队列（引擎 UI 队列不受影响），菜单打开期间只丢游戏 UI 保留菜单
+-修复 主菜单鼠标消失：根因是窗口消息 WM_SETFOCUS 在自动抓取开启时无条件抓取鼠标致光标隐藏，主菜单期间关闭自动抓取并释放抓取、每帧恢复光标，开始游戏后再恢复
+-修复 主菜单点设置无内容：进设置页前漏调 Gvtcier_SettingsUI_Build 致设置项列表为空
+-修复 点击 tab 误高亮首项：切页函数未清理悬停与选中状态，而鼠标位置恰落在新页首行；切页时重置悬停、选中与滚动
+-修复 鼠标移出按钮高亮不清除：选中项兼作鼠标悬停显示且移开后无清理；两套菜单均引入鼠标导航标志区分键盘与鼠标导航，鼠标滑出即取消高亮、按方向键则回到键盘导航
+-修复 菜单间点击穿透：切换界面当帧鼠标仍停原位，点击被新界面再次消费；主菜单新增防连点（刚打开的首帧丢弃点击，生效点击后零点一秒内忽略后续点击），覆盖菜单项、键盘确认与设置页
+-修复 主菜单按钮越界崩溃：布局缓存由绘制填充而更新先于绘制执行，首帧读空容器越界；布局改为纯函数按窗口尺寸现算，删除可变缓存
+-新增 日志双写接口 Gvtcier_Log_Echo：控制台与日志文件同时输出，此前打印只进其一导致诊断信息取不到
+-新增 项目规则「三之二 所有权与生命周期」：凡涉及指针与生命周期一律用引擎自带身份机制，并明确禁止依赖执行顺序保证初始化的可变成员缓存
+-修复 ESC 菜单鼠标无法切到其他窗口：打开菜单时只关自动抓取未释放既有抓取，光标仍被锁；补释放抓取
+
+v2.3
+-变更 物理求解器整体切换为 Jolt Physics（MIT，源码集成于 src/physics/third/Jolt）：自研的序列冲量求解、层次包围盒宽相、网格三角索引、胶囊穿透解算与刚体互推全部删除，静态世界、动态刚体、运动学平台、射线与形状查询统一落在同一个 PhysicsSystem 内
+-变更 物理碰撞分层为静态世界层与运动层：墙体、地面等一切未标刚体的物体永远注册为静态体，静态层内互不碰撞，杜绝墙体被当成动态刚体推动
+-变更 玩家由自研胶囊位移改为 Jolt 角色控制器 CharacterVirtual：按胶囊扫掠求位移，自带贴地（十五厘米）、走台阶（二十八厘米）、最大坡度五十度与三角网格双面碰撞，输入只设目标速度
+-修复 玩家跳跃后无限上升：角色控制器不是刚体，库不会替它施加重力，写速度时须显式加上重力乘步长；同时站地时清下压分量、下落速度封顶八十米每秒
+-修复 方块刚体被赋予球的碰撞：Jolt 创建刚体只接受形状裸指针且不增引用计数，形状作为创建函数的局部变量在返回后即被释放，刚体读到已回收内存；改为形状引用存入物理条目与刚体同生命周期持有
+-修复 动画驱动位置的物体碰撞不同步：静态物体同步入口原先只处理带父物体的对象，动画状态机改位置的物体视觉在动而碰撞体留在原地；改为对全部非刚体物体按位置旋转变化同步
+-修复 球体与圆柱画刷被渲染成立方体：地图解析把画刷网格硬编码为单位立方体，碰撞类型是球却画成方块；改为按碰撞类型选用对应网格
+-修复 圆柱与胶囊碰撞类型在地图解析中缺失，脚本碰撞名映射缺网格项，导致静默回退为盒或空
+-新增 碰撞线框按真实形状绘制：盒画十二条棱、球画三组正交圆与轴线、圆柱画上下两圈与四条母线、胶囊画圆柱段加两端半球，网格画包围盒外框；刚体绿、运动学蓝、静态灰，静态物体原先完全不参与线框
+-变更 求解参数回归稳定区间：位置迭代二、速度迭代十、鲍姆加特系数零点二、允许穿透二厘米；早期为消穿模把位置迭代提到八、允许穿透压到五毫米，修正过冲导致接触面持续颤动
+-变更 角色控制器推挤参数收敛：最大推力两百二十牛、预测接触距离五厘米、碰撞容差两毫米、贴地十五厘米、台阶抬升二十八厘米，消除推箱脉冲与台阶误判造成的上下起伏
+-变更 地图画刷字段由「包围盒 中心三加半长三」拆为「位置 xyz」与「尺寸 xyz」两行，尺寸即全长，与 Godot 缩放语义一致；旧包围盒写法按半长乘二兼容并在首次出现时打印一次提示，编辑器 gmap 预览器同步支持
+-移除 凸包生成库（src/physics/rigid/quickhull 全部源码）与自研网格碰撞加速结构，随自研物理一并下线
+-变更 构建脚本把 src/physics/third 加入包含路径，并对第三方目录豁免源码注释检查；安卓构建脚本同步
+-变更 第三方声明补入 Jolt（MIT，Copyright 2021 Jorrit Rouwe），移除已删除的 QuickHull 条目
+-变更 文档同步：第 06 章物理系统整章重写为 Jolt 方案（含历史机制归档），第 00 章模块描述、第 11 章第三方清单、功能总览物理条目同步更新
+
+v2.4
+-修复 巨大物体阴影破碎消失：级联阴影正交盒深度范围原先固定为接收半径加煎饼余量，巨大墙体沿光方向跨度远超盒深，超出部分被深度着色器钳制拍扁导致阴影整块缺失并出现弧线直边切口；改为每级按可见遮挡物包围盒沿光轴投影求实际深度范围定近远平面，侧向不重叠的遮挡物不参与扩展，近处级联分辨率不受影响
+-变更 撤销无用更新
+
+v2.5
+-变更 源码按职责划为三层：Gvtcier2D（二维接口与画布）、Gvtcier3D（三维资产、物理、渲染、场景、地图工具）、Rhidriver（图形抽象与 OpenGL/OpenGL ES/Vulkan 后端）；audio、core、debug、net、platform、sandbox、script 等通用与中立组件统一迁入 src/bicu（Be in common use）
+-变更 全部头文件集中到 include/，目录结构镜像源码；着色器按 Shader/S2D 与 Shader/S3D 拆分，SPIR-V 预编译产物分置于 Shader/SPIRV/S2D 与 Shader/SPIRV/S3D，各自生成 shaders.json 与 spvhash.json
+-新增 总头文件 include/Gvtcier.h：按分层列出全部头文件路径，源码文件统一只引用它，杜绝逐个维护松散依赖
+-变更 脚本入口由「当程序开始时」拆为「当三维开始时」与「当二维开始时」：前者写全局 __gvt_mainloop_3d，后者写 __gvt_mainloop_2d，两者合计只允许出现一次；预检、块改写与协程启动全部按实际存在的入口选择
+-新增 gvtio 统一模式开关（include/bicu/core/gvtio.h 与 src/bicu/core/gvtio.cpp）：Gvtcier_Gvtio_Use2D / Use3D / Is2D / Is3D / Mode，加载脚本后按入口自动判定，主循环、菜单帧与脚本协程共用同一判定
+-移除 脚本宾语「设置_二维模式」，二维与否由入口关键字决定，不再由运行时手动切换
+-修复 二维模式仍绘制三维：渲染器入口 Gvtcier_Render_Render 原先在判断二维标志之前就已执行模型懒加载、场景特效同步、Fx 光束注入与场景遍历；判定整体前移到函数开头，新增只提交画布队列的 Gvtcier_Render_Render2D，二维路径不再触碰场景与相机
+-修复 二维画面闪烁：画布提交函数自带一次清屏且与主循环清屏竞争，同一帧被清两次；清屏职责收敛到主循环单点，画布只负责绘制
+-修复 画布实例缓冲越界：容量检查函数从未被调用，实例缓冲固定为四千零九十六个槽位，超出即读取脏数据导致画面随机乱闪；提交前补容量检查
+-修复 二维脚本绘制不显示：绘制_矩形、绘制_文本、绘制_图片推入的是渲染器画布队列，仅由三维渲染入口消费；二维短路分支补交画布，后统一改用 Gvtcier_Render_Render2D
+-修复 二维仍走三维相机与物理：主循环在二维模式下跳过相机模式切换、相机更新与相机跟随，清屏色改用固定常量不再读取场景天空色
+-修复 脚本入口判定时机错误：模式判定写在 gvts_pcall 之前，而入口函数是脚本执行时才创建设置的，两个标志恒为假导致模式永远停在三维；判定抽为 applyMainLoopMode 并移到脚本加载成功后
+-修复 协程报错时虚拟机栈失衡：协程启动与恢复的失败分支只打印错误而未弹出错误对象，每帧重建协程会持续泄漏栈，最终状态错乱；两处均补弹出
+-修复 绘制_文本坐标拒绝浮点：横纵坐标按整数校验，浮点布局值直接报错；改为按数值校验后取整
+-修复 随机数每次运行序列固定：状态初始值写死且脚本未设种子，每次运行方块序列完全一致；改为首次使用时混合当前时间、系统计数与栈地址播种
+-新增 脚本接口「检测_按键刚按下」边沿触发，与「检测_按键按下」并存
+-新增 屏蔽内部横线，避免重复绘制导致的视觉噪声
+-新增 脚本 UI 控件：绘制_标签、绘制_居中标签、绘制_面板、绘制_按钮、检测_按钮按下、检测_按钮悬停、绘制_进度条、绘制_准星、获取_屏幕尺寸
+-新增 物理触发器：Gvtcier_Physics_CreateSensor / DestroySensor / QuerySensor / OverlapShape，基于 Jolt 传感器体与形状重叠查询
+-变更 构建脚本 build.py 适配新目录：源码发现根改为 src 与 Thirdparty/Jolt，包含路径改为 src、include、src/GvtcierScript、Thirdparty、tools/Vulkan/Include；资源脚本目录、工具入口目录、宽字符对象路径与安卓打包目录同步迁移
+-变更 构建脚本 build_vk.py 改为按 S2D 与 S3D 两组分别编译，输出到 Shader/SPIRV 对应子目录
+-变更 资源脚本 src/res.rc 的着色器路径全部改为 Shader/S2D、Shader/S3D 与 Shader/SPIRV/S2D、Shader/SPIRV/S3D
+-变更 宿主 main.exe 改为纯命令行：位置参数可直接给 .gpk 或 .gvts，无参数时在控制台打印用法而不再弹出提示窗，便于调试器以子进程方式拉起并捕获输出
+-修复 网络类未导出：gvnet::Socket 与 gvnet::Endpoint 缺导出宏，跨对象调用未定义的 valid()；补导出宏并将 running() 移出类内联
+-新增 Demo 俄罗斯方块：纯脚本二维游戏，七种方块、幽灵落点、下一个预览、暂停与重开、软降与硬降、等级与每五百分加速、分数上限二十一点四七亿封顶、连消提示与消行计分
+
+v2.6
+-新增 模组系统：新增 glc 容器（魔数 GLAC、版本一、UTF-8 JSON 元数据、条目数、目录表、数据区），头部独立于 gpk，目录表与 CRC32 校验沿用 gpk 规则；读取器 GlcReader 提供打开、按名查询、提取与元数据访问
+-新增 资源层分层：资源管理由单例包改为「主包 + 模组层列表 + 磁盘」三级查找，查找顺序为模组层（后挂优先）→ 主包 → 磁盘，每级内部先按逻辑路径原样匹配再剥目录以纯文件名重试；新增 Gvtcier_Res_AddMod / ClearMods / ModCount / ModMeta 四个接口
+-新增 主包专用读取 Gvtcier_Res_ReadMain：只查主包与磁盘，供需要绕过模组层的调用点使用
+-新增 模组自动加载：引擎打开 gpk 成功后扫描同级 mod 目录，取全部 glc 按文件名升序逐个挂载并打印名称、版本、作者与条目数；同名 glc 旁存在 .disabled 标记文件时跳过并输出「已禁用跳过」
+-变更 游戏包三约定条目改为在全部层挂载完毕后读取，meta.json、cover.png 与 game.gvts 因此均可被模组覆盖，模组可直接替换主脚本接管玩法
+-新增 模组打包：build.py -mod <模组目录> [--game 游戏ID]，读取目录下 mod.json 作元数据，递归收集文件按相对路径入包，产物复制到目标游戏 mod 子目录；未指定游戏且 Games 下仅有一个游戏目录时自动选中，否则报错要求显式指定
+-新增 src/bicu/platform/android/pack_mod.py 模组打包脚本，扩展名白名单在 gpk 基础补入 .gvts 与 .gmap，使模组既能带脚本也能带地图
+-变更 启动器 Lanc 扫描游戏限制为一级目录，不再把 mod 子目录中的内容误列为独立游戏；条目加载时统计同级 mod 下未被禁用的 glc 数量，详情区作者行后缀显示「此游戏包含 N 个模组」，N 为零不显示
+-修复 模组内脚本语法错误时启动崩溃：bootFail 清理路径重复执行且顺序错误，rendershutdown 先于物理关闭、游戏包被重复关闭；补幂等守卫并调整为脚本、画布、物理、渲染、场景、窗口、游戏包的释放顺序
+-新增 Demo 绿色天空模组：Demo/Bloor/_mod绿色天空 提供同名 bloor_map.gmap，仅改世界块天空、环境光与太阳颜色，验证资源覆盖路线不改主包即可生效
+-变更 文档同步 2.6：技术文档第 11 章新增模组系统一节并重排章节号，第 00 章补模组加载与查找优先级；功能总览新增模组九条；Gvtcier.html 新增第三十三章模组编写指南
+
+v2.7
+-新增 模组全量覆盖：模组提供同名 game.gvts 即整份替换主脚本，脚本读取走模组层优先链
+-新增 模组片段覆盖：模组在 _override/ 下按相对路径放 .gvts，只替换主脚本中同名函数的函数体，主脚本其余部分继续跟随游戏包更新；同名函数不存在时打印「覆盖片段无对应函数」并跳过
+-新增 脚本钩子：模组在 _mod.gvts 中定义 钩子_载入、钩子_每帧、钩子_绘制，引擎在主脚本对应时机调用；钩子与主脚本同栈执行，可直接读写主脚本全局量
+-新增 ghook 补丁声明：模组根目录 mod.ghook，语法为「替换 "原文" 为 "新文"」，按字符流解析并支持 // 注释与 \"、\n、\t 转义，未命中打印「补丁未命中」，用于只改一行而不携带整份脚本
+-新增 脚本自省接口「列出_全局」：按名称前缀返回全局量名称与类型表，供模组作者检索可改动的量而不必翻完整脚本
+-修复 自省接口类型取错栈位：读的是键而非值，数值量被报成文本
+-变更 glc 扩展名白名单补入 .ghook
+-变更 阴影调参弹窗默认关闭：编译开关 GVTCIER_CSM_TUNING 置零，调参结构与光标探针保留
+-变更 Demo 黑色背景模组由整份 game.gvts 改为一条 mod.ghook 声明，包体由十三千余字节降至三百三十字节，机制不再随模组冻结
+-变更 文档同步 2.7
+
+v2.8
+-新增 2D 设置过滤：设置界面按 gvtio 模式裁剪内容，通用页去掉运动相机与 FOV，画面页只留抗锯齿，操控页不再出现鼠标灵敏度、按键预设与第一人称动作；三维游戏不受影响
+-新增 按键表由脚本声明：输入分类增加 声明_按键、获取_按键值、设置_按键值、检测_动作键按下、检测_动作键刚按下 五个能力，动作名即设置页显示名，动作标识用于查找
+-变更 按键持久化由固定枚举改为动态表：GameSettings 增加 actions 队列，设置文件读写 action.<标识>=<键值>；读取早于脚本声明时先占位，声明只补显示名并保留玩家改过的键值
+-变更 2D 操控页改为遍历脚本声明的动作表，末尾补菜单键；旧 key0 至 key6 存档与三维绑定路径原样保留
+-修复 2D 暂停菜单黑屏：renderCanvasItems2D 只消费画布队列，引擎界面队列从未被绘制；Render2D 补画该队列并清空，同时止住队列无界累积
+-修复 2D 主菜单期间游戏提前运行：主菜单循环的脚本推进一步加二维守卫，脚本不得在菜单停留期间推进
+-新增 2D 暂停时机钳制：菜单打开期间冻结脚本输入（按键、刚按下、滚轮、动作查询一律返回假），仍以零步长重绘一帧，画面定格且逻辑不推进
+-变更 设置页背景不透明度由一降至零点九，暂停页可见底层定格画面
+-变更 文档同步 2.8
+
+v2.9 snapshot1
+-新增 Vulkan 纹理上传通道：暂存缓冲经 vkCmdCopyBufferToImage 写入图像，行跨度按 GL 的四字节对齐规则解包，支持 RGBA 与 BGRA 通道互换
+-修复 Vulkan 文本不上屏：纹理子区上传此前为空实现，字形图集从未进入显存
+-修复 Vulkan 文字变粗发白：纹理以空指针创建时图像未清零，字形周围采样到未初始化显存，现于创建后立即清除
+-修复 Vulkan 按钮高亮整屏发白：顶点缓冲在尺寸相同时原地覆写，排队中的高亮绘制被后续数据覆盖，改为每次重分配并延迟回收
+-修复 Vulkan 文本描边丢失：uniform 缓冲单槽复用，描边与填充两次绘制读到同一份颜色，改为动态 uniform 缓冲按绘制分配环形槽位
+-修复 Vulkan 顶点属性语义：跨距为零按紧密排列推断，顶点缓冲不再被实例缓冲覆盖，每帧重设属性时保留实例化除数
+-修复 Vulkan 索引类型：按传入类型区分十六位与三十二位索引，此前一律按三十二位读取
+-修复 Vulkan 渲染通道：进入新通道前统一结束当前通道，采样布局全程使用通用布局，消除布局状态跟踪冲突
+-修复 Vulkan 交换链标志告警定性：引擎侧标志恒为零，告警来自系统注册的隐式层，可用 VK_LOADER_LAYERS_DISABLE 屏蔽
+-新增 调试器截图能力：-shot 与 -shots 在指定秒数抓取窗口 PNG 写入日志目录
+-新增 调试器输入注入：-click 按时刻注入鼠标点击，-key 按时刻注入按键，用于无人值守进入三维场景
+-变更 调试器并入根构建，产物为 dist/Gvt调试器.exe，与引擎动态库同目录
+-变更 渲染抽象层中性化：移除 OpenGL 状态机入口，合并为光栅状态块与显式纹理单元绑定，三后端与全部调用方迁移完毕
+-变更 文档同步 2.9 snapshot1
+
+v2.9
+-移除 Vulkan 后端：删除 include/Rhidriver/vk 与 src/Rhidriver/vk 全部源码，RhiTable 去掉 vkTable 与 ShaderSourceBinary，Backend 枚举去掉 Vulkan
+-移除 GVSL：删除工具链 tool/Gvslc、实验目录 Exper/Gvslc、着色器中间目录 Shader/Gvsl 与生成头 src/gvsl_gen.gen.h
+-变更 着色器回归纯 GLSL：Shader/Legacy 还原为 Shader/S2D 与 Shader/S3D，res.rc 直接引用源文件，去掉 .glsl 后缀与全部 _SPV、shaders.json、spvhash.json 条目
+-移除 着色器加载的名字参数与 SetProgramName 接口，资源层去掉 spv_mode 分支
+-变更 build.py 去掉 volk.c 编译源、Vulkan include 路径与 VK_USE_PLATFORM_WIN32_KHR 宏，去掉 GVSL 构建入口
+-修复 3D 场景全黑：GVSL 生成的着色器在 GL 路径下渲染异常，回退纯 GLSL 后恢复正常
+-变更 文档同步 2.9
+
+v3.0
+-新增 软阴影边缘与接地双路采样：软边缘取未偏移的原始接收面位置、盘半径按可调系数铺开，接地取施加过法线偏移后的采样点、盘半径压到单纹素，两路取较小值合并只压暗不提亮，解决软化把接触阴影冲淡导致的接地漏光
+-新增 阴影沿光偏移归零：微量偏移会在斜面上把采样点推入遮挡体，反而逼出自阴影痤疮，自遮挡全部交给法线偏移承担
+-变更 阴影固化值收敛：法线偏移十 texel、采样盘半径十 texel、PCF 半径倍率零点八七、接收端偏移倍率一点七九，沿光偏移零点
+-变更 阴影默认值迁出调试模块：引擎默认值改由渲染器内 kCsmDefaults 常量持有，成为唯一真实来源；调试窗只保留一份初值供对照，开关置零时引擎从编译期就完全不引用调试窗数据，不再由调试头文件决定引擎参数
+-变更 阴影调参弹窗八个滑块上限统一为十，PCF 半径与偏移都够用
+-新增 文本栅格化改用 stb_truetype：打包字体直接从资源读入自行解析，不经过系统字体查找，CFF 轮廓的 OTF 也能正常栅格，不再受机器上是否安装同名字体影响
+-修复 打包字体从未真正生效：思源黑体两个文件为纯 CFF 轮廓，Windows GDI 的 CreateFont 系列不支持 CFF，注册后按族名取不到并静默退回系统默认字体；查清后在字体内改名并切换 stb 路径彻底解决
+-变更 字体族名改为 Gvtcier_Font（Regular 与 Bold 保留为子族名），与系统里可能存在的同名思源隔离；补入 assets/Fonts/OFL.txt 随资源分发许可证全文
+-修复 文本模糊发虚：字形按 32px 栅格后放大绘制，主标放大两点六倍必然糊；改为按 96px 高分辨率栅格、绘制时缩小使用，对外 scale 语义不变
+-修复 文本厚重发胖：每段文字额外绘制八遍偏移字形做描边（正偏移 2px、斜向 1.5px），笔画被撑胖一圈；描边整体移除，延迟与二维两条绘制路径一并处理
+-修复 文本被方块裁掉、字形丢失：图集装满后直接把 uv 置零采到空白；改为按需扩页，绘制时按字形所属页分组切纹理，任何字形都不会因放不下而消失
+-修复 阴影里死黑：环境光强度仅 0.06，直射光被阴影完全切断后无补偿；默认环境光提到 0.22，阴影区与背光面有基础亮度
+-新增 AO 只作用于间接光：从直射光路径与最终画面整片相乘两处撤出，只在延迟光照的半球环境光上生效，合成阶段按低权重轻微收尾，阴影与 AO 各司其职不再互相放大亮度差异
+-变更 启动画面改为单段正式标识：白底黑字「Made in / Gvtcier」由代码绘制，移除星空背景、第二张 logo 与健康游戏忠告，总时长由十四点六秒缩至数秒
+-新增 启动画面合规时长分支：未买断授权连续展示满 3 秒（对齐可视化合规标准的最低时长），买断授权以 --licensed 免除署名义务缩短至 1.5 秒
+-变更 res.rc 移除两张启动 logo 资源条目，启动画面不再依赖图片
+-变更 文档同步 3.0
+
+v3.1
+-修复 特效完全不显示：特效绘制排在延迟光照之前，而延迟光照是一张全屏 pass，会把先前写进 HDR 缓冲的颜色整片覆盖；改为在延迟光照之后单独成 pass，透明几何顺延
+-修复 完全透明的特效根本不渲染：特效实例、调试线框、世界线共用简化通道且不受光照，改为独立批次不再走光照管线
+-修复 特效被画成可见的圆柱与圆盘：演示脚本用实体几何体冒充特效发生器，贴图误用 1_23；改为脚本直接按坐标播放特效，不依托任何实体
+-修复 特效 JSON 一个发射器都读不到：jsonFindKey 返回的是冒号之后的原始位置并不跳过空白，调用方直接加一偏移，遇到「键: 值」的空格时错位到起始括号本身，数组与对象解析当场退出；改为先用 jsonSkip 定位真正的内容起点
+-修复 粒子参数全部为默认值：particle 段落的取值位置有同样的偏移一字节问题，寿命、尺寸、速度与颜色曲线从未被读进结构体
+-新增 粒子朝向三模式：面向相机、只绕竖直轴转向（烟柱与火焰用，避免相机俯仰时纸片翻转）、长边顺速度方向（拖尾与流星）
+-变更 粒子四边形改由顶点着色器按 gl_VertexID 展开：CPU 每颗粒子只提交一份数据，六个角点在着色器内查表得到，顶点上传量降至六分之一；光束两端点不同仍在 CPU 侧展宽，以直通标记跳过展开
+-新增 粒子数量概率软上限：接近上限时按平方衰减的概率丢弃，爆发场景的粒子密度平滑下降，不会出现突然少一半的跳变
+-变更 烟雾粒子不再写深度：烟雾片互相写深度会生成硬边截断并挡住身后内容，表现为横向条纹与块状切口；烟雾只靠 alpha 叠出浓度
+-变更 烟雾着色由径向渐变改为密度场：多层分形噪声构成絮状轮廓，扣掉底色阈值留下大片全透明区域，单层不透明度封顶，多片叠加才有层次，不再是半透明圆球或白色实心块
+-变更 烟雾默认参数收敛：粒子上限、发射速率、初始尺寸与生长速度全面下调，遮屏面积降至原来约五分之一，过度绘制明显缓解
+-移除 特效调试打印与演示脚本中的特效调用
+-变更 文档同步 3.1
+
+v3.2
+-新增 界面命中框通用能力：GvtHitRect 统一承载可点矩形与命中判断，配套文字绘制即得热区的三个入口（画一行、居中画一行、只量不画）与设置页行控件布局函数，界面代码不再自己量文字
+-修复 主菜单与暂停菜单横向任意位置都能点到条目：命中只看纵向，横向位置被忽略；改为按文字包围盒判定，看到的位置才点得到
+-修复 设置页控件热区与控件本身不一致：热区按整行高度铺开，点在控件上下空白处也会触发；改为与绘制尺寸完全一致
+-修复 设置页控件值文字与控件不对齐：值的纵向坐标沿用了左侧标签文字的位置，而不是控件自身居中，下拉箭头、开关、键位框全部偏上
+-修复 设置页行标签居中用错度量：宽高两个参数传了同一个变量，纵向居中实际按文字宽度计算
+-修复 设置页返回箭头与标签页热区与可见文字不符：改为按文字包围盒外扩一圈
+-变更 文档同步 3.2
+
+v3.3
+-变更 日志只进文件不再弹控制台：游戏打开后不再出现黑色控制台窗口，调试构建附带出来的控制台也会被隐藏；printf 与 stderr 的内容统一接管进日志，GUI 进程没有标准输出也不会丢失任何一行
+-新增 开场四阶段日志：初始化设备、组件自检、加载资源、切入主菜单，每段打一行阶段标题，整段结果攒齐后一次列出，不再一截一截地插队
+-新增 设备信息分项：图形报 OpenGL 版本、GPU 型号与厂商，音频报输出声卡，窗口报分辨率，缩进行以「|____」开头表明从属关系
+-新增 组件自检：渲染器、场景、物理世界、Gvts 解释器、2D 画布、界面音效、网络逐项报成功或失败，失败带原因
+-变更 资源加载改为逐项真解：贴图与音频各自实际解码一遍并统计总数，失败的单项单独列出；贴图解不开不再悄悄退回白图，音频解不开也不会被静默吞掉
+-新增 进游戏五步顺序：资源、碰撞、几何（天空盒与太阳、地图、脚本）、后处理（体积光、雾、阴影）、玩家，后一步依赖前一步的产物
+-修复 几何与碰撞整段被跳过：阶段内的小步由阶段外统一递增，第一步跑完就被当成整段结束，地图与脚本从未执行，导致只有天空盒、几何看不见、玩家动不了
+-修复 地图有画面没碰撞：引擎侧加载地图时只把对象放进了场景，没有逐个登记进物理，玩家直接穿过地面；改为加载后统一注册刚体
+-修复 玩家卡进地面：物理比地图先建，角色还停在空场景的出生点，地图就位后没有重新摆放，胶囊中心嵌进地面；改为脚本跑完后按地图出生点重设玩家位置
+-变更 资源层报错前缀统一：内部「[res]」与开场「[资源]」语义重复，合并为「[资源]」；找不到可选文件（模组声明、可选贴图）不再刷失败行
+-移除 临时的音频诊断、界面音效、着色器上传等调试打印
+-新增 渲染器分段入口：一帧可拆成准备、天空、几何、后处理、画布五段分次跑，供开场逐段铺画面使用
+-变更 移除 Docs/技术文档 目录，技术说明统一并入 Docs/Ddocs 与 Docs/Gvtcier.html
+-变更 脚本手册补全系统能力表：补入漏记的 获取_窗口尺寸、检测_资源存在 与随机四项，撤掉已并入物体分类的 创建_句柄
+-变更 功能总览勘误：脚本能力数由 247 项修正为 284 项，补记界面音效与 Gvt调试器，日志条目区分「只入文件」与「双写接口」
+-变更 注释门禁条目更正：源码早已允许注释，文档仍写着硬性禁止；构建脚本里残留的零注释检查函数已无调用点，一并删除
+-变更 文档同步 3.3
+
+v3.4
+-新增 ASM 并行式级联阴影（Parallel Type Shadow Mapping）：近两级级联不再由主光拍大张深度图，改为给每个近处物体动态下发一台子相机（以物体为中心、朝向沿用光照轴、正交盒放大 1.35 罩住影子落点），16 槽 256² 深度图集逐槽渲染，视锥内相交物体全部画入子图保证互遮挡；远两级走原 CSM
+-新增 ASM 采样判定：着色器按判定半径命中子相机则优先采子图（3×3 邻域堵贴边漏光），未命中回落传统 CSM；超出槽位或大物体自动回退 CSM 不缺影
+-修复 ASM 子相机深度窗口过浅：原先只按目标物体自身厚度配窗口，巨大遮挡体（长墙）超出部分被拍扁导致阴影整块缺失；改为按本级实际画入的遮挡物沿光轴投影求真实深度范围（v2.4 同款修法）
+-变更 ASM 子相机分支去掉法线偏移：子相机纹素极小且剔正面写背面深度已防痤疮，法线偏移成为接缝漏光来源；CSM 路径偏差模型不动
+-变更 阴影软化（PCSS）移除：blocker 搜索与多 tap 软化在无时域累积的管线里为负收益，阴影改回单次深度硬比较，每阴影像素省下数十次采样
+-新增 屏幕空间半球辐照度 GI：延迟光照里对着色法线半球 12 个黄金角方向采样 G-buffer，可见表面按其自身受光（含单 tap 廉价阴影测试，阴影里的暗面不再污染贡献）与反照率贡献间接光，阴影死黑被环境反弹提亮
+-修复 GI 边缘失效与远近不一致：采样投影越界改 clamp 到屏内；剔除判定全部改到世界空间并去掉视角相关分支（NDC 深度差、相机距离），亮度不再随视距漂移
+-新增 通用点光/聚光阴影：复活 CubeShadowMap，四张 512² 立方图存「到光源距离」（R32F），新点深度着色器（编号 35/36 并注册资源段），每帧为前 4 盏投影灯各渲六面；光源数据步长 12→13 增加阴影槽位，着色器按槽位方向采样比较，任意 castShadow 点光自动投影
+-修复 点阴影五处：视矩阵改在光源相对空间构建（原先平移被减两次几何整体出视锥）、±Y 面 up 向量对齐硬件立方约定、bindFace 补显式清屏、清深度值改反向 Z 的 0.0、立方图采样改 3D 方向向量（原 uv+face 写法非法）
+-修复 点阴影痤疮：采样点沿法线与光方向按斜率自适应偏移，比较余量收紧到 1 厘米
+-新增 玩家手电筒：F 键开关，聚光灯随相机视角（暖白、19° 半角、强度 5、半径 26），作为普通投影灯参与 tile 光照与立方阴影，无独立机制
+-新增 体积云：体积系统内的高度板层密度项（高度梯度塑形 + 双 octave 噪声 + 覆盖阈值，向太阳采样做自遮挡明暗，Henyey-Greenstein 相位出银边），与体积光共用射线步进与合成通道；compose 天空分支改按体积透射率混合，云能正确压暗天空
+-变更 云层参数收敛：覆盖判定去掉加法偏移（原先整层过阈满天云）、噪声高频加权出缝隙、云层升到 180 米厚 80 米、去除漂移保持静止
+-新增 天空绕过 HDR：compose 按场景深度识别天空像素（深度恒为清屏值），跳过曝光与色调映射直接输出原色，天空调色与场景解耦
+-新增 阴影区绕过 HDR：延迟光照把阴影系数写进 HDR 颜色 alpha，compose 按系数把曝光混向 1.0，全阴影像素亮度锚定不受曝光调整影响，影子不再随调 HDR 变黑
+-变更 后期链中性化：饱和度 1.35→1.05、对比度 1.12→1.0、晕影 0.7→0.3、ACES 曝光偏置 1.8→1.6，去掉「用力过猛」的叠加滤镜，分级交还内容侧
+-变更 天空球半径 900→1999：比最大视距 2000 小 1，罩住整个视锥
+-新增 纹理槽位 AsmShadow=9、PointShadowCube2/3/4=10/11/12、SkyBox=13
+-变更 文档同步 3.4

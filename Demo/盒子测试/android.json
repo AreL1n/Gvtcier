@@ -1,0 +1,11 @@
+{
+  "appname": "盒子测试",
+  "package": "com.Li.HuaL1n.Gvtcier.box",
+  "lib": "gvts_box",
+  "versionCode": "1",
+  "versionName": "1.0",
+  "gpak": [
+    ["game.gvts", "game.gvts"],
+    ["test_scene.gmap", "test_scene.gmap"]
+  ]
+}

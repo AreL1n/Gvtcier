@@ -1,0 +1,10 @@
+{
+  "appname": "俄罗斯方块",
+  "package": "com.Li.HuaL1n.Gvtcier.tetris",
+  "lib": "gvts_tetris",
+  "versionCode": "1",
+  "versionName": "0.1",
+  "gpak": [
+    ["game.gvts", "game.gvts"]
+  ]
+}
